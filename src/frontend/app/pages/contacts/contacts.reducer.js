@@ -1,5 +1,5 @@
 import {
-} from './rooms.constants';
+} from './contacts.constants';
 
 const initState = {
   phone: '8-888-888-88-88',

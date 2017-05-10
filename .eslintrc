@@ -33,6 +33,13 @@
     "globals": {
         "Promise": true,
         "NODE_ENV": true,
-        "SERVER_HOST": true
+        "SERVER_HOST": true,
+
+        // Jest
+        "it": true,
+        "test": true,
+        "expect": true,
+        "describe": true,
+        "beforeEach": true
     }
 }
