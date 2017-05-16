@@ -211,6 +211,11 @@
       "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-0.2.0.tgz",
       "dev": true
     },
+    "assertion-error": {
+      "version": "1.0.2",
+      "from": "assertion-error@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/assertion-error/-/assertion-error-1.0.2.tgz"
+    },
     "async": {
       "version": "2.4.0",
       "from": "async@>=2.1.2 <3.0.0",
@@ -1060,6 +1065,11 @@
       "resolved": "https://registry.npmjs.org/center-align/-/center-align-0.1.3.tgz",
       "dev": true
     },
+    "chai": {
+      "version": "3.5.0",
+      "from": "chai@latest",
+      "resolved": "https://registry.npmjs.org/chai/-/chai-3.5.0.tgz"
+    },
     "chalk": {
       "version": "1.1.3",
       "from": "chalk@>=1.1.3 <2.0.0",
@@ -1525,6 +1535,18 @@
       "from": "decamelize@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/decamelize/-/decamelize-1.2.0.tgz",
       "dev": true
+    },
+    "deep-eql": {
+      "version": "0.1.3",
+      "from": "deep-eql@>=0.1.3 <0.2.0",
+      "resolved": "https://registry.npmjs.org/deep-eql/-/deep-eql-0.1.3.tgz",
+      "dependencies": {
+        "type-detect": {
+          "version": "0.1.1",
+          "from": "type-detect@0.1.1",
+          "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-0.1.1.tgz"
+        }
+      }
     },
     "deep-is": {
       "version": "0.1.3",
@@ -2855,6 +2877,44 @@
       "from": "jest-config@>=20.0.0 <21.0.0",
       "resolved": "https://registry.npmjs.org/jest-config/-/jest-config-20.0.0.tgz",
       "dev": true
+    },
+    "jest-css-modules": {
+      "version": "1.1.0",
+      "from": "jest-css-modules@latest",
+      "resolved": "https://registry.npmjs.org/jest-css-modules/-/jest-css-modules-1.1.0.tgz",
+      "dev": true,
+      "dependencies": {
+        "babel-jest": {
+          "version": "16.0.0",
+          "from": "babel-jest@>=16.0.0 <17.0.0",
+          "resolved": "https://registry.npmjs.org/babel-jest/-/babel-jest-16.0.0.tgz",
+          "dev": true
+        },
+        "babel-plugin-istanbul": {
+          "version": "2.0.3",
+          "from": "babel-plugin-istanbul@>=2.0.0 <3.0.0",
+          "resolved": "https://registry.npmjs.org/babel-plugin-istanbul/-/babel-plugin-istanbul-2.0.3.tgz",
+          "dev": true
+        },
+        "babel-plugin-jest-hoist": {
+          "version": "16.0.0",
+          "from": "babel-plugin-jest-hoist@>=16.0.0 <17.0.0",
+          "resolved": "https://registry.npmjs.org/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-16.0.0.tgz",
+          "dev": true
+        },
+        "babel-preset-jest": {
+          "version": "16.0.0",
+          "from": "babel-preset-jest@>=16.0.0 <17.0.0",
+          "resolved": "https://registry.npmjs.org/babel-preset-jest/-/babel-preset-jest-16.0.0.tgz",
+          "dev": true
+        },
+        "test-exclude": {
+          "version": "2.1.3",
+          "from": "test-exclude@>=2.1.1 <3.0.0",
+          "resolved": "https://registry.npmjs.org/test-exclude/-/test-exclude-2.1.3.tgz",
+          "dev": true
+        }
+      }
     },
     "jest-diff": {
       "version": "20.0.0",
@@ -5636,6 +5696,11 @@
       "from": "type-component@>=0.0.0 <0.1.0",
       "resolved": "https://registry.npmjs.org/type-component/-/type-component-0.0.1.tgz",
       "dev": true
+    },
+    "type-detect": {
+      "version": "1.0.0",
+      "from": "type-detect@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-1.0.0.tgz"
     },
     "type-is": {
       "version": "1.6.15",
