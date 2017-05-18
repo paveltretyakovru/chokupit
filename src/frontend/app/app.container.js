@@ -12,6 +12,7 @@ import DevTools from './shared/devtools';
 import HeaderContainer from './shared/header/header.container';
 import LeftMenuComponent from './shared/left-menu.component';
 import ButtonMenuComponent from './shared/buttons/button-menu.component';
+import CategoryAddFieldComponent from './shared/category/category-add-field/category-add-field.component';
 
 // Redux
 import * as AppActions from './app.actions';
@@ -56,6 +57,12 @@ export class AppContainer extends Component {
             buttonLeft={this.state.headerButtonLeft}
             buttonRight={this.state.headerButtonRight}
           />
+
+          <div className="row">
+            <div className="col-xs-6">
+              <CategoryAddFieldComponent />
+            </div>
+          </div>
           
           <div className="row">
             <div className="col-xs-12" id="progressbar-wrapper">

@@ -14,13 +14,13 @@ const historyOptions = [ hashHistory, store, { adjustUrlOnReplay: false } ];
 const history = syncHistoryWithStore(...historyOptions);
 
 ReactDOM.render(
-        <MuiThemeProvider>
-    <Provider store={ store }>
-        <Router history={ history }>
-            { routes }
-        </Router>
-    </Provider>
-          </MuiThemeProvider>
+    <MuiThemeProvider>
+        <Provider store={ store }>
+            <Router history={ history }>
+                { routes }
+            </Router>
+        </Provider>
+    </MuiThemeProvider>
 ,
   document.getElementById('root')
 );

@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 
 import makeId from 'makeId';
 
-class STextField extends Component {
+/**
+ * @class TextFieldComponent
+ * @param props.floatingLabelText [String]
+ */
+class TextFieldComponent extends Component {
   constructor(props) {
     super(props);
 
@@ -72,4 +76,4 @@ class STextField extends Component {
   }
 }
 
-export default STextField;
+export default TextFieldComponent;
