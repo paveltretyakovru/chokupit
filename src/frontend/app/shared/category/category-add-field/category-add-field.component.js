@@ -1,4 +1,8 @@
+// Core, libs, ...
 import React, { Component } from 'react';
+
+// Material-UI components
+import FlatButton from 'material-ui/FlatButton';
 
 // Components
 import TextFieldComponent from 'app/shared/form/text-field.component';
@@ -7,17 +11,21 @@ import TextFieldComponent from 'app/shared/form/text-field.component';
 import './category-add-field.component.css';
 
 // Constants
-const TEXT_FIELD_FLOAT_TEXT = 'Название категории';
+const TEXT_FIELD_HINT_TEXT = 'Название категории';
+const ADD_BOUTTON_LABEL = 'Добавить';
 
 export class CategoryAddFieldComponent extends Component {
   render() {
     return (
       <div id="category-add-field-wrapper" className="row">
         <div className="col-md-10">
-          <TextFieldComponent floatingLabelText={ TEXT_FIELD_FLOAT_TEXT } />
+          <TextFieldComponent hintText={ TEXT_FIELD_HINT_TEXT } />
         </div>
         <div className="col-md-2">
-          <button>Добавить</button>
+          <FlatButton
+            label={ADD_BOUTTON_LABEL}
+            secondary={true}
+          />
         </div>
       </div>
     );
