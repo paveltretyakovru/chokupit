@@ -11,22 +11,27 @@ import TextFieldComponent from 'app/shared/form/text-field.component';
 import './text-field-with-button.component.css';
 
 // Constants
-const TEXT_FIELD_HINT_TEXT = 'Название категории';
-const ADD_BOUTTON_LABEL = 'Добавить';
+import {
+  ADD_BUTTON_LABEL_DEFAULT,
+  TEXT_FIELD_HINT_TEXT_DEFAULT,
+} from './';
 
 export class TextFieldCOmponentWithButton extends Component {
   render() {
+    let hintText = this.props.hintText || TEXT_FIELD_HINT_TEXT_DEFAULT;
+    let buttonLabel = this.props.buttonLabel || ADD_BUTTON_LABEL_DEFAULT;
+
     return (
       <div id="category-add-field-wrapper" className="row">
         <div className="col-md-9 col-xs-9">
           <TextFieldComponent
             fullWidth={ true }
-            hintText={ TEXT_FIELD_HINT_TEXT }
+            hintText={ hintText }
           />
         </div>
         <div className="col-md-2 col-xs-3">
           <FlatButton
-            label={ADD_BOUTTON_LABEL}
+            label={ buttonLabel }
             secondary={true}
           />
         </div>
