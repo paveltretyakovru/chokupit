@@ -46,7 +46,7 @@ export class AppContainer extends Component {
     ];
 
     return(
-        <div id="app-container" className="container">
+        <div id="app-container">
           <LeftMenuComponent
             items={menuItems}
             isOpen={this.props.app.isLeftMenuOpen}
@@ -58,9 +58,13 @@ export class AppContainer extends Component {
             buttonRight={this.state.headerButtonRight}
           />
 
-          <div className="row">
-            <div className="col-xs-6">
+          <div className="container-fluid">
+            <div className="row">
+            <div className="col-xs-9 col-md-6">
               <CategoryAddFieldComponent />
+            </div>
+            <div className="col-xs-9 col-md-6">
+              <CategoryAddFieldComponent style={{alignItems: 'flex-end'}} />
             </div>
           </div>
           
@@ -85,6 +89,7 @@ export class AppContainer extends Component {
               }
             </div>
           </main>
+          </div>
           { NODE_ENV === 'development' ? <DevTools /> : null }
         </div>
     );

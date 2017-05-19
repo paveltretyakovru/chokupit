@@ -17,12 +17,14 @@ class HeaderContainer extends Component {
 
     return (
       <header className="row">
-        <AppBar
-          title={ headerTitle }
-          iconElementLeft={ this.props.buttonLeft }
-          iconElementRight={ this.props.buttonRight }
-          iconStyleRight={ iconStyleRight }
-        />
+        <div className="col-md-12 col-xs-12">
+          <AppBar
+            title={ headerTitle }
+            iconElementLeft={ this.props.buttonLeft }
+            iconElementRight={ this.props.buttonRight }
+            iconStyleRight={ iconStyleRight }
+          />
+        </div>
       </header>
     );
   }

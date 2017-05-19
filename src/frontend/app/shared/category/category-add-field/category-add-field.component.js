@@ -18,10 +18,13 @@ export class CategoryAddFieldComponent extends Component {
   render() {
     return (
       <div id="category-add-field-wrapper" className="row">
-        <div className="col-md-10">
-          <TextFieldComponent hintText={ TEXT_FIELD_HINT_TEXT } />
+        <div className="col-md-9 col-xs-9">
+          <TextFieldComponent
+            fullWidth={ true }
+            hintText={ TEXT_FIELD_HINT_TEXT }
+          />
         </div>
-        <div className="col-md-2">
+        <div className="col-md-2 col-xs-3">
           <FlatButton
             label={ADD_BOUTTON_LABEL}
             secondary={true}
