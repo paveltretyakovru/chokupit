@@ -14,6 +14,12 @@ import LeftMenuComponent from './shared/left-menu.component';
 import ButtonMenuComponent from './shared/buttons/button-menu.component';
 import TextFieldWithButton from './shared/text-field-with-button/text-field-with-button.component';
 
+// Constants
+import {
+  ADD_PRODUCT_FIELD_LABEL,
+  ADD_CATEGORY_FIELD_LABEL,
+} from './app.constants';
+
 // Redux
 import * as AppActions from './app.actions';
 import { routeToContacts } from './pages/contacts/contacts.actions';
@@ -60,37 +66,41 @@ export class AppContainer extends Component {
 
           <div className="container-fluid">
             <div className="row">
-            <div className="col-xs-9 col-md-6">
-              <TextFieldWithButton />
+              <div className="col-xs-9 col-md-6">
+                <TextFieldWithButton
+                  hintText={ ADD_CATEGORY_FIELD_LABEL }
+                />
+              </div>
+              <div className="col-xs-9 col-md-6">
+                <TextFieldWithButton
+                  hintText={ ADD_PRODUCT_FIELD_LABEL }
+                />
+              </div>
             </div>
-            <div className="col-xs-9 col-md-6">
-              <TextFieldWithButton style={{alignItems: 'flex-end'}} />
-            </div>
-          </div>
           
-          <div className="row">
-            <div className="col-xs-12" id="progressbar-wrapper">
-              <LinearProgress mode="determinate" value={50} />
+            <div className="row">
+              <div className="col-xs-12" id="progressbar-wrapper">
+                <LinearProgress mode="determinate" value={50} />
+              </div>
             </div>
-          </div>
 
-          <main className="row">
-            <div id="app-content" className="col-xs-12 col-md-12">
-              {/* { this.props.children } */}
-              {
-                React.cloneElement(
-                  this.props.children,
-                  {
-                    setHeaderButtons: ::this.setHeaderButtons,
-                    setHeaderButtonLeft: ::this.setHeaderButtonLeft,
-                    setHeaderButtonRight: ::this.setHeaderButtonRight,
-                  }
-                )
-              }
+            <main className="row">
+              <div id="app-content" className="col-xs-12 col-md-12">
+                {/* { this.props.children } */}
+                {
+                  React.cloneElement(
+                    this.props.children,
+                    {
+                      setHeaderButtons: ::this.setHeaderButtons,
+                      setHeaderButtonLeft: ::this.setHeaderButtonLeft,
+                      setHeaderButtonRight: ::this.setHeaderButtonRight,
+                    }
+                  )
+                }
+              </div>
+            </main>
             </div>
-          </main>
-          </div>
-          { NODE_ENV === 'development' ? <DevTools /> : null }
+            { NODE_ENV === 'development' ? <DevTools /> : null }
         </div>
     );
   }

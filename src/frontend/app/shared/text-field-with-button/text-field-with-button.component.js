@@ -14,7 +14,7 @@ import './text-field-with-button.component.css';
 import {
   ADD_BUTTON_LABEL_DEFAULT,
   TEXT_FIELD_HINT_TEXT_DEFAULT,
-} from './';
+} from './text-field-with-button.constants';
 
 export class TextFieldCOmponentWithButton extends Component {
   render() {
@@ -22,14 +22,14 @@ export class TextFieldCOmponentWithButton extends Component {
     let buttonLabel = this.props.buttonLabel || ADD_BUTTON_LABEL_DEFAULT;
 
     return (
-      <div id="category-add-field-wrapper" className="row">
-        <div className="col-md-9 col-xs-9">
+      <div id="text-field-with-button-wrapper" className="row">
+        <div className="col-md-8 col-xs-10">
           <TextFieldComponent
             fullWidth={ true }
             hintText={ hintText }
           />
         </div>
-        <div className="col-md-2 col-xs-3">
+        <div className="col-md-4 col-xs-2">
           <FlatButton
             label={ buttonLabel }
             secondary={true}
