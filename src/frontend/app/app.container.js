@@ -12,7 +12,7 @@ import DevTools from './shared/devtools';
 import HeaderContainer from './shared/header/header.container';
 import LeftMenuComponent from './shared/left-menu.component';
 import ButtonMenuComponent from './shared/buttons/button-menu.component';
-import CategoryAddFieldComponent from './shared/category/category-add-field/category-add-field.component';
+import TextFieldWithButton from './shared/text-field-with-button/text-field-with-button.component';
 
 // Redux
 import * as AppActions from './app.actions';
@@ -61,10 +61,10 @@ export class AppContainer extends Component {
           <div className="container-fluid">
             <div className="row">
             <div className="col-xs-9 col-md-6">
-              <CategoryAddFieldComponent />
+              <TextFieldWithButton />
             </div>
             <div className="col-xs-9 col-md-6">
-              <CategoryAddFieldComponent style={{alignItems: 'flex-end'}} />
+              <TextFieldWithButton style={{alignItems: 'flex-end'}} />
             </div>
           </div>
           

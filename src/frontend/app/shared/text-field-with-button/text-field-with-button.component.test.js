@@ -8,7 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Components
 import TextFieldComponent from 'app/shared/form/text-field.component';
-import CategoryAddFieldComponent from './category-add-field.component';
+import TextFieldWithButtonComponent from './text-field-with-button.component';
 
 injectTapEventPlugin();
 
@@ -18,7 +18,7 @@ describe('>>> CATEGORY ADD FIELD COMPONENT - shallow render component', () => {
   beforeEach(() => {
     component = mount(
       <MuiThemeProvider>
-        <CategoryAddFieldComponent />
+        <TextFieldWithButtonComponent />
       </MuiThemeProvider>
     );
   });

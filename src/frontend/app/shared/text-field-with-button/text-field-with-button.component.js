@@ -8,13 +8,13 @@ import FlatButton from 'material-ui/FlatButton';
 import TextFieldComponent from 'app/shared/form/text-field.component';
 
 // Styles
-import './category-add-field.component.css';
+import './text-field-with-button.component.css';
 
 // Constants
 const TEXT_FIELD_HINT_TEXT = 'Название категории';
 const ADD_BOUTTON_LABEL = 'Добавить';
 
-export class CategoryAddFieldComponent extends Component {
+export class TextFieldCOmponentWithButton extends Component {
   render() {
     return (
       <div id="category-add-field-wrapper" className="row">
@@ -35,4 +35,4 @@ export class CategoryAddFieldComponent extends Component {
   }
 }
 
-export default CategoryAddFieldComponent;
+export default TextFieldCOmponentWithButton;
