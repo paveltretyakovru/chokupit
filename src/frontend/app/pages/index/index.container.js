@@ -5,15 +5,10 @@ import { bindActionCreators } from 'redux';
 import * as AppActions from 'app/app.actions';
 import * as HeaderActions from 'app/shared/header/header.actions';
 
-import {
-  HEADER_TITLE
-} from './index.constants';
-
 export class IndexContainer extends Component {
   componentWillMount() {
     if(this.props.setHeaderButtons !== undefined) {
       this.props.setHeaderButtons(null, null);
-      this.props.headerActions.updateHeaderTitle(HEADER_TITLE);
     }
   }
 

@@ -23,13 +23,13 @@ export class TextFieldCOmponentWithButton extends Component {
 
     return (
       <div id="text-field-with-button-wrapper" className="row">
-        <div className="col-md-8 col-xs-10">
+        <div className="col-md-8 col-xs-8">
           <TextFieldComponent
             fullWidth={ true }
             hintText={ hintText }
           />
         </div>
-        <div className="col-md-4 col-xs-2">
+        <div className="col-md-4 col-xs-4">
           <FlatButton
             label={ buttonLabel }
             secondary={true}

@@ -10,15 +10,11 @@ import LinearProgress from 'material-ui/LinearProgress';
 // Components
 import DevTools from './shared/devtools';
 import HeaderContainer from './shared/header/header.container';
-import LeftMenuComponent from './shared/left-menu.component';
+import LeftMenuComponent from './shared/left-menu/left-menu.component';
 import ButtonMenuComponent from './shared/buttons/button-menu.component';
-import TextFieldWithButton from './shared/text-field-with-button/text-field-with-button.component';
 
 // Constants
-import {
-  ADD_PRODUCT_FIELD_LABEL,
-  ADD_CATEGORY_FIELD_LABEL,
-} from './app.constants';
+import { DEFAULT_HEADER_TITILE } from './app.constants';
 
 // Redux
 import * as AppActions from './app.actions';
@@ -44,39 +40,20 @@ export class AppContainer extends Component {
   }
 
   render() {
-    let menuItems = [
-      {
-        title: 'Contacts',
-        routeDispatch: this.props.routeActions.routeToContacts,
-      },
-    ];
-
     return(
         <div id="app-container">
-          <LeftMenuComponent
-            items={menuItems}
-            isOpen={this.props.app.isLeftMenuOpen}
-            handleSwitch={this.props.appActions.switchLeftMenu}
-          />
-
           <HeaderContainer
             buttonLeft={this.state.headerButtonLeft}
             buttonRight={this.state.headerButtonRight}
           />
 
+          <LeftMenuComponent
+              title={ DEFAULT_HEADER_TITILE }
+              isOpen={ this.props.app.isLeftMenuOpen}
+              handleSwitch={this.props.appActions.switchLeftMenu }
+            />
+
           <div className="container-fluid">
-            <div className="row">
-              <div className="col-xs-9 col-md-6">
-                <TextFieldWithButton
-                  hintText={ ADD_CATEGORY_FIELD_LABEL }
-                />
-              </div>
-              <div className="col-xs-9 col-md-6">
-                <TextFieldWithButton
-                  hintText={ ADD_PRODUCT_FIELD_LABEL }
-                />
-              </div>
-            </div>
           
             <div className="row">
               <div className="col-xs-12" id="progressbar-wrapper">
@@ -106,7 +83,11 @@ export class AppContainer extends Component {
   }
 
   setHeaderButtons(headerButtonLeft, headerButtonRight) {
-    let leftButton = headerButtonLeft ? headerButtonLeft : <ButtonMenuComponent handleCLick={this.props.appActions.switchLeftMenu} />;
+    let leftButton = headerButtonLeft 
+      ? headerButtonLeft
+      : <ButtonMenuComponent
+          handleCLick={ this.props.appActions.switchLeftMenu }
+      />;
 
     this.setState({
       ...this.state,

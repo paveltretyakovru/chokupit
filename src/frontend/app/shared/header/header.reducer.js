@@ -2,8 +2,10 @@ import {
   UPDATE_HEADER_TITLE,
 } from './header.constants';
 
+import { DEFAULT_HEADER_TITILE } from 'app/app.constants';
+
 const initState = {
-  headerTitle: 'Encrypted chat',
+  headerTitle: DEFAULT_HEADER_TITILE,
 };
 
 export default function(state = initState, action) {

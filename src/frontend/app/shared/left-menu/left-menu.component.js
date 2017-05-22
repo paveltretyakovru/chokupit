@@ -1,29 +1,20 @@
 import React, {Component} from 'react';
 
 // Material-ui components
+import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
 
 class LeftMenuComponent extends Component {
   render() {
-    let itemsList = this.props.items.map((item, index) => {
-      return(
-        <MenuItem
-          key={index}
-          onTouchTap={() => { this.handleClickMenuItem(item) }}
-        >
-          {item.title}
-        </MenuItem>
-      );
-    });
-    
+    let title = this.props.title || 'Menu title';
+
     return(
       <Drawer
         open={this.props.isOpen}
         docked={false}
         onRequestChange={this.props.handleSwitch}
       >
-        {itemsList}
+        <AppBar title={ title } />
       </Drawer>
     )
   }
