@@ -1,6 +1,10 @@
-import AppBar from 'material-ui/AppBar';
 import {connect} from 'react-redux';
 import React, {Component} from 'react';
+
+// Material-ui components
+import AppBar from 'material-ui/AppBar';
+
+// TODO: Вывести отдельный reducer и actions для header
 
 class HeaderContainer extends Component {
   getStyle() {
