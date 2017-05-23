@@ -6,7 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Components
-import ProductsContainer from './products.container';
+import ConnectedProductContainer, { ProductsContainer } from './products.container';
 
 injectTapEventPlugin();
 
