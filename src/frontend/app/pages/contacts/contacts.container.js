@@ -8,12 +8,16 @@ import ButtonBackComponent from 'app/shared/buttons/button-back.component';
 // Actions
 import * as HeaderActions from 'app/shared/header/header.actions';
 
+// Constants
+import { DEFAULT_HEADER_TITILE } from 'app/app.constants';
+
 class ContactsContainer extends Component {
   static path = '/contacts'
 
   componentWillMount() {
     this.props.setHeaderButtons(null, <ButtonBackComponent />);
-    this.props.headerActions.updateHeaderTitle('React application. Contacts');
+    this.props.headerActions
+      .updateHeaderTitle(`${DEFAULT_HEADER_TITILE}. Контакты`);
   }
 
   render() {

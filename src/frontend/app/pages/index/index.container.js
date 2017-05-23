@@ -2,13 +2,18 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 
+// Actions
 import * as AppActions from 'app/app.actions';
 import * as HeaderActions from 'app/shared/header/header.actions';
+
+// Constants
+import { DEFAULT_HEADER_TITILE } from 'app/app.constants';
 
 export class IndexContainer extends Component {
   componentWillMount() {
     if(this.props.setHeaderButtons !== undefined) {
       this.props.setHeaderButtons(null, null);
+      this.props.headerActions.updateHeaderTitle(`${DEFAULT_HEADER_TITILE}`);
     }
   }
 
