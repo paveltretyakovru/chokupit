@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-import CategoriesContainer from './categories.container';
+import CategoriesContainer from './products-categories.container';
 
 export default (
     <Route>
