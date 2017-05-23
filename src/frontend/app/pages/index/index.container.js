@@ -20,9 +20,7 @@ export class IndexContainer extends Component {
   render() {
     return (
       <div>
-        <h1>Index Container</h1>
-        <input type="text" placeholder="Input 1" defaultValue="Input 1 value" />
-        <button id="change-author-button">Change author name</button>
+        <h1>Главная страница</h1>
       </div>
     );
   }
