@@ -6,7 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Components
-import CategoriesContainer from './categories.container';
+import ProductsCategoriesContainer from './products-categories.container';
 
 injectTapEventPlugin();
 
@@ -23,7 +23,7 @@ describe('>>> CATEGORIES CONTAINER --- Shallow Rendeer Container', () => {
 
     wrapper = mount(
       <MuiThemeProvider>
-        <CategoriesContainer
+        <ProductsCategoriesContainer
           items={ menuItems }
         />
       </MuiThemeProvider>

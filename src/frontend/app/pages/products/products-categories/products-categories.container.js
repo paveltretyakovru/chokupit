@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-export class CategoriesContainer extends Component {
-  static path = '/categories'
+export class ProductsCategoriesContainer extends Component {
+  static path = '/products/categories'
 
   render() {
     return (
@@ -12,4 +12,4 @@ export class CategoriesContainer extends Component {
   }
 }
 
-export default CategoriesContainer;
+export default ProductsCategoriesContainer;
