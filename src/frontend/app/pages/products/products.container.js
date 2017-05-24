@@ -1,8 +1,22 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+
+// Constants
+import { DEFAULT_HEADER_TITILE } from 'app/app.constants';
+
+// Actions
+import * as headerActions from 'app/shared/header/header.actions';
 
 export class ProductsContainer extends Component {
   static path = '/products'
+
+  componentWillMount() {
+    if(this.props.headerActions) {
+      this.props.headerActions
+        .updateHeaderTitle(`${DEFAULT_HEADER_TITILE}. Все покупки`);
+    }
+  }
 
   render() {
     return(
@@ -19,4 +33,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(ProductsContainer);
+function mapDispatchToProps(dispatch) {
+  return {
+    headerActions: bindActionCreators(headerActions, dispatch),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

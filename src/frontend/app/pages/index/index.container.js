@@ -10,11 +10,15 @@ import AllInclusiveIcon from 'material-ui/svg-icons/places/all-inclusive';
 import { List, ListItem } from 'material-ui/List';
 
 // Actions
-import * as AppActions from 'app/app.actions';
-import * as HeaderActions from 'app/shared/header/header.actions';
+import * as appActions from 'app/app.actions';
+import * as headerActions from 'app/shared/header/header.actions';
 
 // Constants
-import { DEFAULT_HEADER_TITILE } from 'app/app.constants';
+import {
+  PRODUCTS_ROUTE,
+  DEFAULT_HEADER_TITILE,
+  PRODUCTS_CATEGORIES_ROUTE,
+} from 'app/app.constants';
 
 // CSS
 import './index.container.css';
@@ -30,18 +34,22 @@ export class IndexContainer extends Component {
   render() {
     const navigationLinks = [
       {
+        route: PRODUCTS_ROUTE,
         primaryText: 'Всё',
         leftIcon: <AllInclusiveIcon />,
       },
       {
+        route: '/',        
         primaryText: 'Друзья',
         leftIcon: <ContactsIcon />,
       },
       {
+        route: PRODUCTS_CATEGORIES_ROUTE,
         primaryText: 'Категории',
         leftIcon: <BooksIcon />,
       },
       {
+        route: '/',        
         primaryText: 'Избранное',
         leftIcon: <FavoriteIcon />,
       },
@@ -54,7 +62,17 @@ export class IndexContainer extends Component {
           <List>
             {
               navigationLinks.map((item, index) => {
-                return <ListItem {...item} key={index} />;
+                return(
+                  <ListItem
+                    key={index}
+                    leftIcon={item.leftIcon}
+                    primaryText={item.primaryText}
+
+                    onClick={() => {
+                      this.props.appActions.routeTo(item.route);
+                    }}
+                  />
+                );
               })
             }
           </List>
@@ -72,8 +90,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    appActions: bindActionCreators(AppActions, dispatch),
-    headerActions: bindActionCreators(HeaderActions, dispatch),
+    appActions: bindActionCreators(appActions, dispatch),
+    headerActions: bindActionCreators(headerActions, dispatch),
   }
 }
 

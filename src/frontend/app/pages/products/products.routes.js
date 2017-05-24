@@ -8,7 +8,7 @@ import ProductsContainer from './products.container';
 import ProductsCategoriesRoutes from './products-categories/products-categories.routes';
 
 export default (
-    <Route path={ ProductsContainer.path } >
+    <Route path={ ProductsContainer.path } component={ ProductsContainer } >
          { ProductsCategoriesRoutes }
     </Route>
 );

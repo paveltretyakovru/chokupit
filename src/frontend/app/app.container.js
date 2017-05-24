@@ -17,11 +17,15 @@ import ButtonMenuComponent from './shared/buttons/button-menu.component';
 import { DEFAULT_HEADER_TITILE } from './app.constants';
 
 // Redux
-import * as AppActions from './app.actions';
+import * as appActions from './app.actions';
 import { routeToContacts } from './pages/contacts/contacts.actions';
 
 // Styles
 import './app.container.css';
+
+import { routeTo } from './app.actions';
+
+window.tstRoute = routeTo;
 
 export class AppContainer extends Component {
   static path = '/';
@@ -37,6 +41,10 @@ export class AppContainer extends Component {
 
   componentWillMount() {
     injectTapEventPlugin();
+  }
+
+  componentDidMount() {
+    this.setHeaderButtons(null, null);
   }
 
   render() {
@@ -113,7 +121,7 @@ function mapStateToProps(state) {
 
 function mapDisptachToProps(dispatch) {
   return {
-    appActions: bindActionCreators(AppActions, dispatch),
+    appActions: bindActionCreators(appActions, dispatch),
     routeActions: bindActionCreators({routeToContacts}, dispatch),
   }
 }
