@@ -37,6 +37,7 @@
 
         // Jest
         "it": true,
+        "jest": true,
         "test": true,
         "describe": true,
         "beforeEach": true,
