@@ -29,6 +29,7 @@ export class ProductsContainer extends Component {
 function mapStateToProps(state) {
   return {
     app: state.app,
+    products: state.products,
   }
 }
 

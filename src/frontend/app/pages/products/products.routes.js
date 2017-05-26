@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import {Route} from 'react-router';
 
 // Components
 import ProductsContainer from './products.container';
@@ -8,7 +8,8 @@ import ProductsContainer from './products.container';
 import ProductsCategoriesRoutes from './products-categories/products-categories.routes';
 
 export default (
-    <Route path={ ProductsContainer.path } component={ ProductsContainer } >
-         { ProductsCategoriesRoutes }
+    <Route>
+        <Route path={ProductsContainer.path} component={ProductsContainer} />
+        { ProductsCategoriesRoutes }
     </Route>
 );

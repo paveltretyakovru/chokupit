@@ -14,20 +14,12 @@ describe('>>> PRODUCTS REDUCER --- ADD_PRODUCT', () => {
 
   
   it('+++ should adding new product to state', () => {
-    let state = {
-      products: [
-        { title: 'First product' },
-      ],
-    }
-
-    state = productsReducer(state, {
+    let state = productsReducer(state, {
       type: ADD_PRODUCT,
       payload: { title: 'Second product' },
     });
 
-
-    console.log('new state ---->', state);
-    expect(state.products.length).toEqual(2);
+    expect(state.list.length).toEqual(2);
   });
     
     
