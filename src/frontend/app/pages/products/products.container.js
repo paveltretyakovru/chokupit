@@ -13,8 +13,7 @@ export class ProductsContainer extends Component {
 
   componentWillMount() {
     if(this.props.headerActions) {
-      this.props.headerActions
-        .updateHeaderTitle(`${DEFAULT_HEADER_TITILE}. Все покупки`);
+      this.props.headerActions.updateHeaderTitle(`${DEFAULT_HEADER_TITILE}. Все покупки`);
     }
   }
 
