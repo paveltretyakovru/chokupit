@@ -2,6 +2,9 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 
+// Material-ui components
+import { List, ListItem } from 'material-ui';
+
 // Constants
 import { DEFAULT_HEADER_TITILE } from 'app/app.constants';
 
@@ -18,9 +21,20 @@ export class ProductsContainer extends Component {
   }
 
   render() {
+    let productsList = this.props.products.list.map((item, index) => {
+      return (
+        <ListItem
+          key={item.id || index}
+          primaryText={item.title}
+        />
+      );
+    });
+
     return(
       <div>
-        Hello products container
+        <List>
+          {productsList}
+        </List>
       </div>
     ); 
   }
