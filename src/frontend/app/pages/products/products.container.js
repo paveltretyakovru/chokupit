@@ -11,6 +11,9 @@ import { DEFAULT_HEADER_TITILE } from 'app/app.constants';
 // Actions
 import * as headerActions from 'app/shared/header/header.actions';
 
+// CSS
+import './products.container.css';
+
 export class ProductsContainer extends Component {
   static path = '/products'
 
@@ -31,8 +34,8 @@ export class ProductsContainer extends Component {
     });
 
     return(
-      <div>
-        <List>
+      <div id="prodcuts-container-wrapper">
+        <List id="products-list-component">
           {productsList}
         </List>
       </div>
