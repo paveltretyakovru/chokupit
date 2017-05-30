@@ -14,7 +14,7 @@ class LeftMenuComponent extends Component {
         docked={false}
         onRequestChange={this.props.handleSwitch}
       >
-        <AppBar title={ title } />
+        <AppBar title={ title } showMenuIconButton={false} />
       </Drawer>
     )
   }

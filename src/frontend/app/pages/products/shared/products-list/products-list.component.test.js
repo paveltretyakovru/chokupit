@@ -15,14 +15,7 @@ describe('>>> PRODUCTS LIST COMPONENT', () => {
   let wrapper, component;
   
   beforeEach(() => {
-    const COMPONENT_PROPS = {
-      products: [
-        {
-          id: 1,
-          title: 'Hello title',
-        },
-      ],
-    }
+    const COMPONENT_PROPS = {products: [{ id: 1, title: 'Hello title'}]};
 
     wrapper = mount(
       <MuiThemeProvider>
@@ -45,7 +38,7 @@ describe('>>> PRODUCTS LIST COMPONENT', () => {
     let property;
 
     beforeEach(() => {
-      property = wrapper.find(ProductsListComponent).prop('products');
+      property = component.prop('products');
     });
 
     it('+++ should be defined', () => {
