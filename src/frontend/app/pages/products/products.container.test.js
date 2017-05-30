@@ -8,6 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Components
 import ConnectedProductContainer, {ProductsContainer} from './products.container';
+import ProductsListComponent from './shared/products-list/products-list.component';
 
 injectTapEventPlugin();
 
@@ -41,10 +42,38 @@ describe('>>> PRODUCTS CONTAINER', () => {
   it('+++ "path" property should be equal "/products"', () => {
     expect(ProductsContainer.path).toEqual('/products');
   });
-  
+
   it('+++ should have material-ui list', () => {
     expect(wrapper.find(List).length).toEqual(1);
   });
-    
-    
+
+  describe('>>> ProductsListComponent', () => {
+    let component;
+
+    beforeEach(() => {
+      component = wrapper.find(ProductsListComponent);
+    });
+
+    it('+++ should have ProductsListComponent', () => {
+      expect(component.length).toEqual(1);
+    });
+
+    describe('>>>> "items" property', () => {
+      let property; 
+      
+      beforeEach(() => {
+        property = component.prop('items');
+      });
+
+      it('+++ should be defined', () => {
+        expect(property).toBeDefined();
+      });
+      
+      it('+++ should be array', () => {
+        expect(Array.isArray(property)).toBeTruthy();
+      });
+    });
+
+  });
+
 });
