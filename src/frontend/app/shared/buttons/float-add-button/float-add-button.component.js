@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
-class ButtonFloatAddComponent extends Component {
+class FloatAddButton extends Component {
   render() {
     return(
       <div className="float-button">
@@ -19,4 +19,4 @@ class ButtonFloatAddComponent extends Component {
   }
 }
 
-export default ButtonFloatAddComponent;
+export default FloatAddButton;
