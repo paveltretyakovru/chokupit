@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 // Material-ui component
 import { List, ListItem } from 'material-ui';
+import Checkbox from 'material-ui/Checkbox';
 
 // Style
 import './products-list.component.css';
@@ -14,6 +15,7 @@ export class ProductsListComponent extends Component {
         <ListItem
           key={product.id || index}
           primaryText={product.title}
+          leftCheckbox={<Checkbox />}
         />
       );
     });
