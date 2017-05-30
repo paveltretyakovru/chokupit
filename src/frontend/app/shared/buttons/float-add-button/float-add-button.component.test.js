@@ -16,7 +16,9 @@ describe('>>> FLOAT BUTTON COMPONENT', () => {
   beforeEach(() => {
     wrapper = mount(
       <MuiThemeProvider>
-        <FloatAddButtonComponent />
+        <FloatAddButtonComponent
+          handleClickAction={() => {}}
+        />
       </MuiThemeProvider>
     );
 
@@ -26,6 +28,25 @@ describe('>>> FLOAT BUTTON COMPONENT', () => {
   it('+++ should be defined', () => {
     expect(component).toBeDefined();
   });
+  
+  
+  describe('>>> handleClickAction property', () => {
+    let property;
+    
+    beforeEach(() => {
+      property = component.prop('handleClickAction');
+    });
+    
+    it('+++ should be defined', () => {
+      expect(property).toBeDefined();
+    });
+    
+    it('+++ should be a function', () => {
+      expect(typeof property).toEqual('function');
+    });
+
+  });
+    
 
 });
   

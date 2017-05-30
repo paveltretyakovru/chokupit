@@ -7,6 +7,7 @@ import { DEFAULT_HEADER_TITILE } from 'app/app.constants';
 
 // Components
 import ProductsListComponent from './shared/products-list/products-list.component';
+import FloadAddButtonComponent from 'app/shared/buttons/float-add-button/float-add-button.component';
 
 // Actions
 import * as headerActions from 'app/shared/header/header.actions';
@@ -24,11 +25,15 @@ export class ProductsContainer extends Component {
   }
 
   render() {
-    const productsList = this.props.products.list || [];
+    let productsList = this.props.products.list || [];
+    let handleClickAction = () => {};
 
     return(
       <div id="prodcuts-container-wrapper">
         <ProductsListComponent products={productsList} />
+        <FloadAddButtonComponent
+          handleClickAction={handleClickAction}
+        />
       </div>
     ); 
   }

@@ -7,6 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Components
+import FloatAddButtonComponent from 'app/shared/buttons/float-add-button/float-add-button.component';
 import ConnectedProductContainer, {ProductsContainer} from './products.container';
 import ProductsListComponent from './shared/products-list/products-list.component';
 
@@ -72,6 +73,37 @@ describe('>>> PRODUCTS CONTAINER', () => {
       it('+++ should be array', () => {
         expect(Array.isArray(property)).toBeTruthy();
       });
+    });
+    
+  });
+
+  describe('>>> FloatButtonAddComponent', () => {
+    let button;
+
+    beforeEach(() => {
+      button = wrapper.find(FloatAddButtonComponent);
+    });
+    
+    it('+++ should be defined', () => {
+      expect(button).toBeDefined();
+      expect(button.length).toEqual(1);
+    });
+
+    describe('>>> handleCLickAction property', () => {
+      let property; 
+
+      beforeEach(() => {
+        property = button.prop('handleClickAction');
+      });
+
+      it('+++ should be defined', () => {
+        expect(property).toBeDefined();
+      });
+
+      it('+++ should be a function', () => {
+        expect(typeof property).toEqual('function');
+      });
+        
     });
 
   });
