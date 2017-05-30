@@ -12,11 +12,11 @@ import ProductsListComponent from './products-list.component';
 injectTapEventPlugin();
 
 describe('>>> PRODUCTS LIST COMPONENT', () => {
-  let wrapper;
+  let wrapper, component;
   
   beforeEach(() => {
     const COMPONENT_PROPS = {
-      list: [
+      products: [
         {
           id: 1,
           title: 'Hello title',
@@ -29,6 +29,8 @@ describe('>>> PRODUCTS LIST COMPONENT', () => {
         <ProductsListComponent {...COMPONENT_PROPS} />
       </MuiThemeProvider>
     );
+
+    component = wrapper.find(ProductsListComponent);
   });
 
   it('+++ component should be rendered', () => {
@@ -38,9 +40,21 @@ describe('>>> PRODUCTS LIST COMPONENT', () => {
   it('+++ should have material-ui list component', () => {
     expect(wrapper.find(List).length).toEqual(1);
   });
-  
-  it('+++ should have "list" property with products list array', () => {
-    expect(wrapper.find(ProductsListComponent).prop('list').length).toEqual(1);
+
+  describe('>>> "products" property', () => {
+    let property;
+
+    beforeEach(() => {
+      property = wrapper.find(ProductsListComponent).prop('products');
+    });
+
+    it('+++ should be defined', () => {
+      expect(property).toBeDefined();
+    });
+
+    it('+++ should be array', () => {
+      expect(Array.isArray(property)).toBeTruthy();
+    });
   });
-    
+        
 });

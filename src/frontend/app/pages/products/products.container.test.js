@@ -58,11 +58,11 @@ describe('>>> PRODUCTS CONTAINER', () => {
       expect(component.length).toEqual(1);
     });
 
-    describe('>>>> "items" property', () => {
+    describe('>>>> "products" property', () => {
       let property; 
       
       beforeEach(() => {
-        property = component.prop('items');
+        property = component.prop('products');
       });
 
       it('+++ should be defined', () => {

@@ -3,23 +3,24 @@ import React, {Component} from 'react';
 // Material-ui component
 import { List, ListItem } from 'material-ui';
 
+// Style
+import './products-list.component.css';
+
 export class ProductsListComponent extends Component {
   render() {
-    const list = this.props.list || [];
-    
-    const preparedList = list.map((item, index) => {
+    let products = this.props.products || [];
+    let preparedList = products.map((product, index) => {
       return (
         <ListItem
-          key={item.id || index}
-          primaryText={item.title}
+          key={product.id || index}
+          primaryText={product.title}
         />
       );
     });
 
     return(
       <div>
-        Hello from products list component
-        <List>
+        <List className="materialui-list-wrapper">
           {preparedList}
         </List>
       </div>

@@ -7,7 +7,7 @@ header, footer { flex: 1 !important }
 /* IDS */
 #root { height: 100% }
 #app-content { flex: 3 }
-#progressbar-wrapper { padding: 18px 0 }
+#progressbar-wrapper { padding-top: 18px; padding-bottom: 18px; }
 
 /* CLASSES */
 .float-button {

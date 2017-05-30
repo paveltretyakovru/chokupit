@@ -28,7 +28,7 @@ export class ProductsContainer extends Component {
 
     return(
       <div id="prodcuts-container-wrapper">
-        <ProductsListComponent items={productsList} />
+        <ProductsListComponent products={productsList} />
       </div>
     ); 
   }
