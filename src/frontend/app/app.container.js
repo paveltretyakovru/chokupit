@@ -5,7 +5,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {bindActionCreators} from 'redux';
 
 // Material-ui
-import LinearProgress from 'material-ui/LinearProgress';
+// import LinearProgress from 'material-ui/LinearProgress';
 
 // Components
 import DevTools from './shared/devtools';
@@ -63,11 +63,12 @@ export class AppContainer extends Component {
 
           <div className="container-fluid">
           
-            <div className="row">
+            {/* TODO: Import progressbar to the pages containers */}
+            {/*<div className="row">
               <div className="col-xs-12" id="progressbar-wrapper">
                 <LinearProgress mode="determinate" value={50} />
               </div>
-            </div>
+            </div>*/}
 
             <main className="row">
               <div id="app-content" className="col-xs-12 col-md-12">

@@ -1,6 +1,12 @@
-import { connect } from 'react-redux';
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+
+// Material-UI components
+import {TextField} from 'material-ui';
+
+// Components
+import TextFieldComponent from 'app/shared/form/text-field.component';
 
 // Actions
 import * as headerActions from 'app/shared/header/header.actions';
@@ -10,6 +16,9 @@ import * as productsActions from '../products.actions';
 import {
   PRODUCTS_ADD_TITLE,
 } from './products-add.constants';
+
+// CSS
+import './products-add.container.css';
 
 export class ProductsAddContainer extends Component {
   static path = '/products/add'
@@ -23,8 +32,12 @@ export class ProductsAddContainer extends Component {
 
   render() {
     return (
-      <div>
-        Add products form container
+      <div id="products-add-wrapper">
+        <TextFieldComponent
+          name="name"
+          hintText="Наименование"
+          fullWidth={true}
+        />
       </div>
     );
   }
