@@ -11,7 +11,7 @@ class FloatAddButton extends Component {
       <div className="float-button">
           <FloatingActionButton
             // mini={true}
-            onClick={() => {this.props.handleAction()}}
+            onClick={() => {this.props.handleClickAction()}}
             secondary={true}
             className="animated zoomIn"
           >
