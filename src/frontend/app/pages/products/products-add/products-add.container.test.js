@@ -8,19 +8,17 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // Components
 import ProductsAddContainer from './products-add.container';
 
+// Constants
+import {
+  ADD_PRODUCT_ROUTE,
+} from '../products.constants';
+
 injectTapEventPlugin();
 
 describe('>>> PRODUCTS ADD CONTAINER --- Shallow Rendeer Container', () => {
-  let wrapper, menuItems;
+  let wrapper;
 
   beforeEach(() => {
-    menuItems = [
-      {
-        title: 'Contacts',
-        routeDispatch: () => {},
-      },
-    ];
-
     wrapper = mount(
       <MuiThemeProvider>
         <ProductsAddContainer />
@@ -31,4 +29,13 @@ describe('>>> PRODUCTS ADD CONTAINER --- Shallow Rendeer Container', () => {
   it('+++ should render the container', () => {
     expect(wrapper.length).toEqual(1);
   });
+  
+  it('+++ should have static "path" property', () => {
+    expect(ProductsAddContainer.path).toBeDefined();
+  });
+  
+  it('+++ "path" static property should be equal ADD_PRODUCT_ROUTE const', () => {
+    expect(ProductsAddContainer.path).toEqual(ADD_PRODUCT_ROUTE);
+  });
+
 });
