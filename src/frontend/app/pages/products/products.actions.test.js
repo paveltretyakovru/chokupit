@@ -66,7 +66,7 @@ describe('>>> PRODUCTS ACTIONS', () => {
         type: '@@router/CALL_HISTORY_METHOD',
         payload: {
           method: 'push',
-          args: [ ADD_PRODUCT_ROUTE ],
+          args: [ADD_PRODUCT_ROUTE],
         },
       }
 

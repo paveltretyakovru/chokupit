@@ -11,6 +11,11 @@ import FloatAddButtonComponent from 'app/shared/buttons/float-add-button/float-a
 import ConnectedProductContainer, {ProductsContainer} from './products.container';
 import ProductsListComponent from './shared/products-list/products-list.component';
 
+// Actions
+import {
+  routeToAddProduct,
+} from './products.actions';
+
 injectTapEventPlugin();
 
 describe('>>> PRODUCTS CONTAINER', () => {
@@ -20,6 +25,9 @@ describe('>>> PRODUCTS CONTAINER', () => {
     props = {
       products: {
         list: [],
+      },
+      productsActions: {
+        routeToAddProduct: routeToAddProduct,
       },
     };
 
@@ -48,6 +56,19 @@ describe('>>> PRODUCTS CONTAINER', () => {
     expect(wrapper.find(List).length).toEqual(1);
   });
 
+  describe('>>> productsActions property', () => {
+    let property;
+
+    beforeEach(() => {
+      property = wrapper.find(ProductsContainer).prop('productsActions');
+    });
+
+    it('+++ should be defined', () => {
+      expect(property).toBeDefined();
+    });
+      
+  });
+
   describe('>>> ProductsListComponent', () => {
     let component;
 
@@ -74,7 +95,6 @@ describe('>>> PRODUCTS CONTAINER', () => {
         expect(Array.isArray(property)).toBeTruthy();
       });
     });
-    
   });
 
   describe('>>> FloatButtonAddComponent', () => {
@@ -103,7 +123,7 @@ describe('>>> PRODUCTS CONTAINER', () => {
       it('+++ should be a function', () => {
         expect(typeof property).toEqual('function');
       });
-        
+
     });
 
   });

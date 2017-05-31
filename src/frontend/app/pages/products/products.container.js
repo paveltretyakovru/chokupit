@@ -11,6 +11,7 @@ import FloadAddButtonComponent from 'app/shared/buttons/float-add-button/float-a
 
 // Actions
 import * as headerActions from 'app/shared/header/header.actions';
+import * as productsActions from './products.actions';
 
 // CSS
 import './products.container.css';
@@ -26,13 +27,14 @@ export class ProductsContainer extends Component {
 
   render() {
     let productsList = this.props.products.list || [];
-    let handleClickAction = () => {};
+    let handleCLickAddProduct =  this.props.productsActions.routeToAddProduct
+      || function() { console.error('handleClickAddProduct function not defined'); };
 
     return(
       <div id="prodcuts-container-wrapper">
         <ProductsListComponent products={productsList} />
         <FloadAddButtonComponent
-          handleClickAction={handleClickAction}
+          handleClickAction={handleCLickAddProduct}
         />
       </div>
     ); 
@@ -49,6 +51,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     headerActions: bindActionCreators(headerActions, dispatch),
+    productsActions: bindActionCreators(productsActions, dispatch),
   }
 }
 
