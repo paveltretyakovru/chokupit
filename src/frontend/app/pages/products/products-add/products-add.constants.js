@@ -1,0 +1,1 @@
+export const PRODUCTS_ADD_TITLE = 'Добавление товара';

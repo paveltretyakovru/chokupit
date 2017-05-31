@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
 
 // Constants
-import { DEFAULT_HEADER_TITILE } from 'app/app.constants';
+import {ALL_PRODUCTS_TITLE} from './products.constants';
 
 // Components
 import ProductsListComponent from './shared/products-list/products-list.component';
@@ -21,7 +21,7 @@ export class ProductsContainer extends Component {
 
   componentWillMount() {
     if(this.props.headerActions) {
-      this.props.headerActions.updateHeaderTitle(`${DEFAULT_HEADER_TITILE}. Все покупки`);
+      this.props.headerActions.updateHeaderTitle(ALL_PRODUCTS_TITLE);
     }
   }
 
