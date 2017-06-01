@@ -2,8 +2,8 @@ import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 
-// Material-UI components
-import {TextField} from 'material-ui';
+// Material-ui components
+import RaisedButton from 'material-ui/RaisedButton';
 
 // Components
 import TextFieldComponent from 'app/shared/form/text-field.component';
@@ -15,6 +15,7 @@ import * as productsActions from '../products.actions';
 // Constants
 import {
   PRODUCTS_ADD_TITLE,
+  PRODUCTS_ADD_BUTTON_LABEL,
 } from './products-add.constants';
 
 // CSS
@@ -37,6 +38,15 @@ export class ProductsAddContainer extends Component {
           name="name"
           hintText="Наименование"
           fullWidth={true}
+        />
+        
+        <RaisedButton
+          label={PRODUCTS_ADD_BUTTON_LABEL}
+          primary={true}
+          onClick={() => {
+            this.props.productsActions.addProduct('test');
+          }}
+          className="products-add-form-button"
         />
       </div>
     );

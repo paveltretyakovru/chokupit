@@ -14,7 +14,7 @@ export class ProductsListComponent extends Component {
       return (
         <ListItem
           key={product.id || index}
-          primaryText={product.title}
+          primaryText={product.name}
           leftCheckbox={<Checkbox />}
         />
       );

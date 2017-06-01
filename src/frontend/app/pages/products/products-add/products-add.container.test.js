@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 // Material-UI
+import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -14,16 +15,26 @@ import {
   ADD_PRODUCT_ROUTE,
 } from '../products.constants';
 
+// Actions
+import {
+  addProduct 
+} from '../products.actions';
+
 injectTapEventPlugin();
 
 describe('>>> PRODUCTS ADD CONTAINER', () => {
   let wrapper;
 
   beforeEach(() => {
+    const COMPONENT_PROPS = {
+      productsActions: {
+        addProduct:addProduct,
+      },
+    }
 
     wrapper = mount(
       <MuiThemeProvider>
-        <ProductsAddContainer />
+        <ProductsAddContainer {...COMPONENT_PROPS} />
       </MuiThemeProvider>
     );
   });
@@ -39,6 +50,28 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
   it('+++ "path" static property should be equal ADD_PRODUCT_ROUTE const', () => {
     expect(ProductsAddContainer.path).toEqual(ADD_PRODUCT_ROUTE);
   });
+
+  
+  describe('>>> Add product button', () => {
+    let addButton;
+
+    beforeEach(() => {
+      addButton = wrapper.find(RaisedButton);
+    });
+
+    it('+++ should be included to container form', () => {
+      expect(addButton.length).toEqual(1);
+    });
+
+    it('+++ should have onCLick function', () => {
+      let property = addButton.prop('onClick');
+        
+      expect(property).toBeDefined();
+      expect(typeof property).toEqual('function');
+    });
+
+  });
+    
   
   describe('>>> Title TextField', () => {
     let textField;

@@ -5,12 +5,12 @@ import {
   ADD_PRODUCT_ROUTE,
 } from './products.constants';
 
-export function addProduct() {
+export function addProduct(name = 'A product without name') {
   return (dispatch) => {
     return dispatch({
       type: ADD_PRODUCT,
       payload: {
-        title: 'New added product',
+        name: name,
       },
     });
   }

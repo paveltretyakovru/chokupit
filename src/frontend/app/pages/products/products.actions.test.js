@@ -29,26 +29,38 @@ describe('>>> PRODUCTS ACTIONS', () => {
     });
 
     
-    it('+++ should be function', () => {
+    it('+++ should be a function', () => {
       expect(typeof addProduct).toEqual('function');
     });
 
     
-    it('+++ should return function', () => {
+    it('+++ should return a function', () => {
       expect(typeof addProduct()).toEqual('function');
     });
 
     
     it('+++ should return redux expect object', () => {
-      const expectObject = {
+      let expectObject = {
         type: ADD_PRODUCT,
         payload: {
-          title: 'New added product',
+          name: 'New added product',
         },
       };
 
-      expect(addProduct('')(dispatch)).toEqual(expectObject);
+      expect(addProduct('New added product')(dispatch)).toEqual(expectObject);
     });
+
+    it('+++ should prepare product name thouth argument', () => {
+      let expectObject = {
+        type: ADD_PRODUCT,
+        payload: {
+          name: 'Test name',
+        },
+      };
+
+      expect(addProduct('Test name')(dispatch)).toEqual(expectObject);
+    });
+
   });
   
   describe('>>> routeToAddProduct', () => {

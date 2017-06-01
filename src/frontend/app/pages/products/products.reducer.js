@@ -7,7 +7,7 @@ let initState = {
   list: [
     {
       id: 1,
-      title: 'Test product title',
+      name: 'Test product name',
     },
   ],
 }
@@ -19,8 +19,8 @@ export default function (state = initState, action) {
   
   case ADD_PRODUCT:
     products = [...state.list];
-    products.push(action.payload);
-    
+    products.push({...action.payload, id: state.list.length + 1});
+
     return { ...state, list: products};
   
   default:
