@@ -21,6 +21,7 @@ export class ProductsContainer extends Component {
 
   componentWillMount() {
     if(this.props.headerActions) {
+      this.props.setHeaderButtonRight(null);
       this.props.headerActions.updateHeaderTitle(ALL_PRODUCTS_TITLE);
     }
   }

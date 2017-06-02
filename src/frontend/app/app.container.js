@@ -43,10 +43,6 @@ export class AppContainer extends Component {
     injectTapEventPlugin();
   }
 
-  componentDidMount() {
-    this.setHeaderButtons(null, null);
-  }
-
   render() {
     return(
         <div id="app-container">
@@ -110,7 +106,6 @@ export class AppContainer extends Component {
   }
 
   setHeaderButtonRight(button, callback = () => {}) {
-    console.log('APP CONTAINER setHeaderButtonRight');
     this.setState({ ...this.state, headerButtonRight: button }, callback);
   }
 }

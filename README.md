@@ -39,3 +39,17 @@ componentDidMount() {
 
 Здесь левая кнопка будет заменена компонентой <MyButton />, правая останется
 неизменненной.
+
+Также доступны следующий методы:
+
+```
+  this.props.setHeaderButtonRight(<SomeComponent />);
+```
+
+и
+
+```
+  this.props.setHeaderButtonLeft(SomeComponent />);
+```
+
+По названию видно, что можно отдельно менять в шапке кнопки
