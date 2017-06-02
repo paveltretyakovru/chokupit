@@ -7,7 +7,6 @@ describe('>>> APP ACTIONS', () => {
       expect(routeTo).toBeDefined();
     });
 
-    
     it('+++ should return function', () => {
       let resultFunction = routeTo();
       expect(typeof resultFunction).toBe('function');
@@ -36,6 +35,3 @@ describe('>>> APP ACTIONS', () => {
   });
   
 });
-
-  
-  

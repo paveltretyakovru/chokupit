@@ -7,6 +7,7 @@ import TextFieldComponent from 'app/shared/form/text-field.component';
 import HeaderFlatButtonComponent from 'app/shared/buttons/header-flat-button.component';
 
 // Actions
+import * as appActions from 'app/app.actions';
 import * as headerActions from 'app/shared/header/header.actions';
 import * as productsActions from '../products.actions';
 
@@ -35,13 +36,7 @@ export class ProductsAddContainer extends Component {
       this.props.setHeaderButtonRight(
         <HeaderFlatButtonComponent
           label={PRODUCTS_ADD_BUTTON_LABEL}
-          handleClick={ () => {
-            if(this.refs.nameTextField.validate()) {
-              this.props.productsActions.addProduct(
-                this.refs.nameTextField.getValue()
-              );
-            }
-          }}
+          handleClick={::this.handleClickSaveButton}
         />
       );
     }
@@ -61,6 +56,14 @@ export class ProductsAddContainer extends Component {
       </div>
     );
   }
+
+  handleClickSaveButton() {
+    if(this.refs.nameTextField.validate()) {
+      let name = this.refs.nameTextField.getValue();
+      this.props.productsActions.addProduct(name);
+      this.props.appActions.routeToBack();
+    }
+  }
 }
 
 function mapStateToProps(state) {
@@ -72,6 +75,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    appActions: bindActionCreators(appActions, dispatch),
     headerActions: bindActionCreators(headerActions, dispatch),
     productsActions: bindActionCreators(productsActions, dispatch),
   }
