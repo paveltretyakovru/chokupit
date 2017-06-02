@@ -110,6 +110,7 @@ export class AppContainer extends Component {
   }
 
   setHeaderButtonRight(button, callback = () => {}) {
+    console.log('APP CONTAINER setHeaderButtonRight');
     this.setState({ ...this.state, headerButtonRight: button }, callback);
   }
 }

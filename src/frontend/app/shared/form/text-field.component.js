@@ -3,6 +3,17 @@ import React, { Component } from 'react';
 
 import makeId from 'makeId';
 
+// Параметры которые присутсвуют в компоненте Material-UI TextField
+const MATERIAL_UI_TEXT_FIELD_PROPERTIES = [
+  'underlineStyle', 'value',
+  'errorText', 'floatingLabelFixed', 'floatingLabelFocusStyle',
+  'underlineDisabledStyle', 'underlineFocusStyle', 'underlineShow',
+  'children', 'className', 'defaultValue', 'disabled', 'errorStyle',
+  'floatingLabelShrinkStyle', 'floatingLabelStyle', 'floatingLabelText',
+  'fullWidth', 'hintStyle', 'hintText', 'id', 'inputStyle', 'multiLine',
+  'name', 'onChange', 'rows', 'rowsMax', 'style', 'textareaStyle', 'type'
+];
+
 /**
  * @class TextFieldComponent
  * @param props.floatingLabelText [String]
@@ -18,9 +29,17 @@ class TextFieldComponent extends Component {
   }
 
   render() {
+    let textFieldProps = {};
+
+    Object.keys(this.props).map(key => {
+      if(MATERIAL_UI_TEXT_FIELD_PROPERTIES.includes(key)){
+        textFieldProps[key] = this.props[key];
+      }
+    });
+
     return(
       <TextField
-        { ...this.props }
+        { ...textFieldProps }
 
         value = { this.state.value }
         errorText = {(() => {
@@ -67,7 +86,7 @@ class TextFieldComponent extends Component {
   // Simple validation
   validate() {
     if(this.props.required && this.state.value === '') {
-      this.setErrorValue('This field required');
+      this.setErrorValue(this.props.errorValue || 'This field required');
       return false;
     } else {
       this.setErrorValue();

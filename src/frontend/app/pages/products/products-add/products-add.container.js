@@ -2,11 +2,9 @@ import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 
-// Material-ui components
-import RaisedButton from 'material-ui/RaisedButton';
-
 // Components
 import TextFieldComponent from 'app/shared/form/text-field.component';
+import HeaderFlatButtonComponent from 'app/shared/buttons/header-flat-button.component';
 
 // Actions
 import * as headerActions from 'app/shared/header/header.actions';
@@ -31,22 +29,34 @@ export class ProductsAddContainer extends Component {
     }
   }
 
+  componentDidMount() {
+    if(this.props.setHeaderButtonRight) {
+      console.log('Component did mount');
+      this.props.setHeaderButtonRight(
+        <HeaderFlatButtonComponent
+          label={PRODUCTS_ADD_BUTTON_LABEL}
+          handleClick={ () => {
+            if(this.refs.nameTextField.validate()) {
+              this.props.productsActions.addProduct(
+                this.refs.nameTextField.getValue()
+              );
+            }
+          }}
+        />
+      );
+    }
+  }
+
   render() {
     return (
       <div id="products-add-wrapper">
         <TextFieldComponent
+          ref="nameTextField"
           name="name"
+          required={true}
           hintText="Наименование"
           fullWidth={true}
-        />
-        
-        <RaisedButton
-          label={PRODUCTS_ADD_BUTTON_LABEL}
-          primary={true}
-          onClick={() => {
-            this.props.productsActions.addProduct('test');
-          }}
-          className="products-add-form-button"
+          errorValue="Это поле не может быть пустым"
         />
       </div>
     );
