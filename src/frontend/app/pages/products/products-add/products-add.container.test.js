@@ -11,8 +11,8 @@ import TextFieldComponent from 'app/shared/form/text-field.component';
 
 // Constants
 import {
-  ADD_PRODUCT_ROUTE,
-} from '../products.constants';
+  PRODUCTS_ADD_ROUTE,
+} from './products-add.constants';
 
 injectTapEventPlugin();
 
@@ -37,8 +37,8 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
     expect(ProductsAddContainer.path).toBeDefined();
   });
   
-  it('+++ "path" static property should be equal ADD_PRODUCT_ROUTE const', () => {
-    expect(ProductsAddContainer.path).toEqual(ADD_PRODUCT_ROUTE);
+  it('+++ "path" static property should be equal PRODUCTS_ADD_ROUTE const', () => {
+    expect(ProductsAddContainer.path).toEqual(PRODUCTS_ADD_ROUTE);
   });
     
   describe('>>> Title TextField', () => {

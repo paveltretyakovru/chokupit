@@ -11,8 +11,8 @@ import TextFieldComponent from 'app/shared/form/text-field.component';
 
 // Constants
 import {
-  ADD_CATEGORIES_ROUTE,
-} from '../categories.constants';
+  CATEGORIES_ADD_ROUTE,
+} from './categories-add.constants';
 
 injectTapEventPlugin();
 
@@ -37,8 +37,8 @@ describe('>>> CATEGORIES ADD CONTAINER', () => {
     expect(CategoriesAddContainer.path).toBeDefined();
   });
   
-  it('+++ "path" static property should be equal ADD_CATEGORIES_ROUTE const', () => {
-    expect(CategoriesAddContainer.path).toEqual(ADD_CATEGORIES_ROUTE);
+  it('+++ "path" static property should be equal CATEGORIES_ADD_ROUTE const', () => {
+    expect(CategoriesAddContainer.path).toEqual(CATEGORIES_ADD_ROUTE);
   });
     
   describe('>>> Title TextField', () => {

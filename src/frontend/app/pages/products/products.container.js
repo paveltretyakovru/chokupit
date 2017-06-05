@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 
 // Constants
-import {ALL_PRODUCTS_TITLE} from './products.constants';
+import {ALL_PRODUCTS_TITLE, PRODUCTS_ROUTE} from './products.constants';
 
 // Components
 import ProductsListComponent from './shared/products-list/products-list.component';
@@ -17,7 +17,7 @@ import * as productsActions from './products.actions';
 import './products.container.css';
 
 export class ProductsContainer extends Component {
-  static path = '/products'
+  static path = PRODUCTS_ROUTE
 
   componentWillMount() {
     if(this.props.headerActions) {

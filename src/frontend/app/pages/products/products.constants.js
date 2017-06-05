@@ -1,8 +1,9 @@
 // Reducer types
-export const ADD_PRODUCT = 'ADD_PRODUCT';
+export {ADD_PRODUCT} from './products-add/products-add.constants';
 
 // Routes
-export const ADD_PRODUCT_ROUTE = '/products/add';
+export const PRODUCTS_ROUTE = '/products';
+export {PRODUCTS_ADD_ROUTE} from './products-add/products-add.constants';
 
 // Strings
 export const ALL_PRODUCTS_TITLE = 'Все покупки';

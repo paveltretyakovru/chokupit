@@ -1,20 +1,21 @@
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
 
 // Actions
 import * as appActions from 'app/app.actions';
 import * as headerActions from 'app/shared/header/header.actions';
 
 // Constants
-import {
-  DEFAULT_HEADER_TITILE,
-} from 'app/app.constants';
+import {INDEX_ROUTE} from './index.constants';
+import {DEFAULT_HEADER_TITILE} from 'app/app.constants';
 
 // CSS
 import './index.container.css';
 
 export class IndexContainer extends Component {
+  static path = INDEX_ROUTE
+
   componentWillMount() {
     if(this.props.setHeaderButtons !== undefined) {
       this.props.setHeaderButtons(null, null);
@@ -26,7 +27,7 @@ export class IndexContainer extends Component {
 
     return (
       <div id="index-container-wrapper">
-        <h1>Hello</h1>
+        <h1>Hello!</h1>
       </div>
     );
   }

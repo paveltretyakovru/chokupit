@@ -13,6 +13,7 @@ import * as categoriesActions from '../categories.actions';
 
 // Constants
 import {
+  CATEGORIES_ADD_ROUTE,
   CATEGORIES_ADD_TITLE,
   CATEGORIES_ADD_BUTTON_LABEL,
 } from './categories-add.constants';
@@ -21,7 +22,7 @@ import {
 import './categories-add.container.css';
 
 export class CategoriesAddContainer extends Component {
-  static path = '/categories/add'
+  static path = CATEGORIES_ADD_ROUTE
 
   componentWillMount() {
     if(this.props.headerActions) {

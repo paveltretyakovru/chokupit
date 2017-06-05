@@ -7,7 +7,6 @@ import { push } from 'react-router-redux';
 // Navigation functions
 export function routeToContacts() {
   return (dispatch) => {
-    let route = CONTACTS_ROUTE;
-    dispatch(push(route));
+    dispatch(push(CONTACTS_ROUTE));
   }
 }

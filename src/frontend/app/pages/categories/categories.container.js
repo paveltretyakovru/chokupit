@@ -14,16 +14,13 @@ import * as appActions from 'app/app.actions';
 import * as headerActions from 'app/shared/header/header.actions';
 
 // Constants
-import {
-  PRODUCTS_ROUTE,
-  DEFAULT_HEADER_TITILE,
-} from 'app/app.constants';
+import {PRODUCTS_ROUTE} from 'app/pages/products/products.constants';
+import {DEFAULT_HEADER_TITILE} from 'app/app.constants';
 
-// CSS
-// import './index.container.css';
+import {CATEGORIES_ROUTE} from './categories.constants';
 
 export class CategoriesContainer extends Component {
-  static path = '/categories'
+  static path = CATEGORIES_ROUTE
 
   componentWillMount() {
     if(this.props.setHeaderButtons !== undefined) {

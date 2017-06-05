@@ -1,7 +1,5 @@
 // Constants
-import {
-  ADD_PRODUCT,
-} from './products.constants';
+import {ADD_PRODUCT} from './products-add/products-add.constants';
 
 let initState = {
   list: [

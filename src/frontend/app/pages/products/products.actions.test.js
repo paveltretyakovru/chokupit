@@ -7,7 +7,7 @@ import {
 // Products constants
 import {
   ADD_PRODUCT,
-  ADD_PRODUCT_ROUTE,
+  PRODUCTS_ADD_ROUTE,
 } from './products.constants';
 
 
@@ -78,7 +78,7 @@ describe('>>> PRODUCTS ACTIONS', () => {
         type: '@@router/CALL_HISTORY_METHOD',
         payload: {
           method: 'push',
-          args: [ADD_PRODUCT_ROUTE],
+          args: [PRODUCTS_ADD_ROUTE],
         },
       }
 
