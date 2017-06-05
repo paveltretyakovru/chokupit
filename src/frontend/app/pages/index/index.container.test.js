@@ -16,10 +16,6 @@ describe('>>> INDEX CONTAINER --- Shallow Render Container', () => {
     expect(wrapper.length).toEqual(1);
   });
 
-  it('+++ should have the h1 titile', () => {
-    expect(wrapper.find('h1').length).toEqual(1);
-  });
-
   it('+++ should have material-ui list component', () => {
     expect(wrapper.find(List).length).toEqual(1);
   });

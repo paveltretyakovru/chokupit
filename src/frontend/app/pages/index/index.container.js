@@ -57,7 +57,6 @@ export class IndexContainer extends Component {
 
     return (
       <div id="index-container-wrapper">
-        <h1 className="display-1">Списки</h1>
         <div id="index-links-wrapper">
           <List>
             {
