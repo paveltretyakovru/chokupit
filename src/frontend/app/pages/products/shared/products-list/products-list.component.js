@@ -13,15 +13,20 @@ export class ProductsListComponent extends Component {
   render() {
     let products = this.props.products || [];
 
+    // Prepare products list fro material-ui list component
     let preparedList = products.map((product, index) => {
+      let primaryText = (
+        <div onClick={::this.handleClickOnItemText}>
+          {product.name}
+        </div>
+      );
+      
       return (
         <ListItem
           key={product.id || index}
-          primaryText={<div onClick={::this.handleClickOnItemText}>
-            {product.name}
-          </div>}
+          primaryText={primaryText}
           leftCheckbox={<Checkbox />}
-          rightIconButton={<IconButton><StarBorder /></IconButton>}
+          rightIconButton={<IconButton><StarBorder /></IconButton>} 
         />
       );
     });

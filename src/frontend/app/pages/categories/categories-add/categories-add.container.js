@@ -33,7 +33,6 @@ export class CategoriesAddContainer extends Component {
 
   componentDidMount() {
     if(this.props.setHeaderButtonRight) {
-      console.log('Component did mount');
       this.props.setHeaderButtonRight(
         <HeaderFlatButtonComponent
           label={CATEGORIES_ADD_BUTTON_LABEL}

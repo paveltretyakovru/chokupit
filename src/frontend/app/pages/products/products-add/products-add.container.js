@@ -32,7 +32,6 @@ export class ProductsAddContainer extends Component {
 
   componentDidMount() {
     if(this.props.setHeaderButtonRight) {
-      console.log('Component did mount');
       this.props.setHeaderButtonRight(
         <HeaderFlatButtonComponent
           label={PRODUCTS_ADD_BUTTON_LABEL}
