@@ -12,11 +12,14 @@ import './products-list.component.css';
 export class ProductsListComponent extends Component {
   render() {
     let products = this.props.products || [];
+
     let preparedList = products.map((product, index) => {
       return (
         <ListItem
           key={product.id || index}
-          primaryText={product.name}
+          primaryText={<div onClick={::this.handleClickOnItemText}>
+            {product.name}
+          </div>}
           leftCheckbox={<Checkbox />}
           rightIconButton={<IconButton><StarBorder /></IconButton>}
         />
@@ -30,6 +33,12 @@ export class ProductsListComponent extends Component {
         </List>
       </div>
     );
+  }
+
+  handleClickOnItemText(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    console.log('Test click');
   }
 }
 
