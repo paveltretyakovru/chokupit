@@ -38,21 +38,6 @@ export class IndexContainer extends Component {
         primaryText: 'Всё',
         leftIcon: <AllInclusiveIcon />,
       },
-      // {
-      //   route: '/',        
-      //   primaryText: 'Друзья',
-      //   leftIcon: <ContactsIcon />,
-      // },
-      {
-        route: PRODUCTS_CATEGORIES_ROUTE,
-        primaryText: 'Категории',
-        leftIcon: <BooksIcon />,
-      },
-      // {
-      //   route: '/',        
-      //   primaryText: 'Избранное',
-      //   leftIcon: <FavoriteIcon />,
-      // },
     ];
 
     return (
