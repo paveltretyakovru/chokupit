@@ -22,6 +22,7 @@ import { routeToContacts } from './pages/contacts/contacts.actions';
 
 // Styles
 import './app.container.css';
+import './shared/styles/tipography.less';
 
 import { routeTo } from './app.actions';
 

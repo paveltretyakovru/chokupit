@@ -43,18 +43,27 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
+        test: /(\.css|\.scss)$/,
         use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
+          {loader: 'style-loader'},
+          {loader: 'css-loader'},
+          {loader: 'sass-loader'},          
           {
             loader: 'postcss-loader',
             options: { ident: 'postcss', plugins: () => [ require('plugin') ] },
           },
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {loader: 'style-loader'},
+          {loader: 'css-loader'},
+          {
+            loader: 'postcss-loader',
+            options: { ident: 'postcss', plugins: () => [ require('plugin') ] },
+          },
+          {loader: 'less-loader'},          
         ],
       },
     ],
