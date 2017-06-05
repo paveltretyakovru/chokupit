@@ -2,22 +2,13 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 
-// Material-ui components
-import BooksIcon from 'material-ui/svg-icons/av/library-books';
-import ContactsIcon from 'material-ui/svg-icons/communication/contacts';
-import FavoriteIcon from 'material-ui/svg-icons/action/favorite'; 
-import AllInclusiveIcon from 'material-ui/svg-icons/places/all-inclusive';
-import { List, ListItem } from 'material-ui/List';
-
 // Actions
 import * as appActions from 'app/app.actions';
 import * as headerActions from 'app/shared/header/header.actions';
 
 // Constants
 import {
-  PRODUCTS_ROUTE,
   DEFAULT_HEADER_TITILE,
-  PRODUCTS_CATEGORIES_ROUTE,
 } from 'app/app.constants';
 
 // CSS
@@ -32,35 +23,10 @@ export class IndexContainer extends Component {
   }
 
   render() {
-    const navigationLinks = [
-      {
-        route: PRODUCTS_ROUTE,
-        primaryText: 'Всё',
-        leftIcon: <AllInclusiveIcon />,
-      },
-    ];
 
     return (
       <div id="index-container-wrapper">
-        <div id="index-links-wrapper">
-          <List>
-            {
-              navigationLinks.map((item, index) => {
-                return(
-                  <ListItem
-                    key={index}
-                    leftIcon={item.leftIcon}
-                    primaryText={item.primaryText}
-
-                    onClick={() => {
-                      this.props.appActions.routeTo(item.route);
-                    }}
-                  />
-                );
-              })
-            }
-          </List>
-        </div>
+        <h1>Hello</h1>
       </div>
     );
   }

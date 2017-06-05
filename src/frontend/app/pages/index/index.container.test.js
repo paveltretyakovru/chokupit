@@ -15,8 +15,4 @@ describe('>>> INDEX CONTAINER --- Shallow Render Container', () => {
   it('+++ render the DUMB component', () => {
     expect(wrapper.length).toEqual(1);
   });
-
-  it('+++ should have material-ui list component', () => {
-    expect(wrapper.find(List).length).toEqual(1);
-  });
 });
