@@ -12,6 +12,7 @@ import FloadAddButtonComponent from 'app/shared/buttons/float-add-button/float-a
 // Actions
 import * as appActions from 'app/app.actions';
 import * as headerActions from 'app/shared/header/header.actions';
+import {routeToAddCategory} from './categories-add/categories-add.actions';
 
 // Constants
 import {PRODUCTS_ROUTE} from 'app/pages/products/products.constants';
@@ -60,7 +61,11 @@ export class CategoriesContainer extends Component {
           </List>
         </div>
 
-        <FloadAddButtonComponent />
+        <FloadAddButtonComponent
+          handleClickAction={this.props.routeToAddCategory || function(){
+            console.error('Undefined routeToAddCategory function');
+          }}
+        />
       </div>
     );
   }
@@ -76,6 +81,7 @@ function mapDispatchToProps(dispatch) {
   return {
     appActions: bindActionCreators(appActions, dispatch),
     headerActions: bindActionCreators(headerActions, dispatch),
+    routeToAddCategory: bindActionCreators(routeToAddCategory, dispatch),
   }
 }
 
