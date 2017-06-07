@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 // Material-ui components
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
+import {List, ListItem} from 'material-ui/List';
 
 class LeftMenuComponent extends Component {
   render() {
@@ -15,6 +16,9 @@ class LeftMenuComponent extends Component {
         onRequestChange={this.props.handleSwitch}
       >
         <AppBar title={ title } showMenuIconButton={false} />
+        <List>
+          <ListItem primaryText="Test list item" />
+        </List>
       </Drawer>
     )
   }

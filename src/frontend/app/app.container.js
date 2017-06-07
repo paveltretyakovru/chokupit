@@ -15,18 +15,18 @@ import ButtonMenuComponent from './shared/buttons/button-menu.component';
 
 // Constants
 import { DEFAULT_HEADER_TITILE } from './app.constants';
+import {INDEX_ROUTE} from 'routes';
 
 // Redux
 import * as appActions from './app.actions';
 import { routeToContacts } from './pages/contacts/contacts.actions';
 
+// Actions
+import { routeTo } from './app.actions';
+
 // Styles
 import './app.container.css';
 import './shared/styles/tipography.less';
-
-import { routeTo } from './app.actions';
-
-window.tstRoute = routeTo;
 
 export class AppContainer extends Component {
   static path = '/';
@@ -53,7 +53,7 @@ export class AppContainer extends Component {
           />
 
           <LeftMenuComponent
-              title={ DEFAULT_HEADER_TITILE }
+              title={ DEFAULT_HEADER_TITILE + INDEX_ROUTE }
               isOpen={ this.props.app.isLeftMenuOpen}
               handleSwitch={this.props.appActions.switchLeftMenu }
             />
