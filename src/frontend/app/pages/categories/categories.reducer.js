@@ -17,8 +17,8 @@ export default function(state = initState, action) {
 
   case ADD_CATEGORY:
     categories.push({
-      ...action.payload,
       id: action.payload.id || state.list.length + 1,
+      ...action.payload,
     });
 
     return {...state, list: categories};

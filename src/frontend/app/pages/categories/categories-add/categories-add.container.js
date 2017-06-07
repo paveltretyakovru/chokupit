@@ -60,7 +60,11 @@ export class CategoriesAddContainer extends Component {
   handleClickSaveButton() {
     if(this.refs.nameTextField.validate()) {
       let name = this.refs.nameTextField.getValue();
-      this.props.categoriesActions.addProduct(name);
+      
+      // Call add category action
+      this.props.categoriesActions.addCategory({name: name});
+      
+      // Return back on history
       this.props.appActions.routeToBack();
     }
   }
