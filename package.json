@@ -22,9 +22,9 @@
   "jest": {
     "verbose": true,
     "moduleDirectories": [
-      "<rootDir>/node_modules",
-      "<rootDir>/src/frontend",
-      "<rootDir>/src/shared"
+      "node_modules",
+      "src/frontend",
+      "src/shared"
     ],
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
