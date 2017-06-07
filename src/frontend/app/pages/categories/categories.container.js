@@ -31,7 +31,9 @@ export class CategoriesContainer extends Component {
   }
 
   render() {
-    const navigationLinks = [
+
+    // Категории 
+    const navigationStaticLinks = [
       {
         route: PRODUCTS_ROUTE,
         primaryText: 'Всё',
@@ -44,7 +46,7 @@ export class CategoriesContainer extends Component {
         <div id="index-links-wrapper">
           <List>
             {
-              navigationLinks.map((item, index) => {
+              navigationStaticLinks.map((item, index) => {
                 return(
                   <ListItem
                     key={index}
@@ -73,6 +75,7 @@ export class CategoriesContainer extends Component {
 
 function mapStateToProps(state) {
   return {
+    categories: state.categories,
     mainAuthor: state.mainAuthor,
   }
 }
