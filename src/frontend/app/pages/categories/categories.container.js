@@ -12,6 +12,7 @@ import FloadAddButtonComponent from 'app/shared/buttons/float-add-button/float-a
 // Actions
 import * as appActions from 'app/app.actions';
 import * as headerActions from 'app/shared/header/header.actions';
+import {routeToAddCategory} from './categories-add/categories-add.actions';
 
 // Constants
 import {PRODUCTS_ROUTE} from 'app/pages/products/products.constants';
@@ -30,7 +31,9 @@ export class CategoriesContainer extends Component {
   }
 
   render() {
-    const navigationLinks = [
+
+    // Категории 
+    const navigationStaticLinks = [
       {
         route: PRODUCTS_ROUTE,
         primaryText: 'Всё',
@@ -43,7 +46,7 @@ export class CategoriesContainer extends Component {
         <div id="index-links-wrapper">
           <List>
             {
-              navigationLinks.map((item, index) => {
+              navigationStaticLinks.map((item, index) => {
                 return(
                   <ListItem
                     key={index}
@@ -60,7 +63,11 @@ export class CategoriesContainer extends Component {
           </List>
         </div>
 
-        <FloadAddButtonComponent />
+        <FloadAddButtonComponent
+          handleClickAction={this.props.routeToAddCategory || function(){
+            console.error('Undefined routeToAddCategory function');
+          }}
+        />
       </div>
     );
   }
@@ -68,6 +75,7 @@ export class CategoriesContainer extends Component {
 
 function mapStateToProps(state) {
   return {
+    categories: state.categories,
     mainAuthor: state.mainAuthor,
   }
 }
@@ -76,6 +84,7 @@ function mapDispatchToProps(dispatch) {
   return {
     appActions: bindActionCreators(appActions, dispatch),
     headerActions: bindActionCreators(headerActions, dispatch),
+    routeToAddCategory: bindActionCreators(routeToAddCategory, dispatch),
   }
 }
 
