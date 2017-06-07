@@ -15,7 +15,6 @@ import ButtonMenuComponent from './shared/buttons/button-menu.component';
 
 // Constants
 import { DEFAULT_HEADER_TITILE } from './app.constants';
-import {INDEX_ROUTE} from 'routes';
 
 // Redux
 import * as appActions from './app.actions';
@@ -29,8 +28,6 @@ import './app.container.css';
 import './shared/styles/tipography.less';
 
 export class AppContainer extends Component {
-  static path = '/';
-
   constructor(props) {
     super(props);
 
@@ -53,7 +50,7 @@ export class AppContainer extends Component {
           />
 
           <LeftMenuComponent
-              title={ DEFAULT_HEADER_TITILE + INDEX_ROUTE }
+              title={ DEFAULT_HEADER_TITILE }
               isOpen={ this.props.app.isLeftMenuOpen}
               handleSwitch={this.props.appActions.switchLeftMenu }
             />
