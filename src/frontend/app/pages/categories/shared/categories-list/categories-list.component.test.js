@@ -1,6 +1,6 @@
 // Core & libs
 import React from 'react';
-import {mount} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 
 // Self components
 import CategoriesListComponent from './categories-list.component';
@@ -13,7 +13,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 describe('>>> CategoriesListComponent. Компонент для листига категорий', () => {
-  let wrapper, component;
+  let wrapper, component, shallowComponent;
 
   const componentProperties = {
     dataList: [],
@@ -27,6 +27,7 @@ describe('>>> CategoriesListComponent. Компонент для листига 
     );
 
     component = wrapper.find(CategoriesListComponent);
+    shallowComponent = shallow(<CategoriesListComponent />);
   });
   
   it('+++ должен быть определен и срендерен', () => {
@@ -50,6 +51,22 @@ describe('>>> CategoriesListComponent. Компонент для листига 
 
     it(('+++ должен быть массиовм'), () => {
       expect(Array.isArray(property)).toBeTruthy();
+    });
+  });
+
+  describe('>>> Метод getListItems()', () => {
+    let method;
+
+    beforeEach(() => {
+      method = shallowComponent.instance().getListItems;
+    });
+
+    it('+++ должен быть определен', () => {
+      expect(method).toBeDefined();
+    });
+
+    it('+++ должен вернуть массив', () => {
+      expect(Array.isArray(method())).toBeTruthy();
     });
   });
 });
