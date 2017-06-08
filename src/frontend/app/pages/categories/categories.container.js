@@ -31,35 +31,15 @@ export class CategoriesContainer extends Component {
   }
 
   render() {
-
-    // Категории 
-    const navigationStaticLinks = [
-      {
-        route: PRODUCTS_ROUTE,
-        primaryText: 'Всё',
-        leftIcon: <AllInclusiveIcon />,
-      },
-    ];
+    const staticCategories = this.getStaticCategories();
+    const dinamicCategories = this.getDinamicCategories();
 
     return (
       <div id="index-container-wrapper">
         <div id="index-links-wrapper">
           <List>
-            {
-              navigationStaticLinks.map((item, index) => {
-                return(
-                  <ListItem
-                    key={index}
-                    leftIcon={item.leftIcon}
-                    primaryText={item.primaryText}
-
-                    onClick={() => {
-                      this.props.appActions.routeTo(item.route);
-                    }}
-                  />
-                );
-              })
-            }
+            {staticCategories}
+            {dinamicCategories}
           </List>
         </div>
 
@@ -69,6 +49,51 @@ export class CategoriesContainer extends Component {
           }}
         />
       </div>
+    );
+  }
+
+  getDinamicCategories() {
+    return this.props.categories.list.map(
+      (item, index) => {
+        return(
+          <ListItem
+            key={`dinamic-${index}`}
+            leftIcon={item.leftIcon}
+            primaryText={item.name}
+
+            onTouchTap={() => {
+              this.props.appActions.routeTo(item.route);
+            }}
+          />
+        );
+      }
+    );
+  }
+
+  getStaticCategories() {
+    // Категории товаров, которые должны быть показаны по-умолчанию
+    const defaultCategoriesListArray = [
+      {
+        route: PRODUCTS_ROUTE,
+        primaryText: 'Всё',
+        leftIcon: <AllInclusiveIcon />,
+      },
+    ];
+
+    return defaultCategoriesListArray.map(
+      (item, index) => {
+        return(
+          <ListItem
+            key={`static-${index}`}
+            leftIcon={item.leftIcon}
+            primaryText={item.primaryText}
+
+            onTouchTap={() => {
+              this.props.appActions.routeTo(item.route);
+            }}
+          />
+        );
+      }
     );
   }
 }
