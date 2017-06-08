@@ -31,11 +31,13 @@ export class CategoriesContainer extends Component {
   }
 
   render() {
+    const dataList = [];
+
     return (
       <div id="index-container-wrapper">
         <div id="index-links-wrapper">
           <CategoriesListComponent
-            dataList={[]}
+            dataList={dataList}
           />
         </div>
 

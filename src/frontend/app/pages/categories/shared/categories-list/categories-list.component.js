@@ -15,8 +15,8 @@ export class CategoriesListComponent extends Component {
     );
   }
 
-  getListItems() {
-    return this.props.listData.map(
+  getListItems(dataList = []) {
+    return dataList.map(
       (item, index) => {
         return(
           <ListItem
