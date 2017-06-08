@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 // Material-ui components
-import {List} from 'material-ui';
+import {List, ListItem} from 'material-ui';
 
 export class CategoriesListComponent extends Component {
   render() {
@@ -15,8 +15,22 @@ export class CategoriesListComponent extends Component {
     );
   }
 
-  testFunction() {
-    console.log('test');
+  getListItems() {
+    return this.props.listData.map(
+      (item, index) => {
+        return(
+          <ListItem
+            key={`dinamic-${index}`}
+            leftIcon={item.leftIcon}
+            primaryText={item.name}
+
+            onTouchTap={() => {
+              this.props.appActions.routeTo(item.route);
+            }}
+          />
+        );
+      }
+    );
   }
 }
 

@@ -7,8 +7,9 @@ import { List } from 'material-ui/List';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-// Component
+// Self Component
 import FloatAddButtonComponent from 'app/shared/buttons/float-add-button/float-add-button.component';
+import CategoriesListComponent from './shared/categories-list/categories-list.component';
 
 injectTapEventPlugin();
 
@@ -65,6 +66,34 @@ describe('>>> Контейнер Categories', () => {
         
     });
       
+  });
+
+  describe('>>> Компонент CategorisListComponent', () => {
+    let component;
+
+    beforeEach(() => {
+      component = container.find(CategoriesListComponent);
+    });
+
+    it('+++ должен быть подключён к контейнеру', () => {
+      expect(component.length).toEqual(1);
+    });
+
+    describe('>>> Параметр dataList', () => {
+      let property;
+
+      beforeEach(() => {
+        property = component.prop('dataList');
+      });
+
+      it('+++ должен быть определен', () => {
+        expect(property).toBeDefined();
+      });
+
+      it('+++ должен быть массивом', () => {
+        expect(Array.isArray(property)).toBeTruthy();
+      });
+    });
   });
   
   describe('>>> "Летающая" кнопка добавить', () => {

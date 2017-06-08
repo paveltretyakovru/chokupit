@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
 
 // Material-ui components
 import AllInclusiveIcon from 'material-ui/svg-icons/places/all-inclusive';
-import { List, ListItem } from 'material-ui/List';
 
-// Components
+// Self Components
 import FloadAddButtonComponent from 'app/shared/buttons/float-add-button/float-add-button.component';
+import CategoriesListComponent from './shared/categories-list/categories-list.component';
 
 // Actions
 import * as appActions from 'app/app.actions';
@@ -31,16 +31,12 @@ export class CategoriesContainer extends Component {
   }
 
   render() {
-    const staticCategories = this.getStaticCategories();
-    const dinamicCategories = this.getDinamicCategories();
-
     return (
       <div id="index-container-wrapper">
         <div id="index-links-wrapper">
-          <List>
-            {staticCategories}
-            {dinamicCategories}
-          </List>
+          <CategoriesListComponent
+            dataList={[]}
+          />
         </div>
 
         <FloadAddButtonComponent
@@ -49,51 +45,6 @@ export class CategoriesContainer extends Component {
           }}
         />
       </div>
-    );
-  }
-
-  getDinamicCategories() {
-    return this.props.categories.list.map(
-      (item, index) => {
-        return(
-          <ListItem
-            key={`dinamic-${index}`}
-            leftIcon={item.leftIcon}
-            primaryText={item.name}
-
-            onTouchTap={() => {
-              this.props.appActions.routeTo(item.route);
-            }}
-          />
-        );
-      }
-    );
-  }
-
-  getStaticCategories() {
-    // Категории товаров, которые должны быть показаны по-умолчанию
-    const defaultCategoriesListArray = [
-      {
-        route: PRODUCTS_ROUTE,
-        primaryText: 'Всё',
-        leftIcon: <AllInclusiveIcon />,
-      },
-    ];
-
-    return defaultCategoriesListArray.map(
-      (item, index) => {
-        return(
-          <ListItem
-            key={`static-${index}`}
-            leftIcon={item.leftIcon}
-            primaryText={item.primaryText}
-
-            onTouchTap={() => {
-              this.props.appActions.routeTo(item.route);
-            }}
-          />
-        );
-      }
     );
   }
 }
