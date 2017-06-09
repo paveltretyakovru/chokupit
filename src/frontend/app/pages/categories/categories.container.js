@@ -2,9 +2,6 @@ import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 
-// Material-ui components
-import AllInclusiveIcon from 'material-ui/svg-icons/places/all-inclusive';
-
 // Self Components
 import FloadAddButtonComponent from 'app/shared/buttons/float-add-button/float-add-button.component';
 import CategoriesListComponent from './shared/categories-list/categories-list.component';
@@ -15,7 +12,6 @@ import * as headerActions from 'app/shared/header/header.actions';
 import {routeToAddCategory} from './categories-add/categories-add.actions';
 
 // Constants
-import {PRODUCTS_ROUTE} from 'app/pages/products/products.constants';
 import {DEFAULT_HEADER_TITILE} from 'app/app.constants';
 
 import {CATEGORIES_ROUTE} from './categories.constants';
