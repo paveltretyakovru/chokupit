@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import { CategoriesContainer } from './categories.container';
 
 // Material-ui components
@@ -14,20 +14,23 @@ import CategoriesListComponent from './shared/categories-list/categories-list.co
 injectTapEventPlugin();
 
 describe('>>> Контейнер Categories', () => {
-  let wrapper, container;
+  let wrapper, container, shallowContainer;
+
+  const properties = {
+    categories:{
+      list: [],
+    },
+  }
 
   beforeEach(()=>{
     wrapper = mount(
       <MuiThemeProvider>
-        <CategoriesContainer
-          categories={{
-            list: [],
-          }}
-        />
+        <CategoriesContainer {...properties} />
       </MuiThemeProvider>
     );
 
     container = wrapper.find(CategoriesContainer);
+    shallowContainer = shallow(<CategoriesContainer {...properties} />);
   })
 
   it('+++ должен быть срендерен', () => {
@@ -124,6 +127,27 @@ describe('>>> Контейнер Categories', () => {
         
     });
       
+  });
+
+  describe('>>> Методы контейнера', () => {
+    let methods;
+
+    beforeEach(() => {
+      methods = shallowContainer.instance();
+    });
+
+    describe('>>> Метоод prepareCategoriesList()', () => {
+      
+      it('+++ должен быть определен', () => {
+        expect(methods.prepareCategoriesList).toBeDefined();
+      });
+
+      it('+++ должен вернуть массив', () => {
+        expect(Array.isArray(methods.prepareCategoriesList())).toBeTruthy();
+      });
+
+    });
+
   });
     
 });
