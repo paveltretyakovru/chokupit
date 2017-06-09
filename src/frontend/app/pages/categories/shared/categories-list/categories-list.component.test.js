@@ -54,15 +54,19 @@ describe('>>> CategoriesListComponent. Компонент для листига 
     });
   });
 
-  describe('>>> Метод getListItems()', () => {
+  describe('>>> Метод prepareListItems()', () => {
     let method;
 
     beforeEach(() => {
-      method = shallowComponent.instance().getListItems;
+      method = shallowComponent.instance().prepareListItems;
     });
 
     it('+++ должен быть определен', () => {
       expect(method).toBeDefined();
+    });
+
+    it('+++ должен быть функцией', () => {
+      expect(typeof method).toEqual('function');
     });
 
     it('+++ должен вернуть массив', () => {

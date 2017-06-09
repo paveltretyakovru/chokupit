@@ -5,28 +5,24 @@ import {List, ListItem} from 'material-ui';
 
 export class CategoriesListComponent extends Component {
   render() {
+    let listItems = this.prepareListItems(this.props.dataList || []);
+
     return (
       <div>
-        Hello list
         <List>
-          {/* Список категорий */}
+          {listItems}
         </List>
       </div>
     );
   }
 
-  getListItems(dataList = []) {
+  prepareListItems(dataList = []) {
     return dataList.map(
       (item, index) => {
         return(
           <ListItem
-            key={`dinamic-${index}`}
-            leftIcon={item.leftIcon}
+            key={index}
             primaryText={item.name}
-
-            onTouchTap={() => {
-              this.props.appActions.routeTo(item.route);
-            }}
           />
         );
       }

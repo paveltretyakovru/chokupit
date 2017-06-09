@@ -18,7 +18,12 @@ describe('>>> Контейнер Categories', () => {
 
   const properties = {
     categories:{
-      list: [],
+      list: [
+        {
+          id: 1,
+          name: 'Hello',
+        },
+      ],
     },
   }
 
@@ -142,9 +147,22 @@ describe('>>> Контейнер Categories', () => {
         expect(methods.prepareCategoriesList).toBeDefined();
       });
 
+      it('+++ должен быть функцией', () => {
+        expect(typeof methods.prepareCategoriesList).toEqual('function');
+      });
+
       it('+++ должен вернуть массив', () => {
         expect(Array.isArray(methods.prepareCategoriesList())).toBeTruthy();
       });
+
+      it('+++ элементы массива должны содержать параметр name', () => {
+        let result = methods.prepareCategoriesList(properties.categories.list);
+
+        for(let i = 0; i < result.length; i++) {
+          expect(result[i].id).toBeDefined();
+          expect(result[i].name).toBeDefined();
+        }
+      })
 
     });
 
