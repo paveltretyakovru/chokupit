@@ -17,6 +17,7 @@ describe('>>> CategoriesListComponent. Компонент для листига 
 
   const componentProperties = {
     dataList: [],
+    onTouchItemHandler: () => {},
   }
 
   beforeEach(() => {
@@ -38,21 +39,36 @@ describe('>>> CategoriesListComponent. Компонент для листига 
     expect(component.find(List).length).toEqual(1);
   });
   
-  describe('>>> параметр dataList', () => {
-    let property;
+  describe('>>> Параметры компоненты', () => {
+    
+    describe('>>> параметр dataList', () => {
+      let property;
 
-    beforeEach(() => {
-      property = component.prop('dataList');
+      beforeEach(() => {
+        property = component.prop('dataList');
+      });
+
+      it(('+++ должен быть передан в компонент'), () => {
+        expect(property).toBeDefined();
+      })
+
+      it(('+++ должен быть массиовм'), () => {
+        expect(Array.isArray(property)).toBeTruthy();
+      });
     });
 
-    it(('+++ должен быть передан в компонент'), () => {
-      expect(property).toBeDefined();
+    describe('>>> параметр onTouchItemHandler', () => {
+      let property;
+
+      beforeEach(() => {
+        property = component.prop('onTouchItemHandler');
+      });
+
+      it('+++ должен быть передан', () => {
+        expect(property).toBeDefined();
+      });
     })
-
-    it(('+++ должен быть массиовм'), () => {
-      expect(Array.isArray(property)).toBeTruthy();
-    });
-  });
+  })
 
   describe('>>> Метод prepareListItems()', () => {
     let method;

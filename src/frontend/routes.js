@@ -25,7 +25,7 @@ export {CATEGORIES_ADD_ROUTE} from './app/pages/categories/categories-add/catego
 
 // ============== MAIN ROUTER COMPONENT ========================================
 export default (
-  <Route path={AppContainer.path} component={AppContainer} >
+  <Route path={IndexContainer.path} component={AppContainer} >
       <IndexRoute component={IndexContainer} />
 
       {/* Contacts */}

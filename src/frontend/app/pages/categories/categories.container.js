@@ -13,8 +13,10 @@ import {routeToAddCategory} from './categories-add/categories-add.actions';
 
 // Constants
 import {DEFAULT_HEADER_TITILE} from 'app/app.constants';
-
-import {CATEGORIES_ROUTE} from './categories.constants';
+import {
+  CATEGORIES_ROUTE,
+  CATEGORIES_HEADER_TITLE,
+} from './categories.constants';
 
 export class CategoriesContainer extends Component {
   static path = CATEGORIES_ROUTE
@@ -22,7 +24,8 @@ export class CategoriesContainer extends Component {
   componentWillMount() {
     if(this.props.setHeaderButtons !== undefined) {
       this.props.setHeaderButtons(null, null);
-      this.props.headerActions.updateHeaderTitle(`${DEFAULT_HEADER_TITILE}`);
+      this.props.headerActions
+        .updateHeaderTitle(`${DEFAULT_HEADER_TITILE}.${CATEGORIES_HEADER_TITLE}`);
     }
   }
 
