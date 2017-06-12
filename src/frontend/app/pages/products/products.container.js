@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 
@@ -28,12 +28,17 @@ export class ProductsContainer extends Component {
 
   render() {
     let productsList = this.props.products.list || [];
+    let handleRouteToProduct = this.props.productsActions.routeToProduct
+      || function() { console.error('handleRouteToProduct not defined'); };
     let handleCLickAddProduct =  this.props.productsActions.routeToAddProduct
-      || function() { console.error('handleClickAddProduct function not defined'); };
+      || function() { console.error('handleClickAddProduct not defined'); };
 
     return(
       <div id="prodcuts-container-wrapper">
-        <ProductsListComponent products={productsList} />
+        <ProductsListComponent
+          products={productsList}
+          handleRouteToProduct={handleRouteToProduct}
+        />
         <FloadAddButtonComponent
           handleClickAction={handleCLickAddProduct}
         />

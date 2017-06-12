@@ -95,6 +95,22 @@ describe('>>> PRODUCTS CONTAINER', () => {
         expect(Array.isArray(property)).toBeTruthy();
       });
     });
+
+    describe('>>> параметр "handleRouteToProduct"', () => {
+      let property;
+
+      beforeEach(() => {
+        property = component.prop('handleRouteToProduct');
+      });
+
+      it('+++ должен быть передан', () => {
+        expect(property).toBeDefined();
+      });
+
+      it('+++ должен быть функцией', () => {
+        expect(typeof property).toEqual('function');
+      });
+    })
   });
 
   describe('>>> FloatButtonAddComponent', () => {

@@ -1,6 +1,7 @@
 // Products actions
 import {
   addProduct,
+  routeToProduct,
   routeToAddProduct,
 } from './products.actions';
 
@@ -14,5 +15,10 @@ describe('>>> PRODUCTS ACTIONS', () => {
     expect(routeToAddProduct).toBeDefined();
   });
 
+  describe('>>> routeToProduct', () => {
+    it('+++ должна быть определена', () => {
+      expect(routeToProduct).toBeDefined();
+    });
+  });
+
 });
-  

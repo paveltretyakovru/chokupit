@@ -11,8 +11,14 @@ import {PRODUCTS_SHOW_ROUTE} from './products-show.constants';
 describe('ProductsShowContainer', () => {
   let wrapper;
 
+  const containerProps = {
+    params: {
+      id: 1,
+    },
+  }
+
   beforeEach(() => {
-    wrapper = mount(<ProductsShowContainer />);
+    wrapper = mount(<ProductsShowContainer {...containerProps} />);
   });
 
   it('+++ должен рендериться', () => {
