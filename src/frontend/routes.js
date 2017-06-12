@@ -16,6 +16,7 @@ import CategoriesRoutes from './app/pages/categories/categories.routes';
 export {INDEX_ROUTE} from './app/pages/index/index.constants';
 
 export {PRODUCTS_ROUTE} from './app/pages/products/products.constants';
+export {ALL_PRODUCTS_ROUTE} from './app/pages/products/products.constants';
 
 export {CONTACTS_ROUTE} from './app/pages/contacts/contacts.constants';
 export {CONTACTS_AUTHORS_ROUTE} from './app/pages/contacts/contacts-authors/contacts-authors.constants';

@@ -49,7 +49,7 @@ describe('>>> PRODUCTS CONTAINER', () => {
   });
 
   it('+++ "path" property should be equal "/products"', () => {
-    expect(ProductsContainer.path).toEqual('/products');
+    expect(ProductsContainer.path).toEqual('/products(/:id)');
   });
 
   it('+++ should have material-ui list', () => {

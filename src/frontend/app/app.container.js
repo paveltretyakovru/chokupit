@@ -26,6 +26,7 @@ import { routeTo } from './app.actions';
 // Routes
 import {
   INDEX_ROUTE,
+  ALL_PRODUCTS_ROUTE,
   CONTACTS_ROUTE,
   CATEGORIES_ROUTE,
 } from 'routes';
@@ -48,9 +49,11 @@ export class AppContainer extends Component {
 
   render() {
     const LEFT_MENU_IMTES = [
-      {label: 'Home', route: INDEX_ROUTE},
-      {label: 'Contancts', route: CONTACTS_ROUTE},
-      {label: 'Categories', route: CATEGORIES_ROUTE},
+      {label: 'Главная', route: INDEX_ROUTE},
+      {label: 'Товары', route: ALL_PRODUCTS_ROUTE},
+      {label: 'Категории', route: CATEGORIES_ROUTE},
+      
+      {label: 'Контакты', route: CONTACTS_ROUTE},
     ];
 
     return(
