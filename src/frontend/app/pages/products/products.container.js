@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 
 // Constants
-import {ALL_PRODUCTS_TITLE, PRODUCTS_ROUTE} from './products.constants';
+import {PRODUCTS_TITLE, PRODUCTS_ROUTE} from './products.constants';
 
 // Components
 import ProductsListComponent from './shared/products-list/products-list.component';
@@ -22,7 +22,7 @@ export class ProductsContainer extends Component {
   componentWillMount() {
     if(this.props.headerActions) {
       this.props.setHeaderButtons(null, null);
-      this.props.headerActions.updateHeaderTitle(ALL_PRODUCTS_TITLE);
+      this.props.headerActions.updateHeaderTitle(PRODUCTS_TITLE);
     }
   }
 
