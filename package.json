@@ -26,7 +26,7 @@
       "^.+\\.(css|scss|less)$": "jest-css-modules"
     },
     "globals": {
-      "NODE_ENV": "development"
+      "NODE_ENV": "test"
     },
     "moduleFileExtensions": [
       "js",

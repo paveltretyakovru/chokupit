@@ -7,17 +7,8 @@ import AppBar from 'material-ui/AppBar';
 // TODO: Вывести отдельный reducer и actions для header
 
 class HeaderContainer extends Component {
-  getStyle() {
-    return {
-      iconStyleRight: {
-        /* Styles for right icon */
-      },
-    }
-  }
-
   render() {
-    const { iconStyleRight } = this.getStyle();
-    const { headerTitle } = this.props;
+    const headerTitle = this.props.headerTitle || 'Default titile';
 
     return (
       <header>
@@ -25,7 +16,6 @@ class HeaderContainer extends Component {
           title={ headerTitle }
           iconElementLeft={ this.props.buttonLeft }
           iconElementRight={ this.props.buttonRight }
-          iconStyleRight={ iconStyleRight }
         />
       </header>
     );

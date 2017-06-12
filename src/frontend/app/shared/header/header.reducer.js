@@ -4,7 +4,7 @@ import {
 
 import { DEFAULT_HEADER_TITILE } from 'app/app.constants';
 
-const initState = {
+export const initState = {
   headerTitle: DEFAULT_HEADER_TITILE,
 };
 

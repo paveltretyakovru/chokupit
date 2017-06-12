@@ -1,38 +1,78 @@
-import chai from 'chai';
+// Core && libs
 import React from 'react';
-import {shallow} from 'enzyme';
-import chaiEnzyme from 'chai-enzyme';
-import {createStore} from 'redux';
+import {mount} from 'enzyme';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 
-import reducers from 'reducers';
+// Material-ui components
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-chai.use(chaiEnzyme());
-
-global.jestExpect = global.expect;
-global.expect = chai.expect;
+// States
+import {initState as initAppReducerState} from './app.reducer';
+import {initState as initHeaderReducerState} from './shared/header/header.reducer';
 
 // Components
-import ConnectedAppContainer, {AppContainer} from './app.container';
+import ConnectedAppContainer from './app.container';
+import LeftMenuCompnent from './shared/left-menu/left-menu.component';
 
-describe('>>> APP CONTAINER --- shallow component with mock store', () => {
-  let store, wrapper;
+describe('>>> AppContainer контейнер', () => {
+  const initialState = {
+    app: {...initAppReducerState},
+    header: {...initHeaderReducerState},
+  };
+  const mockSotre = configureStore();
+  
+  let wrapper, store;
 
   beforeEach(() => {
-    store = createStore(reducers);
-    
-    wrapper = shallow(
-      <ConnectedAppContainer store={store} />
+    store = mockSotre(initialState);
+    wrapper = mount(
+      <MuiThemeProvider>
+        <Provider store={store}>
+          <ConnectedAppContainer />
+        </Provider>
+      </MuiThemeProvider>
     );
   });
-
-  it('+++ render the DUMP component', () => {
-    jestExpect(wrapper.length).toEqual(1);
+  
+  it('+++ должен быть срендерен', () => {
+    expect(wrapper).toBeDefined();
   });
 
-  it('+++ contains LinearProgressbar component', () => {
-    let find = wrapper.find(AppContainer);
-    expect(
-      find
-    ).to.have.length(1);
-  });
+  // Вложенные компоненты
+  describe('>>> вложенные компоненты', () => {
+
+    // Вложенная компонента LeftMenuComponent
+    describe('>>> LeftMenuCompnent - компонента для левого меню', () => {
+      let leftMenu;
+
+      beforeEach(() => {
+        leftMenu = wrapper.find(LeftMenuCompnent);
+      });
+
+      it('+++ должна быть определена', () => {
+        expect(leftMenu.length).toEqual(1);
+      });
+
+      // Парамет handleNaviagate
+      describe('>>> параметр handleNavigate', () => {
+        let property;
+
+        beforeEach(() => {
+          property = leftMenu.prop('handleNavigate');
+        })
+
+        it('+++ в неё должен быть передан параметр handleNavigate', () => {
+          expect(property).toBeDefined();
+        });
+
+        it('+++ должен быть функцией', () => {
+          expect(typeof property).toEqual('function');
+        });
+
+      }); // Параметр handleNavigate
+    }); // LeftMenuComponent
+  }); // Вложенные компоненты 
+    
 });
+  

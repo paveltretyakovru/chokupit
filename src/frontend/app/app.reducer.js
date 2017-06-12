@@ -2,7 +2,7 @@ import {
   SWITCH_LEFT_MENU,
 } from './app.constants';
 
-const initState = {
+export const initState = {
   isLeftMenuOpen: false,
 }
 

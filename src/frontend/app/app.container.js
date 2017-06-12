@@ -27,6 +27,8 @@ import { routeTo } from './app.actions';
 import './app.container.css';
 import './shared/styles/tipography.less';
 
+injectTapEventPlugin();
+
 export class AppContainer extends Component {
   constructor(props) {
     super(props);
@@ -35,10 +37,6 @@ export class AppContainer extends Component {
       headerButtonLeft: null,
       headerButtonRight: null,
     }
-  }
-
-  componentWillMount() {
-    injectTapEventPlugin();
   }
 
   render() {
@@ -53,6 +51,7 @@ export class AppContainer extends Component {
               title={ DEFAULT_HEADER_TITILE }
               isOpen={ this.props.app.isLeftMenuOpen}
               handleSwitch={this.props.appActions.switchLeftMenu }
+              handleNavigate={routeTo}
             />
 
           <div className="container-fluid">
@@ -60,20 +59,16 @@ export class AppContainer extends Component {
             <main className="row">
               <div id="app-content" className="col-xs-12 col-md-12">
                 {
-                  
-                  /*
-                    * Подключение страниц, с подключением дополнительнымх
-                    * методов (обновление заголовка, смена кнопок шапки и т.п)
-                  */
-                  React.cloneElement(
-                    this.props.children,
-                    {
-                      setHeaderButtons: ::this.setHeaderButtons,
-                      setHeaderButtonLeft: ::this.setHeaderButtonLeft,
-                      setHeaderButtonRight: ::this.setHeaderButtonRight,
-                    }
-                  )
-
+                  (this.props.children)
+                    ? React.cloneElement(
+                      this.props.children,
+                      {
+                        setHeaderButtons: ::this.setHeaderButtons,
+                        setHeaderButtonLeft: ::this.setHeaderButtonLeft,
+                        setHeaderButtonRight: ::this.setHeaderButtonRight,
+                      }
+                    )
+                    : null
                 }
               </div>
             </main>
