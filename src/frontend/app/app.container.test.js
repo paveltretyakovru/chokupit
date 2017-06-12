@@ -3,6 +3,7 @@ import React from 'react';
 import {mount} from 'enzyme';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import {bindActionCreators} from 'redux';
 
 // Material-ui components
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -15,11 +16,15 @@ import {initState as initHeaderReducerState} from './shared/header/header.reduce
 import ConnectedAppContainer from './app.container';
 import LeftMenuCompnent from './shared/left-menu/left-menu.component';
 
+// Actions
+import * as appActions from './app.actions';
+
 describe('>>> AppContainer контейнер', () => {
   const initialState = {
     app: {...initAppReducerState},
     header: {...initHeaderReducerState},
   };
+  const dispatch = jest.fn((dispatchResult) => { return dispatchResult; });
   const mockSotre = configureStore();
   
   let wrapper, store;
@@ -54,7 +59,7 @@ describe('>>> AppContainer контейнер', () => {
         expect(leftMenu.length).toEqual(1);
       });
 
-      // Парамет handleNaviagate
+      // Параметр handleNaviagate
       describe('>>> параметр handleNavigate', () => {
         let property;
 
@@ -62,7 +67,7 @@ describe('>>> AppContainer контейнер', () => {
           property = leftMenu.prop('handleNavigate');
         })
 
-        it('+++ в неё должен быть передан параметр handleNavigate', () => {
+        it('+++ должен быть определен', () => {
           expect(property).toBeDefined();
         });
 
@@ -71,6 +76,24 @@ describe('>>> AppContainer контейнер', () => {
         });
 
       }); // Параметр handleNavigate
+
+      // Параметр menuItems
+      describe('>>> параметр menuItems', () => {
+        let property;
+
+        beforeEach(() => {
+          property = leftMenu.prop('menuItems');
+        })
+
+        it('+++ должен быть определен', () => {
+          expect(property).toBeDefined();
+        });
+
+        it('+++ должен быть массивом', () => {
+          expect(Array.isArray(property)).toBeTruthy();
+        });
+
+      }); // Параметр menuItems
     }); // LeftMenuComponent
   }); // Вложенные компоненты 
     

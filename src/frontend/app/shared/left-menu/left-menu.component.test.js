@@ -16,6 +16,7 @@ describe('>>> LEFT-MENU CONTAINER --- Shallow Rendeer Container', () => {
   let wrapper, component;
 
   const MENU_COMPONENT_PROPERTIES = {
+    menuItems: [],
     handleNavigate: () => {},
   };
 
@@ -32,7 +33,7 @@ describe('>>> LEFT-MENU CONTAINER --- Shallow Rendeer Container', () => {
   });
 
   describe('>>> параметры', () => {
-    describe('>>> handleNavigate', () =>{
+    describe('>>> handleNavigate - функция навигации', () =>{
       let prop;
 
       beforeEach(() => {
@@ -46,9 +47,24 @@ describe('>>> LEFT-MENU CONTAINER --- Shallow Rendeer Container', () => {
       it('+++ должен быть функцией', () => {
         expect(typeof prop).toEqual('function');
       });
+    }); // handleNavigate
 
-    })
-  });
+    describe('>>> menuItems - массив с элементами меню', () => {
+      let prop;
+
+      beforeEach(() => {
+        prop = component.prop('menuItems');
+      });
+
+      it('+++ должен быть определен', () => {
+        expect(prop).toBeDefined();
+      });
+
+      it('+++ должен быть массивом', () => {
+        expect(Array.isArray(prop)).toBeTruthy();
+      });
+    });
+  }); // параметры
   
   it('+++ render the DUMP component', () => {
     expect(wrapper.length).toEqual(1);

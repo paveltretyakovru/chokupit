@@ -23,6 +23,13 @@ import { routeToContacts } from './pages/contacts/contacts.actions';
 // Actions
 import { routeTo } from './app.actions';
 
+// Routes
+import {
+  INDEX_ROUTE,
+  CONTACTS_ROUTE,
+  CATEGORIES_ROUTE,
+} from 'routes';
+
 // Styles
 import './app.container.css';
 import './shared/styles/tipography.less';
@@ -40,6 +47,12 @@ export class AppContainer extends Component {
   }
 
   render() {
+    const LEFT_MENU_IMTES = [
+      {label: 'Home', route: INDEX_ROUTE},
+      {label: 'Contancts', route: CONTACTS_ROUTE},
+      {label: 'Categories', route: CATEGORIES_ROUTE},
+    ];
+
     return(
         <div id="app-container">
           <HeaderContainer
@@ -48,10 +61,11 @@ export class AppContainer extends Component {
           />
 
           <LeftMenuComponent
-              title={ DEFAULT_HEADER_TITILE }
-              isOpen={ this.props.app.isLeftMenuOpen}
-              handleSwitch={this.props.appActions.switchLeftMenu }
-              handleNavigate={routeTo}
+              title={DEFAULT_HEADER_TITILE}
+              isOpen={this.props.app.isLeftMenuOpen}
+              menuItems={LEFT_MENU_IMTES}
+              handleSwitch={this.props.appActions.switchLeftMenu}
+              handleNavigate={this.props.routeActions.routeTo}
             />
 
           <div className="container-fluid">
@@ -113,7 +127,7 @@ function mapStateToProps(state) {
 function mapDisptachToProps(dispatch) {
   return {
     appActions: bindActionCreators(appActions, dispatch),
-    routeActions: bindActionCreators({routeToContacts}, dispatch),
+    routeActions: bindActionCreators({routeToContacts, routeTo}, dispatch),
   }
 }
 

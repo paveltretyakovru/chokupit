@@ -8,6 +8,7 @@ import {List, ListItem} from 'material-ui/List';
 class LeftMenuComponent extends Component {
   render() {
     let title = this.props.title || 'Menu title';
+    let menuItems = this.props.menuItems || [{label: 'Home', route: '/'}];
 
     return(
       <Drawer
@@ -17,7 +18,20 @@ class LeftMenuComponent extends Component {
       >
         <AppBar title={ title } showMenuIconButton={false} />
         <List>
-          <ListItem primaryText="Test list item" />
+          {
+            menuItems.map((item, index) => {
+              return (
+                <ListItem
+                  key={index}
+                  onTouchTap={() => {
+                    this.props.handleNavigate(item.route);
+                    this.props.handleSwitch();
+                  }}
+                  primaryText={item.label}
+                />
+              );
+            })
+          }
         </List>
       </Drawer>
     )
