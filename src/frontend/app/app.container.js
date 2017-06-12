@@ -56,18 +56,15 @@ export class AppContainer extends Component {
             />
 
           <div className="container-fluid">
-          
-            {/* TODO: Import progressbar to the pages containers */}
-            {/*<div className="row">
-              <div className="col-xs-12" id="progressbar-wrapper">
-                <LinearProgress mode="determinate" value={50} />
-              </div>
-            </div>*/}
 
             <main className="row">
               <div id="app-content" className="col-xs-12 col-md-12">
-                {/* { this.props.children } */}
                 {
+                  
+                  {/*
+                    * Подключение страниц, с подключением дополнительнымх
+                    * методов (обновление заголовка, смена кнопок шапки и т.п)
+                    */}
                   React.cloneElement(
                     this.props.children,
                     {
@@ -76,11 +73,15 @@ export class AppContainer extends Component {
                       setHeaderButtonRight: ::this.setHeaderButtonRight,
                     }
                   )
+                  
                 }
               </div>
             </main>
             </div>
+
+            {/* Redux DevTools */}
             { NODE_ENV === 'development' ? <DevTools /> : null }
+
         </div>
     );
   }
