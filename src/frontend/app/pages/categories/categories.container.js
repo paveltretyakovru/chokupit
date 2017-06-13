@@ -30,7 +30,9 @@ export class CategoriesContainer extends Component {
   }
 
   render() {
-    const dataList = this.prepareCategoriesList(this.props.categories.list || []);
+    const dataList = this.prepareCategoriesList(
+      this.props.categories.collection || []
+    );
 
     return (
       <div id="index-container-wrapper">
@@ -49,8 +51,8 @@ export class CategoriesContainer extends Component {
     );
   }
 
-  prepareCategoriesList(sourceList = []) {
-    return sourceList.map((item) => {
+  prepareCategoriesList(collection = []) {
+    return collection.map((item) => {
       return({
         id: item.id,
         name: item.name,

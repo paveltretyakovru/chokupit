@@ -2,7 +2,7 @@
 import {ADD_PRODUCT} from './products-add/products-add.constants';
 
 let initState = {
-  list: [
+  collection: [
     {
       id: 1,
       name: 'Test product name',
@@ -16,10 +16,10 @@ export default function (state = initState, action) {
   switch (action.type) {
   
   case ADD_PRODUCT:
-    products = [...state.list];
-    products.push({...action.payload, id: state.list.length + 1});
+    products = [...state.collection];
+    products.push({...action.payload, id: state.collection.length + 1});
 
-    return { ...state, list: products};
+    return { ...state, collection: products};
   
   default:
     return { ...state };

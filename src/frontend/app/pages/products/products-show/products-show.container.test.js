@@ -17,7 +17,7 @@ describe('ProductsShowContainer', () => {
     },
 
     products: {
-      list: [
+      collection: [
         {id: 1, name: 'Test model 1'},
         {id: 2, name: 'Test model 2'},
       ],
@@ -64,12 +64,12 @@ describe('ProductsShowContainer', () => {
       });
 
       it('+++ должен вернуть объект', () => {
-        expect(typeof getProductModel(containerProps.products.list, 1))
+        expect(typeof getProductModel(containerProps.products.collection, 1))
           .toEqual('object');
       });
 
       it('+++ должен вернуть ожидаей объект, при переданных параметрах', () => {
-        expect(getProductModel(containerProps.products.list, 1))
+        expect(getProductModel(containerProps.products.collection, 1))
           .toEqual(expectModel);
       });
 

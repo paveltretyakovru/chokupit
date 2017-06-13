@@ -22,7 +22,7 @@ export class ProductsShowContainer extends Component {
 
   render() {
     let id = +this.props.params.id || 0;
-    let collection = this.props.products.list || [];
+    let collection = this.props.products.collection || [];
     
     let model = this.getProductModel(collection, id);
 
