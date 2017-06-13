@@ -21,15 +21,30 @@ export class ProductsShowContainer extends Component {
   }
 
   render() {
+    let id = +this.props.params.id || 0;
+    let collection = this.props.products.list || [];
+    
+    let model = this.getProductModel(collection, id);
+
     return(
-      <div>Show container for Product #{this.props.params.id}</div>
+      <div>
+        <span className="display-1">{model.name}</span>
+      </div>
     );
+  }
+
+  getProductModel(collection = [], id = 0) {
+    let model = collection.find((element) => {
+      return element.id === id;
+    });
+
+    return model ? model : {};
   }
 }
 
 function mapStateToProps(state) {
   return {
-    app: state.app,
+    app: state.app, 
     products: state.products,
   }
 }
