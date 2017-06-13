@@ -24,7 +24,7 @@ describe('>>> PRODUCTS CONTAINER', () => {
   beforeEach(() => {
     props = {
       products: {
-        list: [],
+        collection: [],
       },
       productsActions: {
         routeToAddProduct: routeToAddProduct,

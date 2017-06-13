@@ -27,7 +27,7 @@ export class ProductsContainer extends Component {
   }
 
   render() {
-    let productsList = this.props.products.list || [];
+    let productsCollection = this.props.products.collection || [];
     let handleRouteToProduct = this.props.productsActions.routeToProduct
       || function() { console.error('handleRouteToProduct not defined'); };
     let handleCLickAddProduct =  this.props.productsActions.routeToAddProduct
@@ -36,7 +36,7 @@ export class ProductsContainer extends Component {
     return(
       <div id="prodcuts-container-wrapper">
         <ProductsListComponent
-          products={productsList}
+          products={productsCollection}
           handleRouteToProduct={handleRouteToProduct}
         />
         <FloadAddButtonComponent

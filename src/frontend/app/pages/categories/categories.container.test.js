@@ -18,7 +18,7 @@ describe('>>> Контейнер Categories', () => {
 
   const properties = {
     categories:{
-      list: [
+      collection: [
         {
           id: 1,
           name: 'Hello',
@@ -64,11 +64,11 @@ describe('>>> Контейнер Categories', () => {
     describe('>>> Параметр контейнера list', () => {
       
       it('+++ должен быть определен', () => {
-        expect(categoriesProperty.list).toBeDefined();
+        expect(categoriesProperty.collection).toBeDefined();
       });
       
       it('+++ должен быть массивом', () => {
-        expect(Array.isArray(categoriesProperty.list)).toBeTruthy();
+        expect(Array.isArray(categoriesProperty.collection)).toBeTruthy();
       });
         
         
@@ -156,7 +156,9 @@ describe('>>> Контейнер Categories', () => {
       });
 
       it('+++ элементы массива должны содержать параметр name', () => {
-        let result = methods.prepareCategoriesList(properties.categories.list);
+        let result = methods.prepareCategoriesList(
+          properties.categories.collection
+        );
 
         for(let i = 0; i < result.length; i++) {
           expect(result[i].id).toBeDefined();

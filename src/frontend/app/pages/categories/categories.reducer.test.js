@@ -18,8 +18,8 @@ describe('>>> Categories reducer', () => {
       payload: newCategory,
     });
 
-    expect(state.list.length).toEqual(2);
-    expect(state.list[1]).toEqual(newCategory);
+    expect(state.collection.length).toEqual(2);
+    expect(state.collection[1]).toEqual(newCategory);
   });
 });
   

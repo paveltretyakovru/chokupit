@@ -19,8 +19,8 @@ describe('>>> PRODUCTS REDUCER --- ADD_PRODUCT', () => {
       payload: newProduct,
     });
 
-    expect(state.list.length).toEqual(2);
-    expect(state.list[1]).toEqual(newProduct);
+    expect(state.collection.length).toEqual(2);
+    expect(state.collection[1]).toEqual(newProduct);
   });
     
     
