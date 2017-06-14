@@ -2,6 +2,9 @@ import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 
+// Material-ui components
+import SelectField from 'material-ui/SelectField';
+
 // Components
 import TextFieldComponent from 'app/shared/form/text-field.component';
 import HeaderFlatButtonComponent from 'app/shared/buttons/header-flat-button.component';
@@ -15,6 +18,7 @@ import * as productsActions from '../products.actions';
 import {
   PRODUCTS_ADD_TITLE,
   PRODUCTS_ADD_BUTTON_LABEL,
+  PRODUCTS_ADD_CATEGORIES_LABEL,
 } from './products-add.constants';
 
 // CSS
@@ -43,6 +47,8 @@ export class ProductsAddContainer extends Component {
   render() {
     return (
       <div id="products-add-wrapper">
+        
+        {/* Поля ввода наименования товара */}
         <TextFieldComponent
           ref="nameTextField"
           name="name"
@@ -51,6 +57,14 @@ export class ProductsAddContainer extends Component {
           fullWidth={true}
           errorValue="Это поле не может быть пустым"
         />
+
+        {/* Поле для выбора категории товара */}
+        <SelectField
+          fullWidth={true}
+          floatingLabelText={PRODUCTS_ADD_CATEGORIES_LABEL}
+        >
+
+        </SelectField>
       </div>
     );
   }
@@ -68,6 +82,7 @@ function mapStateToProps(state) {
   return {
     app: state.app,
     products: state.products,
+    categories: state.categories,
   }
 }
 

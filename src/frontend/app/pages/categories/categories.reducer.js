@@ -1,6 +1,6 @@
 import {ADD_CATEGORY} from './categories-add/categories-add.constants';
 
-const initState = {
+export const initState = {
   collection: [
     {
       id: 1,

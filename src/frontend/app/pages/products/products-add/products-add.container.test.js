@@ -1,17 +1,19 @@
 // Core && libs
 import React from 'react';
+import thunk from 'redux-thunk';
 import {mount} from 'enzyme';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import	thunk	from	'redux-thunk';
 
 // Material-UI
+import SelectField from 'material-ui/SelectField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from 'react-tap-event-plugin'; 
 
 // States
 import {initState as initAppReducerState} from 'app/app.reducer';
 import {initState as initHeaderReducerState} from 'app/shared/header/header.reducer';
+import {initState as initCategoriesReducerState} from 'app/pages/categories/categories.reducer';
 
 // Components
 import ConnectedProductsAddContainer, {ProductsAddContainer} from './products-add.container';
@@ -20,6 +22,7 @@ import TextFieldComponent from 'app/shared/form/text-field.component';
 // Constants
 import {
   PRODUCTS_ADD_ROUTE,
+  PRODUCTS_ADD_CATEGORIES_LABEL,
 } from './products-add.constants';
 
 injectTapEventPlugin();
@@ -31,11 +34,7 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
   const initialState = {
     app: {...initAppReducerState},
     header: {...initHeaderReducerState},
-  }
-  const PROPS = {
-    headerActions: {
-      updateHeaderTitle: () => {},
-    },
+    categories: initCategoriesReducerState,
   }
 
   beforeEach(() => {
@@ -43,9 +42,7 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
     wrapper = mount(
       <MuiThemeProvider>
         <Provider store={store}>
-          <ConnectedProductsAddContainer {...PROPS}>
-            <ProductsAddContainer {...PROPS} />
-          </ConnectedProductsAddContainer>
+          <ConnectedProductsAddContainer />
         </Provider>
       </MuiThemeProvider>
     );
@@ -55,25 +52,86 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
     expect(wrapper).toBeDefined();
   });
 
-  it('+++ should have static "path" property', () => {
+  it('+++ should have static "path" member', () => {
     expect(ProductsAddContainer.path).toBeDefined();
   });
   
-  it('+++ "path" static property should be equal PRODUCTS_ADD_ROUTE const', () => {
+  it('+++ "path" static member should be equal PRODUCTS_ADD_ROUTE const', () => {
     expect(ProductsAddContainer.path).toEqual(PRODUCTS_ADD_ROUTE);
   });
-    
-  describe('>>> Title TextField', () => {
-    let textField;
+  
+  describe('>>> Параметры контейнера', () => {
+    let container;
 
     beforeEach(() => {
-      textField = wrapper.find(TextFieldComponent);
+      container = wrapper.find(ProductsAddContainer);
     });
     
-    it('+++ should be defined', () => {
-      expect(textField).toBeDefined();
+    describe('>>> Параметр categories', () => {
+      let property;
+
+      beforeEach(() => {
+        property = container.prop('categories');
+      });
+
+      it('+++ должен быть определен', () => {
+        expect(property).toBeDefined();
+      });
+
+      it('+++ должен содердать коллекцию категорий', () => {
+        expect(property.collection).toBeDefined();
+      });
+
     });
       
+  });
+    
+  describe('>>> Элементы формы', () => {
+    describe('>>> Title TextField', () => {
+      let textField;
+
+      beforeEach(() => {
+        textField = wrapper.find(TextFieldComponent);
+      });
+      
+      it('+++ should be defined', () => {
+        expect(textField).toBeDefined();
+      });
+        
+    });
+
+    describe('>>> Select Field. Список с категориями', () => {
+      let selectField;
+
+      beforeEach(() => {
+        selectField = wrapper.find(SelectField);
+      });
+
+      it('+++ должен быть определен в контейнере', () => {
+        expect(selectField.length).toEqual(1);
+      });
+
+      describe('>>> параметры поля', () => {
+        
+        describe('>>> параметр floatingLabelText', () => {
+          let property;
+
+          beforeEach(() => {
+            property = selectField.prop('floatingLabelText');
+          });
+
+          it('+++ должен быть определен', () => {
+            expect(property).toBeDefined();
+          });
+          
+          it('+++ должен быть равен PRODUCTS_ADD_CATEGORIES_LABEL', () => {
+            expect(property).toEqual(PRODUCTS_ADD_CATEGORIES_LABEL);
+          });
+            
+        });
+
+      });
+    });
   });
     
 });
