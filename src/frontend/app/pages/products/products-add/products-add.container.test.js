@@ -1,12 +1,20 @@
+// Core && libs
 import React from 'react';
-import { mount } from 'enzyme';
+import {mount} from 'enzyme';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
+import	thunk	from	'redux-thunk';
 
 // Material-UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+// States
+import {initState as initAppReducerState} from 'app/app.reducer';
+import {initState as initHeaderReducerState} from 'app/shared/header/header.reducer';
+
 // Components
-import {ProductsAddContainer} from './products-add.container';
+import ConnectedProductsAddContainer, {ProductsAddContainer} from './products-add.container';
 import TextFieldComponent from 'app/shared/form/text-field.component';
 
 // Constants
@@ -17,20 +25,34 @@ import {
 injectTapEventPlugin();
 
 describe('>>> PRODUCTS ADD CONTAINER', () => {
-  let wrapper;
+  let wrapper, store;
+  const middlewares = [thunk];
+  const mockStore = configureStore(middlewares);
+  const initialState = {
+    app: {...initAppReducerState},
+    header: {...initHeaderReducerState},
+  }
+  const PROPS = {
+    headerActions: {
+      updateHeaderTitle: () => {},
+    },
+  }
 
   beforeEach(() => {
-    const COMPONENT_PROPS = {}
-
+    store = mockStore(initialState);    
     wrapper = mount(
       <MuiThemeProvider>
-        <ProductsAddContainer {...COMPONENT_PROPS} />
+        <Provider store={store}>
+          <ConnectedProductsAddContainer {...PROPS}>
+            <ProductsAddContainer {...PROPS} />
+          </ConnectedProductsAddContainer>
+        </Provider>
       </MuiThemeProvider>
     );
   });
 
   it('+++ should render the container', () => {
-    expect(wrapper.length).toEqual(1);
+    expect(wrapper).toBeDefined();
   });
 
   it('+++ should have static "path" property', () => {

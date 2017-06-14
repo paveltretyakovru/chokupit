@@ -25,8 +25,7 @@ export class ProductsAddContainer extends Component {
 
   componentWillMount() {
     if(this.props.headerActions) {
-      this.props.headerActions
-        .updateHeaderTitle(`${PRODUCTS_ADD_TITLE}`);
+      this.props.headerActions.updateHeaderTitle(PRODUCTS_ADD_TITLE);
     }
   }
 

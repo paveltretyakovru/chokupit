@@ -3,7 +3,6 @@ import React from 'react';
 import {mount} from 'enzyme';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import {bindActionCreators} from 'redux';
 
 // Material-ui components
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -16,15 +15,11 @@ import {initState as initHeaderReducerState} from './shared/header/header.reduce
 import ConnectedAppContainer from './app.container';
 import LeftMenuCompnent from './shared/left-menu/left-menu.component';
 
-// Actions
-import * as appActions from './app.actions';
-
 describe('>>> AppContainer контейнер', () => {
   const initialState = {
     app: {...initAppReducerState},
     header: {...initHeaderReducerState},
   };
-  const dispatch = jest.fn((dispatchResult) => { return dispatchResult; });
   const mockSotre = configureStore();
   
   let wrapper, store;
