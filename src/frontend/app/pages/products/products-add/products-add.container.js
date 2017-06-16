@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 
 // Material-ui components
+import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 
 // Components
@@ -60,10 +61,11 @@ export class ProductsAddContainer extends Component {
 
         {/* Поле для выбора категории товара */}
         <SelectField
+          value={1}
           fullWidth={true}
           floatingLabelText={PRODUCTS_ADD_CATEGORIES_LABEL}
         >
-
+          <MenuItem value={1} primaryText="Без категории" />
         </SelectField>
       </div>
     );

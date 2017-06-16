@@ -1,7 +1,7 @@
 // Core && libs
 import React from 'react';
 import thunk from 'redux-thunk';
-import {mount} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 
@@ -111,6 +111,22 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
         expect(selectField.length).toEqual(1);
       });
 
+      it('+++ должен содержать поля MenuItem', () => {
+        expect(selectField.findWhere(
+          (node) => {
+            /**
+             * Пока не нашёл универсальней способа найти MenuItem
+             * в отрендереном SelectField компоненте
+             */
+            try {
+              return node.text() === 'Без категории';
+            } catch (error) {
+              return false;
+            }
+          }
+        ).length).toBeGreaterThan(0);
+      });
+
       describe('>>> параметры поля', () => {
         
         describe('>>> параметр floatingLabelText', () => {
@@ -130,8 +146,43 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
             
         });
 
+        describe('>>> параметр value', () => {
+          let valueProperty;
+
+          beforeEach(() => {
+            valueProperty = selectField.prop('value');
+          });
+
+          it('+++ Должен быть определен', () => {
+            expect(valueProperty).toBeDefined();
+          });
+
+          it('+++ должен быть равен 1', () => {
+            expect(valueProperty).toEqual(1);
+          });
+        });
+
       });
     });
   });
+  
+  describe('>>> ProductsAddContainer Class', () => {
+    let wrapperShallow;
+
+    beforeEach(() => {
+      wrapperShallow = shallow(<ProductsAddContainer />);
+    });
+
+    it('+++ должен быть срендерен', () => {
+      expect(wrapperShallow).toBeDefined();
+    });
     
+    describe('>>> методы класса', () => {
+      let methods;
+
+      beforeEach(() => {
+        methods = wrapperShallow.instance();
+      });
+    });
+  });
 });
