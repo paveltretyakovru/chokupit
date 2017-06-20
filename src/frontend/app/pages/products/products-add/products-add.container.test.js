@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 
 // Material-UI
+import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin'; 
@@ -34,7 +35,7 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
   const initialState = {
     app: {...initAppReducerState},
     header: {...initHeaderReducerState},
-    categories: initCategoriesReducerState,
+    categories: {...initCategoriesReducerState},
   }
 
   beforeEach(() => {
@@ -42,7 +43,7 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
     wrapper = mount(
       <MuiThemeProvider>
         <Provider store={store}>
-          <ConnectedProductsAddContainer />
+          <ConnectedProductsAddContainer store={store} />
         </Provider>
       </MuiThemeProvider>
     );
@@ -80,6 +81,10 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
 
       it('+++ должен содердать коллекцию категорий', () => {
         expect(property.collection).toBeDefined();
+      });
+
+      it('+++ collection должен быть массивом', () => {
+        expect(Array.isArray(property.collection)).toBeTruthy();
       });
 
     });
@@ -170,7 +175,7 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
     let wrapperShallow;
 
     beforeEach(() => {
-      wrapperShallow = shallow(<ProductsAddContainer />);
+      wrapperShallow = shallow(<ProductsAddContainer {...initialState} />);
     });
 
     it('+++ должен быть срендерен', () => {
@@ -182,6 +187,36 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
 
       beforeEach(() => {
         methods = wrapperShallow.instance();
+      });
+
+      describe('>>> метод getCategoriesListItems', () => {
+        let getCategoriesListItems;
+
+        const expectedCollection = initialState.categories.collection;
+
+        beforeEach(() => {
+          getCategoriesListItems = methods.getCategoriesListItems;
+        });
+
+        it('+++ должен быть определен', () => {
+          expect(getCategoriesListItems).toBeDefined();
+        });
+
+        it('+++ должен вернуть массив', () => {
+          let result = getCategoriesListItems();
+          expect(Array.isArray(result)).toBeTruthy();
+        });
+
+        it('+++ принимать на вход массив и возвращать столько же мерный', () => {
+          let result = getCategoriesListItems(expectedCollection);
+          expect(result.length).toEqual(1);
+        });
+
+        it('+++ элемент возращаемого элемента дложен быть MenuItem', () => {
+          // let result = getCategoriesListItems([1]);
+
+          // // expect(result[0]).instanceOf(MenuItem);
+        })
       });
     });
   });

@@ -46,6 +46,10 @@ export class ProductsAddContainer extends Component {
   }
 
   render() {
+
+    let categoriesCollection = this.props.categories.collection || [];
+    let categoriesMenuItems = this.getCategoriesListItems(categoriesCollection);
+
     return (
       <div id="products-add-wrapper">
         
@@ -66,6 +70,10 @@ export class ProductsAddContainer extends Component {
           floatingLabelText={PRODUCTS_ADD_CATEGORIES_LABEL}
         >
           <MenuItem value={1} primaryText="Без категории" />
+
+          {/* Подготовленный  список товаров */}
+          {categoriesMenuItems}
+
         </SelectField>
       </div>
     );
@@ -77,6 +85,22 @@ export class ProductsAddContainer extends Component {
       this.props.productsActions.addProduct(name);
       this.props.appActions.routeToBack();
     }
+  }
+
+  /**
+   * Формирует массив элементов выпадающего списка с категориями
+   * @param {Array} collection Массив с коллекцией категорией
+   * @return {Array} Массив с MenuItem компонентами
+   */
+  getCategoriesListItems(collection = []) {
+    return collection.map((item) => {
+      return(
+        <MenuItem
+          key={item.id}
+          primaryText={item.name}
+        />
+      );
+    }); 
   }
 }
 
