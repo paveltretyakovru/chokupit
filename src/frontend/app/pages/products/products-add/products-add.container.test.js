@@ -6,7 +6,6 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 
 // Material-UI
-import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin'; 
@@ -211,12 +210,6 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
           let result = getCategoriesListItems(expectedCollection);
           expect(result.length).toEqual(1);
         });
-
-        it('+++ элемент возращаемого элемента дложен быть MenuItem', () => {
-          // let result = getCategoriesListItems([1]);
-
-          // // expect(result[0]).instanceOf(MenuItem);
-        })
       });
     });
   });
