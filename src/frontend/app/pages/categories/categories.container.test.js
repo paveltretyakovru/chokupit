@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
+import {mount} from 'enzyme';
 import { CategoriesContainer } from './categories.container';
 
 // Material-ui components
@@ -14,7 +14,7 @@ import CategoriesListComponent from './shared/categories-list/categories-list.co
 injectTapEventPlugin();
 
 describe('>>> Контейнер Categories', () => {
-  let wrapper, container, shallowContainer;
+  let wrapper, container;
 
   const properties = {
     categories:{
@@ -35,7 +35,6 @@ describe('>>> Контейнер Categories', () => {
     );
 
     container = wrapper.find(CategoriesContainer);
-    shallowContainer = shallow(<CategoriesContainer {...properties} />);
   })
 
   it('+++ должен быть срендерен', () => {
@@ -132,42 +131,6 @@ describe('>>> Контейнер Categories', () => {
         
     });
       
-  });
-
-  describe('>>> Методы контейнера', () => {
-    let methods;
-
-    beforeEach(() => {
-      methods = shallowContainer.instance();
-    });
-
-    describe('>>> Метоод prepareCategoriesList()', () => {
-      
-      it('+++ должен быть определен', () => {
-        expect(methods.prepareCategoriesList).toBeDefined();
-      });
-
-      it('+++ должен быть функцией', () => {
-        expect(typeof methods.prepareCategoriesList).toEqual('function');
-      });
-
-      it('+++ должен вернуть массив', () => {
-        expect(Array.isArray(methods.prepareCategoriesList())).toBeTruthy();
-      });
-
-      it('+++ элементы массива должны содержать параметр name', () => {
-        let result = methods.prepareCategoriesList(
-          properties.categories.collection
-        );
-
-        for(let i = 0; i < result.length; i++) {
-          expect(result[i].id).toBeDefined();
-          expect(result[i].name).toBeDefined();
-        }
-      })
-
-    });
-
   });
     
 });
