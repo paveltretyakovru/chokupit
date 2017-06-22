@@ -18,6 +18,7 @@ import {initState as initCategoriesReducerState} from 'app/pages/categories/cate
 // Components
 import ConnectedProductsAddContainer, {ProductsAddContainer} from './products-add.container';
 import TextFieldComponent from 'app/shared/form/text-field.component';
+import SelectFieldComponent from 'app/shared/form/select-field/select-field.component';
 
 // Constants
 import {
@@ -104,65 +105,36 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
         
     });
 
-    describe('>>> Select Field. Список с категориями', () => {
-      let selectField;
+    describe('>>> Select Field Component. Список с категориями', () => {
+      let selectFieldComponent;
 
       beforeEach(() => {
-        selectField = wrapper.find(SelectField);
+        selectFieldComponent = wrapper.find(SelectFieldComponent);
       });
 
-      it('+++ должен быть определен в контейнере', () => {
-        expect(selectField.length).toEqual(1);
+      it('+++ должен быть определен', () => {
+        expect(selectFieldComponent).toBeDefined();
       });
 
-      it('+++ должен содержать поля MenuItem', () => {
-        expect(selectField.findWhere(
-          (node) => {
-            /**
-             * Пока не нашёл универсальней способа найти MenuItem
-             * в отрендереном SelectField компоненте
-             */
-            try {
-              return node.text() === 'Без категории';
-            } catch (error) {
-              return false;
-            }
-          }
-        ).length).toBeGreaterThan(0);
+      it('+++ должен быть включен в контейнер страницы', () => {
+        expect(selectFieldComponent.length).toEqual(1);
       });
 
-      describe('>>> параметры поля', () => {
+      describe('+++ передаваемые параметры', () => {
         
-        describe('>>> параметр floatingLabelText', () => {
+        describe('+++ collection параметр', () => {
           let property;
 
           beforeEach(() => {
-            property = selectField.prop('floatingLabelText');
+            property = selectFieldComponent.prop('collection');
           });
 
           it('+++ должен быть определен', () => {
             expect(property).toBeDefined();
           });
-          
-          it('+++ должен быть равен PRODUCTS_ADD_CATEGORIES_LABEL', () => {
-            expect(property).toEqual(PRODUCTS_ADD_CATEGORIES_LABEL);
-          });
-            
-        });
 
-        describe('>>> параметр value', () => {
-          let valueProperty;
-
-          beforeEach(() => {
-            valueProperty = selectField.prop('value');
-          });
-
-          it('+++ Должен быть определен', () => {
-            expect(valueProperty).toBeDefined();
-          });
-
-          it('+++ должен быть равен 1', () => {
-            expect(valueProperty).toEqual(1);
+          it('+++ должен быть массивом', () => {
+            expect(Array.isArray(property)).toBeTruthy();
           });
         });
 
@@ -179,38 +151,6 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
 
     it('+++ должен быть срендерен', () => {
       expect(wrapperShallow).toBeDefined();
-    });
-    
-    describe('>>> методы класса', () => {
-      let methods;
-
-      beforeEach(() => {
-        methods = wrapperShallow.instance();
-      });
-
-      describe('>>> метод getCategoriesListItems', () => {
-        let getCategoriesListItems;
-
-        const expectedCollection = initialState.categories.collection;
-
-        beforeEach(() => {
-          getCategoriesListItems = methods.getCategoriesListItems;
-        });
-
-        it('+++ должен быть определен', () => {
-          expect(getCategoriesListItems).toBeDefined();
-        });
-
-        it('+++ должен вернуть массив', () => {
-          let result = getCategoriesListItems();
-          expect(Array.isArray(result)).toBeTruthy();
-        });
-
-        it('+++ принимать на вход массив и возвращать столько же мерный', () => {
-          let result = getCategoriesListItems(expectedCollection);
-          expect(result.length).toEqual(1);
-        });
-      });
     });
   });
 });

@@ -15,7 +15,14 @@ injectTapEventPlugin();
 describe('>>> Компонента SelectFieldComponent', () => {
   let wrapper;
 
-  const PROPS = {}
+  const PROPS = {
+    collection: [
+      {
+        id: 1,
+        name: 'Name',
+      },
+    ],
+  }
 
   it('+++ должен быть определен', () => {
     expect(SelectFieldComponent).toBeDefined();
@@ -50,13 +57,39 @@ describe('>>> Компонента SelectFieldComponent', () => {
   });
 
   describe('>>> Частичное (shallow) монтирование ', () => {
+    let methods;
 
     beforeEach(() => {
       wrapper = shallow(<SelectFieldComponent {...PROPS} />);
+      methods = wrapper.instance();
     });
 
     it('+++ должен срендериться', () => {
       expect(wrapper).toBeDefined();
+    });
+
+    describe('>>> метод getListItems', () => {
+      let getListItems;
+
+      const expectedCollection = PROPS.collection;
+
+      beforeEach(() => {
+        getListItems = methods.getListItems;
+      });
+
+      it('+++ должен быть определен', () => {
+        expect(getListItems).toBeDefined();
+      });
+
+      it('+++ должен вернуть массив', () => {
+        let result = getListItems();
+        expect(Array.isArray(result)).toBeTruthy();
+      });
+
+      it('+++ принимать на вход массив и возвращать столько же мерный', () => {
+        let result = getListItems(expectedCollection);
+        expect(result.length).toEqual(1);
+      });
     });
 
   });
