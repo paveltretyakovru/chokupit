@@ -13,7 +13,11 @@ describe('>>> PRODUCTS REDUCER --- ADD_PRODUCT', () => {
   });
 
   it('+++ should adding new product to state', () => {
-    let newProduct = {id: 2, title: 'Second product' };
+    let newProduct = {
+      id: 2,
+      title: 'Second product',
+      categories: [0, 1, 2],
+    };
     let state = productsReducer(state, {
       type: ADD_PRODUCT,
       payload: newProduct,

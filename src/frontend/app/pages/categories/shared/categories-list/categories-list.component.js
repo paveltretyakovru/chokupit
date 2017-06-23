@@ -4,9 +4,6 @@ import React, {Component} from 'react';
 // Material-ui components
 import {List, ListItem} from 'material-ui';
 
-// Constants
-import {STATIC_CATEGORIES_LIST} from './categories-list.constants';
-
 export class CategoriesListComponent extends Component {
   render() {
     let listItems = this.prepareListItems(this.props.dataList || []);
@@ -21,7 +18,7 @@ export class CategoriesListComponent extends Component {
   }
 
   prepareListItems(dataList = []) {
-    return [...STATIC_CATEGORIES_LIST, ...dataList].map(
+    return dataList.map(
       (item, index) => {
         return(
           <ListItem
