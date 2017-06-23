@@ -5,10 +5,7 @@ import {ALL_PRODUCT_CATEGORY_LABEL} from './categories.constants';
 
 export const initState = {
   collection: [
-    {
-      id: 0,
-      name: ALL_PRODUCT_CATEGORY_LABEL,
-    },
+    { id: 0, name: ALL_PRODUCT_CATEGORY_LABEL },
   ],
 }
 

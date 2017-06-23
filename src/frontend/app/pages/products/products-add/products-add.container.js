@@ -36,8 +36,9 @@ export class ProductsAddContainer extends Component {
   }
 
   componentDidMount() {
-    if(this.props.setHeaderButtonRight) {
-      this.props.setHeaderButtonRight(
+    if(this.props.setHeaderButtons) {
+      this.props.setHeaderButtons(
+        null,
         <HeaderFlatButtonComponent
           label={PRODUCTS_ADD_BUTTON_LABEL}
           handleClick={::this.handleClickSaveButton}
@@ -65,6 +66,7 @@ export class ProductsAddContainer extends Component {
 
         {/* Поле для выбора категории товара */}
         <SelectFieldComponent
+          hintText={PRODUCTS_ADD_CATEGORIES_LABEL}
           collection={categoriesCollection}
         />
       </div>

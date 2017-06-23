@@ -138,6 +138,22 @@ describe('>>> PRODUCTS ADD CONTAINER', () => {
           });
         });
 
+        describe('+++ hintText параметр', () => {
+          let property;
+
+          beforeEach(() => {
+            property = selectFieldComponent.prop('hintText');
+          });
+
+          it('+++ должен быть определен', () => {
+            expect(property).toBeDefined();
+          });
+
+          it('+++ должен взят из PRODUCTS_ADD_CATEGORIES_LABEL', () => {
+            expect(property).toEqual(PRODUCTS_ADD_CATEGORIES_LABEL);
+          });
+        });
+
       });
     });
   });
