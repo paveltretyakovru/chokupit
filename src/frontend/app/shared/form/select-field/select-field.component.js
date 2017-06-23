@@ -4,31 +4,42 @@ import React, {Component} from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 
-const DEFAULT_LABEL_TEXT = 'Выберите категорию';
-const DEFAULT_COLLECTION = [
-  {
-    id: 0,
-    name: 'Без категории',
-  },
-];
+const DEFAULT_HINT_TEXT = 'Выберите категорию';
+const DEFAULT_LABEL_TEXT = 'Выбранные категории';
+const DEFAULT_COLLECTION = [{id: 0, name: 'Без категории'}];
 
 export class SelectFieldComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      values: this.props.values || [],
+    };
+  }
+
+  /**
+   * Метод для обработки измнении значения выпадающего списка
+   */
+  handleChange = (event, index, values) => this.setState({values});
+
   render() {
+    const HINT_TEXT = this.props.hintText || DEFAULT_HINT_TEXT;
     const FULL_WIDTH = this.props.fullWidth || true;
     const LABEL_TEXT = this.props.floatingLabelText || DEFAULT_LABEL_TEXT;
-
-    let items = this.getListItems(this.props.collection || DEFAULT_COLLECTION);
-    let value = this.props.value || 0;
 
     return(
       <div>
         <SelectField
-          value={value}
+          value={this.state.values}
+          onChange={this.handleChange}
+          hintText={HINT_TEXT}
           fullWidth={FULL_WIDTH}
           floatingLabelText={LABEL_TEXT}
         >
+
           {/* Menu items */}
-          {items}
+          {this.getListItems(this.props.collection || DEFAULT_COLLECTION)}
+
         </SelectField>
       </div>
     );
@@ -40,7 +51,11 @@ export class SelectFieldComponent extends Component {
    * @return {Array} Массив с MenuItem компонентами
    */
   getListItems(collection = []) {
-    return collection.map((item) => {
+
+    // Исключаем из списка "Все товары"
+    let filterCollection = collection.filter(item => item.id !== 0);
+
+    return filterCollection.map((item) => {
       return(
         <MenuItem
           key={item.id}
@@ -50,6 +65,7 @@ export class SelectFieldComponent extends Component {
       );
     });
   }
+
 }
 
 export default SelectFieldComponent;

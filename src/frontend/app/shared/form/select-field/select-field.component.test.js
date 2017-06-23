@@ -92,5 +92,17 @@ describe('>>> Компонента SelectFieldComponent', () => {
       });
     });
 
+    describe('>>> метод handleChange', () => {
+      let handleChange;
+
+      beforeEach(() => {
+        handleChange = methods.handleChange;
+      });
+
+      it('+++ метод должен быть определен', () => {
+        expect(handleChange).toBeDefined();
+      });
+    });
+
   });
 })
