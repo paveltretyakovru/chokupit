@@ -6,7 +6,6 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 
 // Material-UI
-import SelectField from 'material-ui/SelectField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin'; 
 

@@ -23,6 +23,7 @@ export {CONTACTS_AUTHORS_ROUTE} from './app/pages/contacts/contacts-authors/cont
 
 export {CATEGORIES_ROUTE} from './app/pages/categories/categories.constants';
 export {CATEGORIES_ADD_ROUTE} from './app/pages/categories/categories-add/categories-add.constants';
+export {CATEGORIES_SHOW_ROUTE} from './app/pages/categories/categories-show/categories-show.constants';
 
 // ============== MAIN ROUTER COMPONENT ========================================
 export default (

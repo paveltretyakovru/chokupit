@@ -17,22 +17,34 @@ export class CategoriesListComponent extends Component {
     );
   }
 
+  /**
+   * Формирует масив с Material-ui ListItem компонентами на основе коллекции
+   * моделей категорий передаваемой в параметр dataList
+   * @param {Array} dataList коллекция моделей категорий
+   */
   prepareListItems(dataList = []) {
+    let routeToCategory;
+
+    // Достаем функцию клика на категорию
+    try {
+      routeToCategory = this.props.routeToCategory;
+    } catch(error) {
+      routeToCategory = function() {
+        console.error('routeToCategory is not defined with msg', error.message);
+      }
+    }
+
     return dataList.map(
       (item, index) => {
         return(
           <ListItem
             key={index}
             primaryText={item.name}
-            onTouchTap={() => this.onTouchTapListItem(item)}
+            onTouchTap={() => routeToCategory(item.id)}
           />
         );
       }
     );
-  }
-
-  onTouchTapListItem(item) {
-    console.log('onTouchTapListItem event', item);
   }
 }
 

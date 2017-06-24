@@ -1,3 +1,4 @@
+// Core && Libs
 import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
@@ -9,6 +10,7 @@ import CategoriesListComponent from './shared/categories-list/categories-list.co
 // Actions
 import * as appActions from 'app/app.actions';
 import * as headerActions from 'app/shared/header/header.actions';
+import {routeToCategory} from './categories-show/categories-show.actions';
 import {routeToAddCategory} from './categories-add/categories-add.actions';
 
 // Constants
@@ -37,6 +39,11 @@ export class CategoriesContainer extends Component {
         <div id="index-links-wrapper">
           <CategoriesListComponent
             dataList={dataList}
+            routeToCategory={
+              this.props.routeToCategory || function() {
+                console.error('routeToCategory action is undefined');
+              }
+            }
           />
         </div>
 
@@ -61,6 +68,7 @@ function mapDispatchToProps(dispatch) {
   return {
     appActions: bindActionCreators(appActions, dispatch),
     headerActions: bindActionCreators(headerActions, dispatch),
+    routeToCategory: bindActionCreators(routeToCategory, dispatch),
     routeToAddCategory: bindActionCreators(routeToAddCategory, dispatch),
   }
 }

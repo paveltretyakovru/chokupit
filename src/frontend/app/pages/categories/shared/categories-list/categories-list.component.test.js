@@ -13,81 +13,86 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 describe('>>> CategoriesListComponent. Компонент для листига категорий', () => {
-  let wrapper, component, shallowComponent;
-
-  const componentProperties = {
+  const PROPS = {
     dataList: [],
+    routeToCategory: () => {},
     onTouchItemHandler: () => {},
   }
 
-  beforeEach(() => {
-    wrapper = mount(
-      <MuiThemeProvider>
-        <CategoriesListComponent {...componentProperties} />
-      </MuiThemeProvider>
-    );
+  const wrapper = mount(
+    <MuiThemeProvider>
+      <CategoriesListComponent {...PROPS} />
+    </MuiThemeProvider>
+  );
 
-    component = wrapper.find(CategoriesListComponent);
-    shallowComponent = shallow(<CategoriesListComponent />);
-  });
+  const categoriesListShallow = shallow(<CategoriesListComponent  {...PROPS} />);
+  const categoriesListMountedNode = wrapper.find(CategoriesListComponent);
   
   it('+++ должен быть определен и срендерен', () => {
-    expect(component).toBeDefined();
+    expect(categoriesListMountedNode).toBeDefined();
   });
   
   it('+++ должен содержать material-ui компонент - List', () => {
-    expect(component.find(List).length).toEqual(1);
+    expect(categoriesListMountedNode.find(List).length).toEqual(1);
   });
   
   describe('>>> Параметры компоненты', () => {
     
     describe('>>> параметр dataList', () => {
-      let property;
-
-      beforeEach(() => {
-        property = component.prop('dataList');
-      });
+      const dataListProperty = categoriesListMountedNode.prop('dataList');
 
       it(('+++ должен быть передан в компонент'), () => {
-        expect(property).toBeDefined();
+        expect(dataListProperty).toBeDefined();
       })
 
       it(('+++ должен быть массиовм'), () => {
-        expect(Array.isArray(property)).toBeTruthy();
+        expect(Array.isArray(dataListProperty)).toBeTruthy();
       });
     });
 
     describe('>>> параметр onTouchItemHandler', () => {
-      let property;
-
-      beforeEach(() => {
-        property = component.prop('onTouchItemHandler');
-      });
+      const onTouchItemHandlerProperty =
+        categoriesListMountedNode.prop('onTouchItemHandler');
 
       it('+++ должен быть передан', () => {
-        expect(property).toBeDefined();
+        expect(onTouchItemHandlerProperty).toBeDefined();
       });
-    })
+    });
+
+    describe('>>> параметр routeToCategory должен', () => {
+      const routeToCategoryProperty =
+        categoriesListMountedNode.prop('routeToCategory');
+
+      it('+++ быть передан', () => {
+        expect(routeToCategoryProperty).toBeDefined();
+      });
+
+      it('+++ быть функцией', () => {
+        expect(typeof routeToCategoryProperty).toEqual('function');
+      })
+    });
   })
 
-  describe('>>> Метод prepareListItems()', () => {
-    let method;
+  describe('>>> Методы CategoriesListComponent', () => {
+    const METHODS = categoriesListShallow.instance();
+    
+    describe('>>> Метод prepareListItems()', () => {
+      
+      const prepareListItemsMethod = METHODS.prepareListItems.bind(METHODS);
 
-    beforeEach(() => {
-      method = shallowComponent.instance().prepareListItems;
-    });
+      it('+++ должен быть определен', () => {
+        expect(prepareListItemsMethod).toBeDefined();
+      });
 
-    it('+++ должен быть определен', () => {
-      expect(method).toBeDefined();
-    });
+      it('+++ должен быть функцией', () => {
+        expect(typeof prepareListItemsMethod).toEqual('function');
+      });
 
-    it('+++ должен быть функцией', () => {
-      expect(typeof method).toEqual('function');
-    });
-
-    it('+++ должен вернуть массив', () => {
-      expect(Array.isArray(method())).toBeTruthy();
+      it('+++ должен вернуть массив', () => {
+        expect(Array.isArray(prepareListItemsMethod())).toBeTruthy();
+      });
     });
   });
+
 });
   
