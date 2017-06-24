@@ -1,7 +1,7 @@
 import React from 'react';
 import thunk from 'redux-thunk';
-import {mount} from 'enzyme';
-import {Provider} from 'react-redux';
+import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 
 // Material-ui components
@@ -10,33 +10,27 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // States
-import {initState as initAppReducerState} from 'app/app.reducer';
-import {initState as initHeaderReducerState} from 'app/shared/header/header.reducer';
-import {initState as initCategoriesReducerState} from 'app/pages/categories/categories.reducer';
+import { initState as app } from 'app/app.reducer';
+import { initState as header } from 'app/shared/header/header.reducer';
+import { initState as categories } from 'app/pages/categories/categories.reducer';
 
 // Self Component
-import ConnectedCategoriesContainer, {CategoriesContainer} from './categories.container';
 import FloatAddButtonComponent from 'app/shared/buttons/float-add-button/float-add-button.component';
 import CategoriesListComponent from './shared/categories-list/categories-list.component';
+import ConnectedCategoriesContainer, { CategoriesContainer } from './categories.container';
 
 injectTapEventPlugin();
 
 describe('>>> Контейнер Categories', () => {
-  const middlewares = [thunk];
-  const mockStore = configureStore(middlewares);
-  
-  const initialState = {
-    app: {...initAppReducerState},
-    header: {...initHeaderReducerState},
-    categories: {...initCategoriesReducerState},
-  }
+  const mockStore = configureStore([thunk]);
+  const initialState = { app, header, categories };
 
   const store = mockStore(initialState);    
   
   const wrapper = mount(
     <MuiThemeProvider>
       <Provider store={store}>
-        <ConnectedCategoriesContainer store={store} />
+        <ConnectedCategoriesContainer />
       </Provider>
     </MuiThemeProvider>
   );

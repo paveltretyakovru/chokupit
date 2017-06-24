@@ -13,32 +13,45 @@ import * as categoriesShowActions from './categories-show.actions';
 export class CategoriesShowContainer extends Component {
   static path = CATEGORIES_SHOW_ROUTE
 
+  constructor(options) {
+    super(options);
+
+    // Достаем необходимую модель категории из коллекции
+    this.model = this.getCategoryModel({
+      id: Number(options.params.id) || 0,
+      collection: options.categories.collection || [],
+    });
+  }
+
   componentWillMount() {
     if(this.props.headerActions) {
       this.props.setHeaderButtons(null, null);
-      this.props.headerActions.updateHeaderTitle('Category');
+      this.props.headerActions.updateHeaderTitle(this.model.name || 'No name');
     }
   }
 
   render() {
-    let id = +this.props.params.id || 0;
-    let collection = this.props.categories.collection || [];
-    
-    let model = this.getCategoryModel(collection, id);
-
     return(
       <div>
-        <span className="display-1">{model.name}</span>
+        <span className="display-1">#{this.model.id}</span>
       </div>
     );
   }
 
-  getCategoryModel(collection = [], id = 0) {
-    let model = collection.find((element) => {
-      return element.id === id;
-    });
+  /**
+   * 
+   * @param {Object} opts Объект параметров функции
+   * @param {Number} opts.id Идентификатор необходимой модели
+   * @param {Object[]} opts.collection Коллекция моделей категорий
+   * @param {Number} opts.collection[].id ID категории
+   * @param {string} opts.collection[].name Наименование категории
+   */
+  getCategoryModel(opts = {}) {
+    const id = opts.id || 0;
+    const collection = opts.collection || [];
+    const model = collection.find(el => (el.id === id));
 
-    return model ? model : {};
+    return model || {};
   }
 }
 

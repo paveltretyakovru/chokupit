@@ -1,79 +1,86 @@
 // Core && libs
 import React from 'react';
-import {mount, shallow} from 'enzyme';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import { mount, shallow } from 'enzyme';
+
+// Material-ui components
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // Self components
-import {CategoriesShowContainer} from './categories-show.container';
+import ConnectedCategoriesShowContainer, { CategoriesShowContainer } from './categories-show.container';
 
 // Constants
-import {CATEGORIES_SHOW_ROUTE} from './categories-show.constants';
+import { CATEGORIES_SHOW_ROUTE } from './categories-show.constants';
+
+// States
+import { initState as app } from 'app/app.reducer';
+import { initState as header } from 'app/shared/header/header.reducer';
+import { initState as categories } from 'app/pages/categories/categories.reducer';
 
 describe('CategoriesShowContainer', () => {
-  let wrapper, wrapperShallow;
+  const model = categories.collection[0];
+  const state = { app, header, categories }
+  const mockStore = configureStore([thunk]);
+  const collection = categories.collection;
 
-  const containerProps = {
-    params: {
-      id: 1,
-    },
 
-    categories: {
-      collection: [
-        {id: 1, name: 'Test model 1'},
-        {id: 2, name: 'Test model 2'},
-      ],
-    },
-  }
+  const props = {
+    params: { id: 1 },
+    setHeaderButtons(){},
+  };
 
-  beforeEach(() => {
-    wrapper = mount(<CategoriesShowContainer {...containerProps} />);
-    wrapperShallow = shallow(<CategoriesShowContainer {...containerProps} />);
-  });
+  const store = mockStore(state);
+  
+  const mountWrapper = mount(
+    <MuiThemeProvider>
+      <Provider store={store}>
+        <ConnectedCategoriesShowContainer {...props} />
+      </Provider>
+    </MuiThemeProvider>
+  );
+  
+  const shallowWrapper = shallow(
+    <CategoriesShowContainer {...props} {...state} />
+  );
 
   it('+++ должен рендериться', () => {
-    expect(wrapper).toBeDefined();
+    expect(mountWrapper).toBeDefined();
   });
 
   it('+++ должен содержать параметр path', () => {
     expect(CategoriesShowContainer.path).toBeDefined();
   });
   
-  it('+++ параметр path должен быть равен константе CATEGORIES_SHOW_ROUTE',() => {
+  it('+++ параметр path должен быть равен CATEGORIES_SHOW_ROUTE', () => {
     expect(CategoriesShowContainer.path).toEqual(CATEGORIES_SHOW_ROUTE);
   });
 
   describe('>>> Методы контейнера', () => {
-    let methods;
+    const methods = shallowWrapper.instance();
 
-    beforeEach(() => {
-      methods = wrapperShallow.instance();
-    });
+    describe('>>> Метод getCategoryModel должен', () => {
+      const getCategoryModel = methods.getCategoryModel;
+      
+      let defaultOpts = {
+        collection,
+        id: 0,
+      };
 
-    describe('>>> Метод getCategoryModel', () => {
-      let getCategoryModel, expectModel;
-
-      beforeEach(() => {
-        getCategoryModel = methods.getCategoryModel;
-        expectModel = {
-          id: 1,
-          name: 'Test model 1',
-        }
-      });
-
-      it('+++ должен быть определен', () => {
+      it('+++ быть определен', () => {
         expect(getCategoryModel).toBeDefined();
       });
 
-      it('+++ должен вернуть объект', () => {
-        expect(typeof getCategoryModel(containerProps.categories.collection, 1))
-          .toEqual('object');
+      it('+++ вернуть объект', () => {
+        expect(typeof getCategoryModel(defaultOpts)).toEqual('object');
       });
 
-      it('+++ должен вернуть ожидаей объект, при переданных параметрах', () => {
-        expect(getCategoryModel(containerProps.categories.collection, 1))
-          .toEqual(expectModel);
+      it('+++ вернуть ожидаемый объект, при переданных параметрах', () => {
+        expect(getCategoryModel(defaultOpts)).toEqual(model);
       });
 
-      it('+++ должен вернуть пустой объект, если не найдена модель', () => {
+      it('+++ вернуть пустой объект, если не найдена модель', () => {
         expect(getCategoryModel()).toEqual({});
       });
     });
