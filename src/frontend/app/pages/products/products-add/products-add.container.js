@@ -56,7 +56,7 @@ export class ProductsAddContainer extends Component {
         
         {/* Поля ввода наименования товара */}
         <TextFieldComponent
-          ref="nameTextField"
+          ref={ ref => { this.nameTextField = ref; }}
           name="name"
           required={true}
           hintText="Наименование"
@@ -66,6 +66,7 @@ export class ProductsAddContainer extends Component {
 
         {/* Поле для выбора категории товара */}
         <SelectFieldComponent
+          ref={ ref => { this.selectCategoriesField = ref; }}
           hintText={PRODUCTS_ADD_CATEGORIES_LABEL}
           collection={categoriesCollection}
         />
@@ -74,9 +75,11 @@ export class ProductsAddContainer extends Component {
   }
 
   handleClickSaveButton() {
-    if(this.refs.nameTextField.validate()) {
-      let name = this.refs.nameTextField.getValue();
-      this.props.productsActions.addProduct(name);
+    if(this.nameTextField.validate()) {
+      let name = this.nameTextField.getValue();
+      let categories = this.selectCategoriesField.getValues();
+
+      this.props.productsActions.addProduct({ name, categories });
       this.props.appActions.routeToBack();
     }
   }

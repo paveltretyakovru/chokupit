@@ -9,18 +9,18 @@ const DEFAULT_LABEL_TEXT = 'Выбранные категории';
 const DEFAULT_COLLECTION = [{id: 0, name: 'Без категории'}];
 
 export class SelectFieldComponent extends Component {
-  constructor(props) {
-    super(props);
+  constructor(options) {
+    super(options);
 
     this.state = {
-      values: this.props.values || [],
+      values: options.values || [],
     };
   }
 
   /**
    * Метод для обработки измнении значения выпадающего списка
    */
-  handleChange = (event, index, values) => this.setState({values});
+  handleChange = (event, index, values) => this.setState({ values });
 
   render() {
     const HINT_TEXT = this.props.hintText || DEFAULT_HINT_TEXT;
@@ -31,6 +31,7 @@ export class SelectFieldComponent extends Component {
       <div>
         <SelectField
           value={this.state.values}
+          multiple={true}
           onChange={this.handleChange}
           hintText={HINT_TEXT}
           fullWidth={FULL_WIDTH}
@@ -54,16 +55,26 @@ export class SelectFieldComponent extends Component {
 
     // Исключаем из списка "Все товары"
     let filterCollection = collection.filter(item => item.id !== 0);
+    let values = this.state.values || [];
 
     return filterCollection.map((item) => {
       return(
         <MenuItem
           key={item.id}
           value={item.id}
+          checked={values && values.indexOf(item.id) > -1}
           primaryText={item.name}
         />
       );
     });
+  }
+
+  /**
+   * Получить выбранные категории
+   * @return {Array} Массив с ID-ами выбранных категорий
+   */
+  getValues() {
+    return this.state.values;
   }
 
 }

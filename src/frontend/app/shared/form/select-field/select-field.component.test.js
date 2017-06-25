@@ -57,12 +57,8 @@ describe('>>> Компонента SelectFieldComponent', () => {
   });
 
   describe('>>> Частичное (shallow) монтирование ', () => {
-    let methods;
-
-    beforeEach(() => {
-      wrapper = shallow(<SelectFieldComponent {...PROPS} />);
-      methods = wrapper.instance();
-    });
+    const wrapper = shallow(<SelectFieldComponent {...PROPS} />);
+    const methods = wrapper.instance();
 
     it('+++ должен срендериться', () => {
       expect(wrapper).toBeDefined();
@@ -74,7 +70,7 @@ describe('>>> Компонента SelectFieldComponent', () => {
       const expectedCollection = PROPS.collection;
 
       beforeEach(() => {
-        getListItems = methods.getListItems;
+        getListItems = methods.getListItems.bind(methods);
       });
 
       it('+++ должен быть определен', () => {
@@ -102,6 +98,23 @@ describe('>>> Компонента SelectFieldComponent', () => {
       it('+++ метод должен быть определен', () => {
         expect(handleChange).toBeDefined();
       });
+    });
+
+    describe('>>> метод getValues должен...', () => {
+      const getValues = methods.getValues.bind(methods);
+
+      it('+++ быть определен', () => {
+        expect(getValues).toBeDefined();
+      });
+
+      it('+++ быть функцией', () => {
+        console.log('getValues', getValues);
+        expect(typeof getValues).toEqual('function');
+      });
+
+      it('+++ должен вернуть массив', () => {
+        expect(Array.isArray(getValues())).toBeTruthy();
+      })
     });
 
   });

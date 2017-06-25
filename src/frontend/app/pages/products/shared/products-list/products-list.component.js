@@ -51,9 +51,8 @@ export class ProductsListComponent extends Component {
       // перехватывать клик на сам текст, иначе срабатывает check на checkbox
       let primaryText = (
         <div
-          onTouchTap={
-            event => this.handleClickOnItemText(event, product.id || 0)
-          }
+          onClick={event => this.handleClickOnItemText(event, product.id || 0)}
+          onTouchTap={event => this.handleClickOnItemText(event, product.id || 0)}
         >
           {product.name}
         </div>
