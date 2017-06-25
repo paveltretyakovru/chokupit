@@ -5,15 +5,11 @@ import {ADD_PRODUCT, PRODUCTS_ADD_ROUTE} from './products-add.constants';
 import {addProduct, routeToAddProduct} from './products-add.actions';
 
 describe('>>> Products Add Actions', () => {
-  let dispatch;
-
-  beforeEach(() => {
-    dispatch = jest.fn(
-      (dispatchResult) => {
-        return dispatchResult;
-      }
-    );
-  });
+  const dispatch = jest.fn(
+    (dispatchResult) => {
+      return dispatchResult;
+    }
+  );
 
   describe('>>> addProduct', () => {
     it('+++ should be defined', () => {
@@ -38,7 +34,7 @@ describe('>>> Products Add Actions', () => {
         },
       };
 
-      expect(addProduct('New added product')(dispatch)).toEqual(expectObject);
+      expect(addProduct({name: 'New added product'})(dispatch)).toEqual(expectObject);
     });
 
     it('+++ should prepare product name thouth argument', () => {

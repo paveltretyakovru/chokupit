@@ -9,6 +9,7 @@ import { mount, shallow } from 'enzyme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // Self components
+import ProductsListComponent from 'app/pages/products/shared/products-list/products-list.component';
 import ConnectedCategoriesShowContainer, { CategoriesShowContainer } from './categories-show.container';
 
 // Constants
@@ -83,6 +84,55 @@ describe('CategoriesShowContainer', () => {
       it('+++ вернуть пустой объект, если не найдена модель', () => {
         expect(getCategoryModel()).toEqual({});
       });
-    });
-  });
+    }); // >>> Метод getCategoryModel должен
+
+    describe('>>> Метод getCategoryProducts должен', () => {
+      const getCategoryProducts = methods.getCategoryProducts;
+
+      it('+++ быть определен', () => {
+        expect(getCategoryProducts).toBeDefined();
+      });
+
+      it('+++ возвращать массив', () => {
+        expect(Array.isArray(getCategoryProducts())).toBeTruthy();
+      });
+
+      it('+++ отфильтрованные товары должны входить в категорию', () => {
+        const model = methods.getCategoryModel();
+        const products = getCategoryProducts.call(methods);
+
+        // Перебераем отфильтрованные продукты и проверям наличие id категории
+        products.forEach((element) => {
+          expect(element.categories.indexOf(model.id)).not.toBe(-1);
+        });
+      });
+    }); // >>> Метод getCategoryProducts
+  }); // >>> Методы контейнера
+
+  describe('>>> Подключенные компоненты', () => {
+    describe('>>> ProductsListComponent должен...', () => {
+      const productsListComponent = mountWrapper
+        .find(ProductsListComponent);
+
+      it('+++ быть определен', () => {
+        expect(productsListComponent).toBeDefined();
+        expect(productsListComponent.length).toEqual(1);
+      });
+
+      describe('>>> Передаваемые параметры:', () => {
+        describe('>>> Параметр products должен...', () => {
+          const products = productsListComponent.prop('products');
+
+          it('+++ быть определен', () => {
+            expect(products).toBeDefined();
+          });
+
+          it('+++ быть массивом', () => {
+            expect(Array.isArray(products)).toBeTruthy();
+          });
+
+        });
+      });
+    }); // >>> ProductsListComponent должен
+  }); // >>> Подключенные компоненты
 });

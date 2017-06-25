@@ -2,7 +2,7 @@
 import {ADD_CATEGORY} from './categories-add/categories-add.constants';
 
 // Reducer
-import categoriesReducer from './categories.reducer';
+import categoriesReducer, {initState as categories} from './categories.reducer';
 
 describe('>>> Categories reducer', () => {
   
@@ -18,8 +18,13 @@ describe('>>> Categories reducer', () => {
       payload: newCategory,
     });
 
-    expect(state.collection.length).toEqual(2);
-    expect(state.collection[1]).toEqual(newCategory);
+    // Количество элементов должно увеличиться
+    expect(state.collection.length)
+      .toEqual(categories.collection.length + 1);
+
+    // В коллекции присутсвует добавленная модель
+    expect(state.collection.find(el => (el.id === newCategory.id)))
+      .toBeDefined();
   });
 });
   

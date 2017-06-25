@@ -2,9 +2,10 @@
 import productsReducer from './products.reducer';
 
 // Constants
-import {
-  ADD_PRODUCT,
-} from './products.constants';
+import { ADD_PRODUCT } from './products.constants';
+
+// States
+import { initState as products } from './products.reducer';
 
 describe('>>> PRODUCTS REDUCER --- ADD_PRODUCT', () => {
   
@@ -16,15 +17,20 @@ describe('>>> PRODUCTS REDUCER --- ADD_PRODUCT', () => {
     let newProduct = {
       id: 2,
       title: 'Second product',
-      categories: [0, 1, 2],
+      categories: [1, 2],
     };
     let state = productsReducer(state, {
       type: ADD_PRODUCT,
       payload: newProduct,
     });
 
-    expect(state.collection.length).toEqual(2);
-    expect(state.collection[1]).toEqual(newProduct);
+    // Количество моделей должно увеличиться
+    expect(state.collection.length)
+      .toEqual(products.collection.length + 1);
+    
+    // В коллекции присутсвует добавленная модель 
+    expect(state.collection.find(el => (el.id === newProduct.id)))
+      .toBeDefined();
   });
     
     

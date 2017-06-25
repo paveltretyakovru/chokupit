@@ -13,33 +13,37 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 describe('>>> CategoriesListComponent. Компонент для листига категорий', () => {
-  const PROPS = {
+  const props = {
     dataList: [],
-    routeToCategory: () => {},
-    onTouchItemHandler: () => {},
+    routeToCategory() {},
+    onTouchItemHandler() {},
   }
 
   const wrapper = mount(
     <MuiThemeProvider>
-      <CategoriesListComponent {...PROPS} />
+      <CategoriesListComponent {...props} />
     </MuiThemeProvider>
   );
 
-  const categoriesListShallow = shallow(<CategoriesListComponent  {...PROPS} />);
-  const categoriesListMountedNode = wrapper.find(CategoriesListComponent);
+  const shallowWrapper = shallow(
+    <CategoriesListComponent 
+      {...props}
+    />
+  );
+  const categoriesListComponent = wrapper.find(CategoriesListComponent);
   
   it('+++ должен быть определен и срендерен', () => {
-    expect(categoriesListMountedNode).toBeDefined();
+    expect(categoriesListComponent).toBeDefined();
   });
   
   it('+++ должен содержать material-ui компонент - List', () => {
-    expect(categoriesListMountedNode.find(List).length).toEqual(1);
+    expect(categoriesListComponent.find(List).length).toEqual(1);
   });
   
   describe('>>> Параметры компоненты', () => {
     
     describe('>>> параметр dataList', () => {
-      const dataListProperty = categoriesListMountedNode.prop('dataList');
+      const dataListProperty = categoriesListComponent.prop('dataList');
 
       it(('+++ должен быть передан в компонент'), () => {
         expect(dataListProperty).toBeDefined();
@@ -52,7 +56,7 @@ describe('>>> CategoriesListComponent. Компонент для листига 
 
     describe('>>> параметр onTouchItemHandler', () => {
       const onTouchItemHandlerProperty =
-        categoriesListMountedNode.prop('onTouchItemHandler');
+        categoriesListComponent.prop('onTouchItemHandler');
 
       it('+++ должен быть передан', () => {
         expect(onTouchItemHandlerProperty).toBeDefined();
@@ -61,7 +65,7 @@ describe('>>> CategoriesListComponent. Компонент для листига 
 
     describe('>>> параметр routeToCategory должен', () => {
       const routeToCategoryProperty =
-        categoriesListMountedNode.prop('routeToCategory');
+        categoriesListComponent.prop('routeToCategory');
 
       it('+++ быть передан', () => {
         expect(routeToCategoryProperty).toBeDefined();
@@ -74,11 +78,11 @@ describe('>>> CategoriesListComponent. Компонент для листига 
   })
 
   describe('>>> Методы CategoriesListComponent', () => {
-    const METHODS = categoriesListShallow.instance();
+    const methods = shallowWrapper.instance();
     
     describe('>>> Метод prepareListItems()', () => {
       
-      const prepareListItemsMethod = METHODS.prepareListItems.bind(METHODS);
+      const prepareListItemsMethod = methods.prepareListItems.bind(methods);
 
       it('+++ должен быть определен', () => {
         expect(prepareListItemsMethod).toBeDefined();

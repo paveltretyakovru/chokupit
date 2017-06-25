@@ -8,13 +8,13 @@ import {
 } from './products-add.constants';
 
 // Actions
-export function addProduct(name = 'A product without name') {
+export function addProduct(opts = {}) {
   return (dispatch) => {
     return dispatch({
       type: ADD_PRODUCT,
-      payload: {
-        name: name,
-      },
+      payload: (typeof opts === 'string')
+        ? {name: opts}
+        : opts,
     });
   }
 }

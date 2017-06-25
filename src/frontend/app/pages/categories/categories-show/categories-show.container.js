@@ -10,6 +10,9 @@ import {CATEGORIES_SHOW_ROUTE} from './categories-show.constants';
 import * as headerActions from 'app/shared/header/header.actions';
 import * as categoriesShowActions from './categories-show.actions';
 
+// Writed components
+import ProductsListComponent from 'app/pages/products/shared/products-list/products-list.component';
+
 export class CategoriesShowContainer extends Component {
   static path = CATEGORIES_SHOW_ROUTE
 
@@ -34,6 +37,12 @@ export class CategoriesShowContainer extends Component {
     return(
       <div>
         <span className="display-1">#{this.model.id}</span>
+        
+        {/* Список покупок для текущей категории */}
+        <ProductsListComponent
+          products={[]}
+        />
+
       </div>
     );
   }
@@ -45,6 +54,8 @@ export class CategoriesShowContainer extends Component {
    * @param {Object[]} opts.collection Коллекция моделей категорий
    * @param {Number} opts.collection[].id ID категории
    * @param {string} opts.collection[].name Наименование категории
+   * 
+   * @return {Object} Возращает объект модели категории
    */
   getCategoryModel(opts = {}) {
     const id = opts.id || 0;
@@ -52,6 +63,10 @@ export class CategoriesShowContainer extends Component {
     const model = collection.find(el => (el.id === id));
 
     return model || {};
+  }
+
+  getCategoryProducts() {
+    return [];
   }
 }
 

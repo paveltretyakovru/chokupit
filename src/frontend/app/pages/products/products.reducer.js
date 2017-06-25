@@ -1,7 +1,7 @@
 // Constants
 import {ADD_PRODUCT} from './products-add/products-add.constants';
 
-let initState = {
+export const initState = {
   collection: [
     {
       id: 1,
@@ -15,19 +15,19 @@ export default function (state = initState, action) {
   let products;
 
   switch (action.type) {
-  
-  case ADD_PRODUCT:
-    products = [...state.collection];
-    products.push({
-      ...action.payload,
-      id: state.collection.length + 1,
-      categories: action.payload.categories || [0] ,
-    });
-
-    return { ...state, collection: products};
-  
-  default:
-    return { ...state };
-  }
+    case ADD_PRODUCT: {
+      products = [...state.collection];
+      products.push({
+        ...action.payload,
+        id: state.collection.length + 1,
+        categories: [0, ...action.payload.categories] || [0],
+      });
+      return { ...state, collection: products };
+    }
+      
+    default: {
+      return { ...state };
+    }
+  } // switch
 
 }
