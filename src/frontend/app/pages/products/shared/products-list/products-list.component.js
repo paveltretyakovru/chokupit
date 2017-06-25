@@ -33,8 +33,8 @@ export class ProductsListComponent extends Component {
   handleClickOnItemText(e, id = 0) {
     
     // Сбрасываем пузыри событий, для корректной отработки клика по тексту ел-a
-    e.stopPropagation();
     e.preventDefault();
+    e.stopPropagation();
 
     // Переходим на страницу продукта
     this.props.handleRouteToProduct(id);
@@ -51,7 +51,6 @@ export class ProductsListComponent extends Component {
       // перехватывать клик на сам текст, иначе срабатывает check на checkbox
       let primaryText = (
         <div
-          onClick={event => this.handleClickOnItemText(event, product.id || 0)}
           onTouchTap={event => this.handleClickOnItemText(event, product.id || 0)}
         >
           {product.name}
@@ -60,7 +59,7 @@ export class ProductsListComponent extends Component {
 
       return (
         <ListItem
-          key={product.id || index}
+          key={`products-${product.id}` || `products-${index}`}
           primaryText={primaryText}
           leftCheckbox={<Checkbox />}
           rightIconButton={<IconButton><StarBorder /></IconButton>} 

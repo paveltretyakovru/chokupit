@@ -19,11 +19,14 @@ export class CategoriesShowContainer extends Component {
   constructor(options) {
     super(options);
 
+    let id = Number(options.params.id) || 0;
+    let collection = options.categories.collection || [];
+
     // Достаем необходимую модель категории из коллекции
-    this.model = this.getCategoryModel({
-      id: Number(options.params.id) || 0,
-      collection: options.categories.collection || [],
-    });
+    this.model = this.getCategoryModel({ id, collection });
+    
+    // Достаем товары относящииеся к данной категории
+    this.products = this.getCategoryProducts();
   }
 
   componentWillMount() {
@@ -36,11 +39,10 @@ export class CategoriesShowContainer extends Component {
   render() {
     return(
       <div>
-        <span className="display-1">#{this.model.id}</span>
         
         {/* Список покупок для текущей категории */}
         <ProductsListComponent
-          products={[]}
+          products={this.products}
         />
 
       </div>
@@ -65,14 +67,20 @@ export class CategoriesShowContainer extends Component {
     return model || {};
   }
 
+  /**
+   * Вытаскивает товары данной категории
+   */
   getCategoryProducts() {
-    return [];
+    let allProducts = this.props.products.collection;
+
+    return allProducts.filter(el => el.categories.indexOf(this.model.id) > -1);
   }
 }
 
 function mapStateToProps(state) {
   return {
     app: state.app, 
+    products: state.products,
     categories: state.categories,
   }
 }

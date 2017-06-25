@@ -5,13 +5,17 @@ import React, {Component} from 'react';
 import {List, ListItem} from 'material-ui';
 
 export class CategoriesListComponent extends Component {
-  render() {
-    let listItems = this.prepareListItems(this.props.dataList || []);
+  constructor(options) {
+    super(options);
 
+    this.listItems = this.prepareListItems(this.props.dataList || []); 
+  }
+
+  render() {
     return (
       <div>
         <List>
-          {listItems}
+          {this.listItems}
         </List>
       </div>
     );
@@ -23,28 +27,31 @@ export class CategoriesListComponent extends Component {
    * @param {Array} dataList коллекция моделей категорий
    */
   prepareListItems(dataList = []) {
-    let routeToCategory;
-
-    // Достаем функцию клика на категорию
-    try {
-      routeToCategory = this.props.routeToCategory;
-    } catch(error) {
-      routeToCategory = function() {
-        console.error('routeToCategory is not defined with msg', error.message);
-      }
-    }
-
     return dataList.map(
-      (item, index) => {
+      (category, index) => {
         return(
           <ListItem
-            key={index}
-            primaryText={item.name}
-            onTouchTap={() => routeToCategory(item.id)}
+            key={`category-${category.id}` || `category-${index}`}
+            primaryText={category.name}
+            onTouchTap={e => this.handleOnTouchItem(e, category.id || 0)}
           />
         );
       }
     );
+  }
+
+  /**
+   * Обработчик события тапа на элементы списка категорий
+   * @param {event} e событие тапа
+   * @param {Number} id идентификатор категории
+   */
+  handleOnTouchItem(e, id = 0) {
+    // Сбрасываем пузыри событий, для корректной отработки клика по тексту ел-a
+    e.preventDefault();
+    e.stopPropagation();
+
+    // /categoies/:id
+    this.props.routeToCategory(id);
   }
 }
 

@@ -96,6 +96,15 @@ describe('>>> CategoriesListComponent. Компонент для листига 
         expect(Array.isArray(prepareListItemsMethod())).toBeTruthy();
       });
     });
+
+    describe('>>> Метод handleOnTouchItem', () => {
+      const handleOnTouchItem = methods.handleOnTouchItem.bind(methods);
+
+      it('+++ быть определен', () => {
+        expect(handleOnTouchItem).toBeDefined();
+      });
+
+    });
   });
 
 });

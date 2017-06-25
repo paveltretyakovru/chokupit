@@ -18,11 +18,12 @@ import { CATEGORIES_SHOW_ROUTE } from './categories-show.constants';
 // States
 import { initState as app } from 'app/app.reducer';
 import { initState as header } from 'app/shared/header/header.reducer';
+import { initState as products } from 'app/pages/products/products.reducer';
 import { initState as categories } from 'app/pages/categories/categories.reducer';
 
 describe('CategoriesShowContainer', () => {
   const model = categories.collection[0];
-  const state = { app, header, categories }
+  const state = { app, header, categories, products }
   const mockStore = configureStore([thunk]);
   const collection = categories.collection;
 
@@ -46,6 +47,8 @@ describe('CategoriesShowContainer', () => {
     <CategoriesShowContainer {...props} {...state} />
   );
 
+  const container = mountWrapper.find(CategoriesShowContainer);
+
   it('+++ должен рендериться', () => {
     expect(mountWrapper).toBeDefined();
   });
@@ -56,6 +59,18 @@ describe('CategoriesShowContainer', () => {
   
   it('+++ параметр path должен быть равен CATEGORIES_SHOW_ROUTE', () => {
     expect(CategoriesShowContainer.path).toEqual(CATEGORIES_SHOW_ROUTE);
+  });
+
+  describe('>>> Передаваемые параметры', () => {
+    const props = container.props();
+    
+    describe('>>> Параметр products должен...', () => {
+
+      it('>>> быть определен', () => {
+        expect(props.products).toBeDefined();
+      });
+
+    });
   });
 
   describe('>>> Методы контейнера', () => {
@@ -87,7 +102,7 @@ describe('CategoriesShowContainer', () => {
     }); // >>> Метод getCategoryModel должен
 
     describe('>>> Метод getCategoryProducts должен', () => {
-      const getCategoryProducts = methods.getCategoryProducts;
+      const getCategoryProducts = methods.getCategoryProducts.bind(methods);
 
       it('+++ быть определен', () => {
         expect(getCategoryProducts).toBeDefined();
