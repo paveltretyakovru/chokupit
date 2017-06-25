@@ -28,8 +28,8 @@ export class ProductsContainer extends Component {
 
   render() {
     let productsCollection = this.props.products.collection || [];
-    let handleRouteToProduct = this.props.productsActions.routeToProduct
-      || function() { console.error('handleRouteToProduct not defined'); };
+    let routeToProduct = this.props.productsActions.routeToProduct
+      || function() { console.error('routeToProduct not defined'); };
     let handleCLickAddProduct =  this.props.productsActions.routeToAddProduct
       || function() { console.error('handleClickAddProduct not defined'); };
 
@@ -37,7 +37,7 @@ export class ProductsContainer extends Component {
       <div id="prodcuts-container-wrapper">
         <ProductsListComponent
           products={productsCollection}
-          handleRouteToProduct={handleRouteToProduct}
+          routeToProduct={routeToProduct}
         />
         <FloadAddButtonComponent
           handleClickAction={handleCLickAddProduct}

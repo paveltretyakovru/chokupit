@@ -24,12 +24,15 @@ import { initState as header } from 'app/shared/header/header.reducer';
 import { initState as products } from 'app/pages/products/products.reducer';
 import { initState as categories } from 'app/pages/categories/categories.reducer';
 
+// Needed for onTouchTap
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 describe('CategoriesShowContainer', () => {
   const model = categories.collection[0];
   const state = { app, header, categories, products }
   const mockStore = configureStore([thunk]);
   const collection = categories.collection;
-
 
   const props = {
     params: { id: 1 },
@@ -125,14 +128,22 @@ describe('CategoriesShowContainer', () => {
       });
 
       it('+++ отфильтрованные товары должны входить в категорию', () => {
-        const model = methods.getCategoryModel();
-        const products = getCategoryProducts.call(methods);
+        
+        // Модель категории с id = 1
+        const model = methods.getCategoryModel.call(methods, {
+          id: 1,
+          collection: categories.collection,
+        });
 
-        // Перебераем отфильтрованные продукты и проверям наличие id категории
+        // Товары, которые относятся к этой категории
+        const products = getCategoryProducts();
+
+        // Проверям, указан ли ID категории в товарах (product.categoires[])
         products.forEach((element) => {
           expect(element.categories.indexOf(model.id)).not.toBe(-1);
         });
       });
+
     }); // >>> Метод getCategoryProducts
   }); // >>> Методы контейнера
 
@@ -161,8 +172,6 @@ describe('CategoriesShowContainer', () => {
         });
 
         describe('>>> Параметр routeToProduct должен...', () => {
-          console.log('TEST =========?>', productsListComponent.props());
-          
           const routeToProduct = productsListComponent
             .prop('routeToProduct');
 

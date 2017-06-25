@@ -21,7 +21,7 @@ export default class HeaderButtonSaveComponent extends Component {
       <FlatButton
         label={this.props.label || 'Сохранить'}
         style={buttonStyle}
-        onClick={
+        onTouchTap={
           this.props.handleClick
           || function() {
             console.error('Отсутствует параметр обработчик для кнопки');

@@ -13,22 +13,25 @@ import * as productsShowActions from './products-show.actions';
 export class ProductsShowContainer extends Component {
   static path = PRODUCTS_SHOW_ROUTE
 
+  constructor(options) {
+    super(options);
+
+    let id = +this.props.params.id || 0;
+    let collection = this.props.products.collection || [];
+    
+    this.model = this.getProductModel(collection, id);
+  }
+
   componentWillMount() {
     if(this.props.headerActions) {
       this.props.setHeaderButtons(null, null);
-      this.props.headerActions.updateHeaderTitle('Product');
+      this.props.headerActions.updateHeaderTitle(this.model.name || 'Product');
     }
   }
 
   render() {
-    let id = +this.props.params.id || 0;
-    let collection = this.props.products.collection || [];
-    
-    let model = this.getProductModel(collection, id);
-
     return(
       <div>
-        <span className="display-1">{model.name}</span>
       </div>
     );
   }

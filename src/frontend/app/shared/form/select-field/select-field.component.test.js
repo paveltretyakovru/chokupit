@@ -108,7 +108,6 @@ describe('>>> Компонента SelectFieldComponent', () => {
       });
 
       it('+++ быть функцией', () => {
-        console.log('getValues', getValues);
         expect(typeof getValues).toEqual('function');
       });
 

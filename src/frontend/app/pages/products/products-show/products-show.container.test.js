@@ -72,7 +72,6 @@ describe('ProductsShowContainer', () => {
       });
 
       it('+++ вернуть пустой объект, если не найдена модель', () => {
-        console.log('Product model =====>',getProductModel());
         expect(getProductModel()).toEqual({});
       });
     });

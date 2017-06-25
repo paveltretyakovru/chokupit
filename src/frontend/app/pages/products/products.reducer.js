@@ -8,6 +8,16 @@ export const initState = {
       name: 'Test product name',
       categories: [0],
     },
+    {
+      id: 2,
+      name: 'Wheels',
+      categories: [0, 2],
+    },
+    {
+      id: 3,
+      name: 'Вилки',
+      categories: [0, 1],
+    },
   ],
 }
 

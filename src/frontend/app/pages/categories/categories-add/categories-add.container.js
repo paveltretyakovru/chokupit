@@ -46,7 +46,7 @@ export class CategoriesAddContainer extends Component {
     return (
       <div id="categories-add-wrapper">
         <TextFieldComponent
-          ref="nameTextField"
+          ref={(ref) => { this.nameTextField = ref }}
           name="name"
           required={true}
           hintText="Наименование"
@@ -58,8 +58,8 @@ export class CategoriesAddContainer extends Component {
   }
 
   handleClickSaveButton() {
-    if(this.refs.nameTextField.validate()) {
-      let name = this.refs.nameTextField.getValue();
+    if(this.nameTextField.validate()) {
+      let name = this.nameTextField.getValue();
       
       // Call add category action
       this.props.categoriesActions.addCategory({name: name});

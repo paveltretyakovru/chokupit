@@ -9,7 +9,7 @@ class HeaderButtonCloseContainer extends Component {
   render() {
     return(
       <IconButton
-        onClick={ ::this.props.goBack }
+        onTouchTap={ ::this.props.goBack }
         tooltip="Back"
         className="animated rotateIn"
       >

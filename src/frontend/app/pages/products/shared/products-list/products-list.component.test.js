@@ -20,7 +20,7 @@ describe('>>> PRODUCTS LIST COMPONENT', () => {
       { id: 1, title: 'Hello title'},
     ],
 
-    handleClickOnItemText: () => {},
+    routeToProduct: () => {},
   };  
 
   beforeEach(() => {

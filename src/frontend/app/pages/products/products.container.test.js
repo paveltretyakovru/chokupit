@@ -96,11 +96,11 @@ describe('>>> PRODUCTS CONTAINER', () => {
       });
     });
 
-    describe('>>> параметр "handleRouteToProduct"', () => {
+    describe('>>> параметр "routeToProduct"', () => {
       let property;
 
       beforeEach(() => {
-        property = component.prop('handleRouteToProduct');
+        property = component.prop('routeToProduct');
       });
 
       it('+++ должен быть передан', () => {
