@@ -8,6 +8,9 @@ import { mount, shallow } from 'enzyme';
 // Material-ui components
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+// Actions
+import { routeToProduct } from 'app/pages/products/products.actions';
+
 // Self components
 import ProductsListComponent from 'app/pages/products/shared/products-list/products-list.component';
 import ConnectedCategoriesShowContainer, { CategoriesShowContainer } from './categories-show.container';
@@ -30,6 +33,7 @@ describe('CategoriesShowContainer', () => {
 
   const props = {
     params: { id: 1 },
+    productsActions: { routeToProduct },
     setHeaderButtons(){},
   };
 
@@ -68,6 +72,14 @@ describe('CategoriesShowContainer', () => {
 
       it('>>> быть определен', () => {
         expect(props.products).toBeDefined();
+      });
+
+    });
+
+    describe('>>> Параметр productsActions должен...', () => {
+
+      it('>>> быть определен', () => {
+        expect(props.productsActions).toBeDefined();
       });
 
     });
@@ -144,6 +156,22 @@ describe('CategoriesShowContainer', () => {
 
           it('+++ быть массивом', () => {
             expect(Array.isArray(products)).toBeTruthy();
+          });
+
+        });
+
+        describe('>>> Параметр routeToProduct должен...', () => {
+          console.log('TEST =========?>', productsListComponent.props());
+          
+          const routeToProduct = productsListComponent
+            .prop('routeToProduct');
+
+          it('+++ быть определен', () => {
+            expect(routeToProduct).toBeDefined();
+          });
+
+          it('+++ быть функцией', () => {
+            expect(typeof routeToProduct).toEqual('function');
           });
 
         });

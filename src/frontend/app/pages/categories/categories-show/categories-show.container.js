@@ -9,6 +9,7 @@ import {CATEGORIES_SHOW_ROUTE} from './categories-show.constants';
 // Actions
 import * as headerActions from 'app/shared/header/header.actions';
 import * as categoriesShowActions from './categories-show.actions';
+import {routeToProduct} from 'app/pages/products/products.actions';
 
 // Writed components
 import ProductsListComponent from 'app/pages/products/shared/products-list/products-list.component';
@@ -38,13 +39,12 @@ export class CategoriesShowContainer extends Component {
 
   render() {
     return(
-      <div>
-        
+      <div> 
         {/* Список покупок для текущей категории */}
         <ProductsListComponent
           products={this.products}
+          routeToProduct={this.props.productsActions.routeToProduct}
         />
-
       </div>
     );
   }
@@ -88,6 +88,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     headerActions: bindActionCreators(headerActions, dispatch),
+    productsActions: bindActionCreators({ routeToProduct }, dispatch),
     categoriesShowActions: bindActionCreators(categoriesShowActions, dispatch),
   }
 }

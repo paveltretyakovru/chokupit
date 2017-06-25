@@ -37,7 +37,7 @@ export class ProductsListComponent extends Component {
     e.stopPropagation();
 
     // Переходим на страницу продукта
-    this.props.handleRouteToProduct(id);
+    this.props.routeToProduct(id);
   }
 
   /**
