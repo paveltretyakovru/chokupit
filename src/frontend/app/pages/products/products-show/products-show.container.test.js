@@ -1,36 +1,46 @@
 // Core && libs
 import React from 'react';
-import {mount, shallow} from 'enzyme';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import { mount, shallow } from 'enzyme';
+
+// Material-ui components
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // Self components
-import {ProductsShowContainer} from './products-show.container';
+import ConnectedProductsShowContainer, { ProductsShowContainer } from './products-show.container';
 
 // Constants
-import {PRODUCTS_SHOW_ROUTE} from './products-show.constants';
+import { PRODUCTS_SHOW_ROUTE } from './products-show.constants';
+
+// States
+import { initState as app } from 'app/app.reducer';
+import { initState as header } from 'app/shared/header/header.reducer';
+import { initState as products } from '../products.reducer';
 
 describe('ProductsShowContainer', () => {
-  let wrapper, wrapperShallow;
+  const state = { app, header, products }
+  const mockStore = configureStore([thunk]);
+  const store = mockStore(state);
 
-  const containerProps = {
-    params: {
-      id: 1,
-    },
-
-    products: {
-      collection: [
-        {id: 1, name: 'Test model 1'},
-        {id: 2, name: 'Test model 2'},
-      ],
-    },
+  const props = {
+    params: { id: 1 },
+    setHeaderButtons(){},
   }
 
-  beforeEach(() => {
-    wrapper = mount(<ProductsShowContainer {...containerProps} />);
-    wrapperShallow = shallow(<ProductsShowContainer {...containerProps} />);
-  });
+  const wrapperMount = mount(
+    <MuiThemeProvider>
+      <Provider store={store}>
+        <ConnectedProductsShowContainer {...props} />
+      </Provider>
+    </MuiThemeProvider>
+  );
+
+  const wrapperShallow = shallow(<ProductsShowContainer {...props} {...state} />);
 
   it('+++ должен рендериться', () => {
-    expect(wrapper).toBeDefined();
+    expect(wrapperMount).toBeDefined();
   });
 
   it('+++ должен содержать параметр path', () => {
@@ -42,38 +52,27 @@ describe('ProductsShowContainer', () => {
   });
 
   describe('>>> Методы контейнера', () => {
-    let methods;
+    const methods = wrapperShallow.instance();
 
-    beforeEach(() => {
-      methods = wrapperShallow.instance();
-    });
+    describe('>>> Метод getProductModel должен:', () => {
+      const getProductModel = methods.getProductModel;
 
-    describe('>>> Метод getProductModel', () => {
-      let getProductModel, expectModel;
-
-      beforeEach(() => {
-        getProductModel = methods.getProductModel;
-        expectModel = {
-          id: 1,
-          name: 'Test model 1',
-        }
-      });
-
-      it('+++ должен быть определен', () => {
+      it('+++ быть определен', () => {
         expect(getProductModel).toBeDefined();
       });
 
-      it('+++ должен вернуть объект', () => {
-        expect(typeof getProductModel(containerProps.products.collection, 1))
+      it('+++ вернуть объект', () => {
+        expect(typeof getProductModel(products.collection, 1))
           .toEqual('object');
       });
 
-      it('+++ должен вернуть ожидаей объект, при переданных параметрах', () => {
-        expect(getProductModel(containerProps.products.collection, 1))
-          .toEqual(expectModel);
+      it('+++ вернуть ожидаемый объект, при переданных параметрах', () => {
+        expect(getProductModel(products.collection, 1))
+          .toEqual(products.collection.find((element) => (element.id === 1)));
       });
 
-      it('+++ должен вернуть пустой объект, если не найдена модель', () => {
+      it('+++ вернуть пустой объект, если не найдена модель', () => {
+        console.log('Product model =====>',getProductModel());
         expect(getProductModel()).toEqual({});
       });
     });
