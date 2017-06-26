@@ -71,24 +71,6 @@ describe('>>> AppContainer контейнер', () => {
         });
 
       }); // Параметр handleNavigate
-
-      // Параметр menuItems
-      describe('>>> параметр menuItems', () => {
-        let property;
-
-        beforeEach(() => {
-          property = leftMenu.prop('menuItems');
-        })
-
-        it('+++ должен быть определен', () => {
-          expect(property).toBeDefined();
-        });
-
-        it('+++ должен быть массивом', () => {
-          expect(Array.isArray(property)).toBeTruthy();
-        });
-
-      }); // Параметр menuItems
     }); // LeftMenuComponent
   }); // Вложенные компоненты 
     

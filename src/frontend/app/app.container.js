@@ -23,14 +23,6 @@ import { routeToContacts } from './pages/contacts/contacts.actions';
 // Actions
 import { routeTo } from './app.actions';
 
-// Routes
-import {
-  INDEX_ROUTE,
-  PRODUCTS_ROUTE,
-  CONTACTS_ROUTE,
-  CATEGORIES_ROUTE,
-} from 'routes';
-
 // Styles
 import './app.container.css';
 import './shared/styles/tipography.less';
@@ -48,14 +40,6 @@ export class AppContainer extends Component {
   }
 
   render() {
-    const LEFT_MENU_IMTES = [
-      {label: 'Главная', route: INDEX_ROUTE},
-      {label: 'Товары', route: PRODUCTS_ROUTE},
-      {label: 'Категории', route: CATEGORIES_ROUTE},
-      
-      {label: 'Контакты', route: CONTACTS_ROUTE},
-    ];
-
     return(
         <div id="app-container">
           <HeaderContainer
@@ -66,7 +50,6 @@ export class AppContainer extends Component {
           <LeftMenuComponent
               title={DEFAULT_HEADER_TITILE}
               isOpen={this.props.app.isLeftMenuOpen}
-              menuItems={LEFT_MENU_IMTES}
               handleSwitch={this.props.appActions.switchLeftMenu}
               handleNavigate={this.props.routeActions.routeTo}
             />

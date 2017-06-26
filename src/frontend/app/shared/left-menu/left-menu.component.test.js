@@ -1,11 +1,12 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 // Material-UI
+import {List} from 'material-ui/List';
 import AppBar from 'material-ui/AppBar';
+import {ListItem} from 'material-ui/List';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {List} from 'material-ui/List';
 
 // Components
 import LeftMenuComponent from './left-menu.component';
@@ -13,24 +14,36 @@ import LeftMenuComponent from './left-menu.component';
 injectTapEventPlugin();
 
 describe('>>> LEFT-MENU CONTAINER --- Shallow Rendeer Container', () => {
-  let wrapper, component;
 
-  const MENU_COMPONENT_PROPERTIES = {
+  // Prepare variables for working
+  const PROPS = {
     menuItems: [],
     handleNavigate: () => {},
   };
 
-  beforeEach(() => {
-    wrapper = mount(
-      <MuiThemeProvider>
-        <LeftMenuComponent
-          {...MENU_COMPONENT_PROPERTIES}
-        />
-      </MuiThemeProvider>
-    );
+  // Массив с демо элементами пункта меню
+  const INPUT_MENU_ITEMS = [
+    {
+      route: '/',
+      label: 'Главная',
+    },
+    {
+      route: '/categories',
+      label: 'Категории',
+    }
+  ];
 
-    component = wrapper.find(LeftMenuComponent);
-  });
+  const wrapper = mount(
+    <MuiThemeProvider>
+      <LeftMenuComponent
+        {...PROPS}
+      />
+    </MuiThemeProvider>
+  );
+
+  const component = wrapper.find(LeftMenuComponent);
+  const wrapperShallow = shallow(<LeftMenuComponent {...PROPS} />);
+  const methods = wrapperShallow.instance();
 
   describe('>>> параметры', () => {
     describe('>>> handleNavigate - функция навигации', () =>{
@@ -76,6 +89,34 @@ describe('>>> LEFT-MENU CONTAINER --- Shallow Rendeer Container', () => {
   
   it('+++ should have material-ui List component', () => {
     expect(wrapper.find(List).length).toEqual(1);
+  });
+
+  describe('>>> LeftMenuComponent. Методы ', () => {
+    describe('>>> LeftMenuComponent. Методы. PrepareMenuItems', () => {
+      let method, completedResult;
+
+      beforeEach(() => {
+        method = methods.prepareMenuItems;
+        completedResult = method(INPUT_MENU_ITEMS);
+      });
+
+      it('+++ должен быть определен', () => {
+        expect(method).toBeDefined();
+      });
+
+      it('+++ должен возвращать массив', () => {
+        expect(Array.isArray(method())).toBeTruthy();
+      });
+
+      it('+++ количество элементов столько же сколько и на входе',() => {
+        expect(completedResult.length).toEqual(INPUT_MENU_ITEMS.length);
+      });
+
+      // it('+++ пункт меню должен быть обернут в ListItem компоненту', () => {
+      //   let inst = shallow(completedResult[0]).instance();
+      //   expect(inst).instanceOf(ListItem);
+      // });
+    });
   });
     
 });
