@@ -2,10 +2,6 @@ import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 
-// Material-ui components
-import MenuItem from 'material-ui/MenuItem';
-import SelectField from 'material-ui/SelectField';
-
 // Components
 import TextFieldComponent from 'app/shared/form/text-field.component';
 import SelectFieldComponent from 'app/shared/form/select-field/select-field.component';
@@ -21,6 +17,7 @@ import {
   PRODUCTS_ADD_TITLE,
   PRODUCTS_ADD_BUTTON_LABEL,
   PRODUCTS_ADD_CATEGORIES_LABEL,
+  PRODUCTS_ADD_CATEGORIES_FLOAT_LEBEL,
 } from './products-add.constants';
 
 // CSS
@@ -69,6 +66,7 @@ export class ProductsAddContainer extends Component {
           ref={ ref => { this.selectCategoriesField = ref; }}
           hintText={PRODUCTS_ADD_CATEGORIES_LABEL}
           collection={categoriesCollection}
+          floatingLabelText={PRODUCTS_ADD_CATEGORIES_FLOAT_LEBEL}
         />
       </div>
     );
