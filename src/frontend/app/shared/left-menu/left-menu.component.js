@@ -20,8 +20,8 @@ const MENU_ITEMS = [
 
 class LeftMenuComponent extends Component {
   render() {
-    let title = this.props.title || 'Menu title';
-    let menuItems = MENU_ITEMS || [{label: 'Home', route: '/'}];
+    const title = this.props.title || 'Menu title';
+    const menuItems = MENU_ITEMS || [{ label: 'Home', route: '/' }];
 
     return(
       <Drawer
@@ -29,17 +29,14 @@ class LeftMenuComponent extends Component {
         docked={false}
         onRequestChange={this.props.handleSwitch}
       >
-        <AppBar title={ title } showMenuIconButton={false} />
+        <AppBar title={title} showMenuIconButton={false} />
         <List>
           {
-            menuItems.map((item, index) => {
+            menuItems.map((item) => {
               return (
                 <ListItem
-                  key={index}
-                  onTouchTap={() => {
-                    this.props.handleNavigate(item.route);
-                    this.props.handleSwitch();
-                  }}
+                  key={item.route}
+                  onTouchTap={this.onClickMenuItem.bind(this, { item: item })}
                   primaryText={item.label}
                 />
               );
@@ -50,8 +47,20 @@ class LeftMenuComponent extends Component {
     )
   }
 
-  handleClickMenuItem(itemData) {
-    itemData.routeDispatch();
+  /**
+   * Обработка клика на пункт меню
+   * 
+   * @param {Object} [opts={}] Параметры для обработки клика
+   * @param {Object} [opts.item={}] Параметры пункта меню
+   * @param {string} [opts.item.label] Подпись пункта меню
+   * @param {string} [opts.inte.route] Маршрут пункта меню
+   * @return void
+   * @memberof LeftMenuComponent
+   */
+  onClickMenuItem(opts = {}) {
+    let route = (opts.item && opts.item.route) ? opts.item.route : '404';
+
+    this.props.handleNavigate(route);
     this.props.handleSwitch();
   }
   

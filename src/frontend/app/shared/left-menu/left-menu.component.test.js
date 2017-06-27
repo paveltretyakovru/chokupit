@@ -30,7 +30,7 @@ describe('>>> LEFT-MENU CONTAINER --- Shallow Rendeer Container', () => {
     {
       route: '/categories',
       label: 'Категории',
-    }
+    },
   ];
 
   const wrapper = mount(
@@ -42,7 +42,9 @@ describe('>>> LEFT-MENU CONTAINER --- Shallow Rendeer Container', () => {
   );
 
   const component = wrapper.find(LeftMenuComponent);
-  const wrapperShallow = shallow(<LeftMenuComponent {...PROPS} />);
+  const wrapperShallow = shallow(
+    <LeftMenuComponent {...PROPS} />
+  );
   const methods = wrapperShallow.instance();
 
   describe('>>> параметры', () => {
@@ -112,10 +114,22 @@ describe('>>> LEFT-MENU CONTAINER --- Shallow Rendeer Container', () => {
         expect(completedResult.length).toEqual(INPUT_MENU_ITEMS.length);
       });
 
-      // it('+++ пункт меню должен быть обернут в ListItem компоненту', () => {
-      //   let inst = shallow(completedResult[0]).instance();
-      //   expect(inst).instanceOf(ListItem);
-      // });
+      // TODO: Вычислить как корректно подключить пункт меню и узнать extends
+      it('+++ пункт меню должен быть обернут в ListItem компоненту', () => {
+        expect(completedResult[0].type.muiName).toEqual('ListItem');
+      });
+    });
+
+    describe('>>> LeftMenuComponent. Методы. onClickMenuItem', () => {
+      let method = methods.onClickMenuItem;
+
+      it('+++ должен быть определен', () => {
+        expect(method).toBeDefined();
+      });
+
+      it('+++ должен быть функцией', () => {
+        expect(typeof method).toEqual('function');
+      });
     });
   });
     
