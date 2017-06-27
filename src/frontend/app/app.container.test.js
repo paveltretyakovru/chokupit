@@ -8,21 +8,23 @@ import configureStore from 'redux-mock-store';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // States
-import {initState as initAppReducerState} from './app.reducer';
-import {initState as initHeaderReducerState} from './shared/header/header.reducer';
+import {initState as app} from './app.reducer';
+import {initState as header} from './shared/header/header.reducer';
+import {initState as categories} from 'app/pages/categories/categories.reducer';
 
 // Components
-import ConnectedAppContainer from './app.container';
+import ConnectedAppContainer, { AppContainer } from './app.container';
 import LeftMenuCompnent from './shared/left-menu/left-menu.component';
 
 describe('>>> AppContainer контейнер', () => {
+  let wrapper, store, component;
+  
   const initialState = {
-    app: {...initAppReducerState},
-    header: {...initHeaderReducerState},
+    app: app,
+    header: header,
+    categories: categories,
   };
   const mockSotre = configureStore();
-  
-  let wrapper, store;
 
   beforeEach(() => {
     store = mockSotre(initialState);
@@ -33,10 +35,18 @@ describe('>>> AppContainer контейнер', () => {
         </Provider>
       </MuiThemeProvider>
     );
+
+    component = wrapper.find(AppContainer);
   });
   
   it('+++ должен быть срендерен', () => {
     expect(wrapper).toBeDefined();
+  });
+
+  describe('>>> AppContainer. Параметры состояния', () => {
+    it('+++ categories. Должен быть передан state категорий', () => {
+      expect(component.prop('categories')).toBeDefined();
+    });
   });
 
   // Вложенные компоненты

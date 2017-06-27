@@ -107,6 +107,7 @@ export class AppContainer extends Component {
 function mapStateToProps(state) {
   return {
     app: state.app,
+    categories: state.categories,
   }
 }
 
