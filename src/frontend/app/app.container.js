@@ -42,11 +42,14 @@ export class AppContainer extends Component {
   render() {
     return(
         <div id="app-container">
+
+          {/* Шапка. Панель навигации */}
           <HeaderContainer
             buttonLeft={this.state.headerButtonLeft}
             buttonRight={this.state.headerButtonRight}
           />
 
+          {/* Меню */}
           <LeftMenuComponent
               title={DEFAULT_HEADER_TITILE}
               isOpen={this.props.app.isLeftMenuOpen}
@@ -54,10 +57,13 @@ export class AppContainer extends Component {
               handleNavigate={this.props.routeActions.routeTo}
             />
 
+          {/* Context container */}
           <div className="container-fluid">
 
             <main className="row">
               <div id="app-content" className="col-xs-12 col-md-12">
+
+                {/* Передаем в контейнеры страниц функции для работы с head */}
                 {
                   (this.props.children)
                     ? React.cloneElement(
