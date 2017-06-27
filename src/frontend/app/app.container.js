@@ -14,7 +14,10 @@ import LeftMenuComponent from './shared/left-menu/left-menu.component';
 import ButtonMenuComponent from './shared/buttons/button-menu.component';
 
 // Constants
-import { DEFAULT_HEADER_TITILE } from './app.constants';
+import {
+  DEFAULT_HEADER_TITILE,
+  DINAMIC_CATEGORIES_MENU_LABEL,
+} from './app.constants';
 
 // Redux
 import * as appActions from './app.actions';
@@ -55,6 +58,12 @@ export class AppContainer extends Component {
               isOpen={this.props.app.isLeftMenuOpen}
               handleSwitch={this.props.appActions.switchLeftMenu}
               handleNavigate={this.props.routeActions.routeTo}
+              dinamicItems={[
+                {
+                  label: DINAMIC_CATEGORIES_MENU_LABEL,
+                  items: this.props.categories,
+                },
+              ]}
             />
 
           {/* Context container */}

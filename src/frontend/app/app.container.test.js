@@ -17,8 +17,6 @@ import ConnectedAppContainer, { AppContainer } from './app.container';
 import LeftMenuCompnent from './shared/left-menu/left-menu.component';
 
 describe('>>> AppContainer контейнер', () => {
-  let wrapper, store, component;
-  
   const initialState = {
     app: app,
     header: header,
@@ -26,19 +24,17 @@ describe('>>> AppContainer контейнер', () => {
   };
   const mockSotre = configureStore();
 
-  beforeEach(() => {
-    store = mockSotre(initialState);
-    wrapper = mount(
-      <MuiThemeProvider>
-        <Provider store={store}>
-          <ConnectedAppContainer />
-        </Provider>
-      </MuiThemeProvider>
-    );
+  const store = mockSotre(initialState);
+  const wrapper = mount(
+    <MuiThemeProvider>
+      <Provider store={store}>
+        <ConnectedAppContainer />
+      </Provider>
+    </MuiThemeProvider>
+  );
 
-    component = wrapper.find(AppContainer);
-  });
-  
+  const component = wrapper.find(AppContainer);
+
   it('+++ должен быть срендерен', () => {
     expect(wrapper).toBeDefined();
   });
@@ -54,11 +50,7 @@ describe('>>> AppContainer контейнер', () => {
 
     // Вложенная компонента LeftMenuComponent
     describe('>>> LeftMenuCompnent - компонента для левого меню', () => {
-      let leftMenu;
-
-      beforeEach(() => {
-        leftMenu = wrapper.find(LeftMenuCompnent);
-      });
+      const leftMenu = wrapper.find(LeftMenuCompnent);
 
       it('+++ должна быть определена', () => {
         expect(leftMenu.length).toEqual(1);
@@ -66,11 +58,7 @@ describe('>>> AppContainer контейнер', () => {
 
       // Параметр handleNaviagate
       describe('>>> параметр handleNavigate', () => {
-        let property;
-
-        beforeEach(() => {
-          property = leftMenu.prop('handleNavigate');
-        })
+        let property = leftMenu.prop('handleNavigate');
 
         it('+++ должен быть определен', () => {
           expect(property).toBeDefined();
@@ -81,6 +69,18 @@ describe('>>> AppContainer контейнер', () => {
         });
 
       }); // Параметр handleNavigate
+
+      describe('>>> параметр dinamicItems', () => {
+        const dinamicItems = leftMenu.prop('dinamicItems');
+
+        it('+++ должен быть определен', () => {
+          expect(dinamicItems).toBeDefined();
+        });
+
+        it('+++ должен быть массивом', () => {
+          expect(Array.isArray(dinamicItems)).toBeTruthy();
+        });
+      });
     }); // LeftMenuComponent
   }); // Вложенные компоненты 
     
